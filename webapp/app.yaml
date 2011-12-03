@@ -6,4 +6,10 @@ threadsafe: true
 
 handlers:
  - url: /.*
-   script: helloworld.app
+   script: main.app
+
+libraries:
+ - name: jinja2
+   version: 2.6
+ - name: markupsafe
+   version: 0.15

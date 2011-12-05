@@ -8,3 +8,6 @@ class BaseGameInstance(polymodel.PolyModel):
     state = db.StringProperty(required=True, choices=set(["open", "playing", "finished"]))
     created = db.DateProperty(required=True)
     participants = db.ListProperty(users.User)
+
+class BaseGameState(db.Model):
+    next_participant = db.UserProperty()

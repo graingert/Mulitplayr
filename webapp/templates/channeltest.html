@@ -1,0 +1,44 @@
+<html>
+	<head>
+		<script type="text/javascript" src="/_ah/channel/jsapi"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script type="text/javascript">
+onOpened = function() {
+	alert("Socket Opened");
+}
+
+onMessage = function(m) {
+	alert(m.data);
+}
+
+onError = function(m) { alert(m); }
+onClose = function(m) { alert(m); }
+
+$(document).ready(function() {
+	channel = new goog.appengine.Channel("{{ channel_token }}");
+	socket = channel.open();
+	socket.onopen = onOpened;
+	socket.onmessage = onMessage;
+	socket.onerror = onError;
+	socket.onclose = onClose;
+
+	$("#message-form input[type=submit]").click(function() {
+		var data = {
+			message: $('input[name=message]').val(),
+			token: $('input[name=token]').val()};
+		$.post('/channel-test/sendmessage', data);
+		return false;
+	});
+});
+		</script>
+	</head>
+	<body>
+		{{ message }}
+		<form id="message-form">
+			To Token: <input type="text" name="token" value="{{message}}" /><br/>
+			Message: <input type="text" name="message" /><br/>
+			<input type="submit" value="Send" />
+		</form>
+	</body>
+</html>
+

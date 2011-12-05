@@ -20,3 +20,10 @@ class NewGameHandler(BaseHandler):
                                       participants = [user])
         instance.put()
         self.response.out.write("Lol" + str(instance))
+
+class ListGameHandler(BaseHandler):
+    def get(self):
+        q = SimpleGameInstance.all()
+        result = q.fetch(5)
+        for instance in result:
+            self.response.out.write(instance.key())

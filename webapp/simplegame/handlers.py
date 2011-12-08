@@ -35,5 +35,9 @@ class StartGameHandler(BaseHandler):
         if game_id:
             game_instance = SimpleGameInstance.get_by_id(game_id)
             if game_instance:
-                game_instance.start_game()
-                self.response.out.write(game_instance.key())
+                self.try_game_start(game_instance)
+    def try_game_start(self, game_instance):
+        if game_instance.start_game():
+            self.response.out.write("Started game")
+        else:
+            self.response.out.write("Game is not open")

@@ -1,0 +1,14 @@
+<html>
+	<body>
+		<ul>
+			{% for game in games %}
+			<li>
+			ID: {{game.key().id()}}
+			State: {{game.state}}
+			<a href='startgame?id={{game.key().id()}}'>Start</a>
+			</li>
+			{% endfor %}
+		</ul>
+		<a href='newgame'>New Game</a>
+	</body>
+</html>

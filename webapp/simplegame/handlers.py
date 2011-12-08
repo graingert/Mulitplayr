@@ -26,8 +26,8 @@ class ListGameHandler(BaseHandler):
     def get(self):
         q = SimpleGameInstance.all()
         result = q.fetch(5)
-        for instance in result:
-            self.response.out.write(str(instance.key().id_or_name()) + '\n')
+        context = {'games':result}
+        self.render_response('gamelist.html', **context)
 
 class StartGameHandler(BaseHandler):
     def get(self):

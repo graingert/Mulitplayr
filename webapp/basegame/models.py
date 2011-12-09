@@ -15,7 +15,7 @@ class BaseGameInstance(polymodel.PolyModel):
             return False
 
         # Set the current to the initial state
-        self.current_state = self.get_initial_state()
+        self.current_state = self.new_initial_state()
         self.state = "playing"
         self.put()
         return self.current_state

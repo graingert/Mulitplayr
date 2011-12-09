@@ -9,5 +9,16 @@ class BaseGameInstance(polymodel.PolyModel):
     created = db.DateProperty(required=True)
     participants = db.ListProperty(users.User)
 
+    def start_game(self):
+        # Check if the game can be started
+        if self.state != "open":
+            return False
+
+        # Set the current to the initial state
+        self.current_state = self.get_initial_state()
+        self.state = "playing"
+        self.put()
+        return self.current_state
+
 class BaseGameState(db.Model):
     next_participant = db.UserProperty()

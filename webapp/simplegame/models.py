@@ -1,4 +1,5 @@
 import webapp2
+import inspect
 
 from google.appengine.ext import db
 
@@ -9,15 +10,9 @@ class SimpleGameState(BaseGameState):
 
 class SimpleGameInstance(BaseGameInstance):
     current_state = db.ReferenceProperty(SimpleGameState)
-    def start_game(self):
-        if self.state != "open":
-            return False
+    def new_initial_state(self):
         current_state = SimpleGameState()
         current_state.current_number = 1
         current_state.next_participant = self.participants[0]
         current_state.put()
-
-        self.current_state = current_state
-        self.state = "playing"
-        self.put()
         return current_state

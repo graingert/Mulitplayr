@@ -20,5 +20,18 @@ class BaseGameInstance(polymodel.PolyModel):
         self.put()
         return self.current_state
 
+    def add_user(self, user):
+        # Check if the game can be joined
+        if self.state != "open":
+            return False
+        
+        # Check if the user is already joined
+        if user in self.participants:
+            return False
+
+        self.participants.append(user)
+        self.put()
+        return True
+
 class BaseGameState(db.Model):
     next_participant = db.UserProperty()

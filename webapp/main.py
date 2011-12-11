@@ -4,5 +4,6 @@ app = webapp2.WSGIApplication([
     ('/', 'handler.test.MainPage'),
     ('/newgame', 'simplegame.handlers.NewGameHandler'),
     ('/listgame', 'simplegame.handlers.ListGameHandler'),
-    ('/startgame', 'simplegame.handlers.StartGameHandler')
+    ('/startgame', 'simplegame.handlers.StartGameHandler'),
+    ('/joingame', 'simplegame.handlers.JoinGameHandler')
 ], debug=True)

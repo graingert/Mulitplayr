@@ -1,14 +1,26 @@
-<html>
-	<body>
-		<ul>
-			{% for game in games %}
-			<li>
-			ID: {{game.key().id()}}
-			State: {{game.state}}
-			<a href='startgame?id={{game.key().id()}}'>Start</a>
-			</li>
-			{% endfor %}
-		</ul>
-		<a href='newgame'>New Game</a>
-	</body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+<table>
+	<thead>
+		<th>ID</th>
+		<th>State</th>
+		<th class="pull-right"></th>
+	</thead>
+	<tbody>
+		{% for game in games %}
+		<tr>
+		<td>{{game.key().id()}}</td>
+		<td>{{game.state}}</td>
+		<td style="text-align: right">
+		{% if game.state == "open" %}
+			<a class="btn" href="startgame?id={{game.key().id()}}">Start</a>
+		{% elif game.state == "playing" %}
+			<a class="btn" href="startgame?id={{game.key().id()}}">View</a>
+		{% endif %}
+		</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+<table>
+<a class="btn" href="newgame">New Game</a>
+{% endblock %}

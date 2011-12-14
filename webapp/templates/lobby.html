@@ -13,10 +13,10 @@
 		<td>{{game.state}}</td>
 		<td style="text-align: right">
 		{% if game.state == "open" %}
-			<a class="btn" href="joingame?id={{game.key().id()}}">Join</a>
-			<a class="btn" href="startgame?id={{game.key().id()}}">Start</a>
+			<a class="btn" href="{{ uri_for('joingame', game_id=game.key().id()) }}">Join</a>
+			<a class="btn" href="{{ uri_for('startgame', game_id=game.key().id()) }}">Start</a>
 		{% elif game.state == "playing" %}
-			<a class="btn" href="startgame?id={{game.key().id()}}">View</a>
+			<a class="btn" href="{{ uri_for('startgame', game_id=game.key().id()) }}">View</a>
 		{% endif %}
 		</td>
 		</tr>

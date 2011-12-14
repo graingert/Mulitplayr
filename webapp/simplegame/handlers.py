@@ -20,11 +20,11 @@ class NewGameHandler(BaseHandler):
                                       created = now,
                                       participants = [user])
         instance.put()
-        return webapp2.redirect('/listgame')
+        return webapp2.redirect_to('lobby')
 
 class StartGameHandler(BaseHandler):
-    def get(self):
-        game_id = int(self.request.get('id'))
+    def get(self, game_id):
+        game_id = int(game_id)
         context = {'message' : "Unknown Game"}
         if game_id:
             game_instance = SimpleGameInstance.get_by_id(game_id)
@@ -38,14 +38,14 @@ class StartGameHandler(BaseHandler):
             return ("Game is not open")
 
 class JoinGameHandler(BaseHandler):
-    def get(self):
+    def get(self, game_id):
         user = users.get_current_user()
 
         if not user:
             self.redirect(users.create_login_url(self.request.uri))
             return
 
-        game_id = int(self.request.get('id'))
+        game_id = int(game_id)
         context = {'message' : "Unknown Game"}
         if game_id:
             game_instance = SimpleGameInstance.get_by_id(game_id)

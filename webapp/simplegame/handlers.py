@@ -22,13 +22,6 @@ class NewGameHandler(BaseHandler):
         instance.put()
         return webapp2.redirect('/listgame')
 
-class ListGameHandler(BaseHandler):
-    def get(self):
-        q = SimpleGameInstance.all()
-        result = q.fetch(50)
-        context = {'games':result}
-        self.render_response('gamelist.html', **context)
-
 class StartGameHandler(BaseHandler):
     def get(self):
         game_id = int(self.request.get('id'))

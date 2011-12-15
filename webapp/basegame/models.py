@@ -56,3 +56,8 @@ class BaseGameInstance(polymodel.PolyModel):
         self.participants.append(user)
         self.put()
         return True
+
+    def prepare_info_context(self, context):
+        context['state'] = self.state
+        context['participants'] = self.participants
+        return context

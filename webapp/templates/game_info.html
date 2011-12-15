@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+	<div class="span5">
+		<h2>Participants</h2>
+		<ul>
+			{% for user in participants %}
+			<li>{{user.nickname()}}</li>
+			{% endfor %}
+		</ul>
+	</div>
+	<div class="span11">
+		{{ state }}
+	</div>
+</div>
+{% endblock %}

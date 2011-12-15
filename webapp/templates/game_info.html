@@ -13,4 +13,9 @@
 		{{ state }}
 	</div>
 </div>
+<div class="well">
+	<a class="btn" href="{{ uri_for('lobby') }}">Lobby</a>
+	<a class="btn" href="{{ uri_for('joingame', game_id=game.key().id()) }}">Join</a>
+	<a class="btn" href="{{ uri_for('startgame', game_id=game.key().id()) }}">Start</a>
+</div>
 {% endblock %}

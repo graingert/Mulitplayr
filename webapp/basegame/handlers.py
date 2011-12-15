@@ -60,4 +60,5 @@ class GameInfoHandler(BaseHandler):
 
         context = {}
         game_instance.prepare_info_context(context)
+        context['game'] = game_instance
         self.render_response('game_info.html', **context)

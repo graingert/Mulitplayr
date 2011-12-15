@@ -1,4 +1,5 @@
 import webapp2
+import json
 
 from base import BaseHandler
 from webapp2_extras.appengine.users import login_required
@@ -62,3 +63,29 @@ class GameInfoHandler(BaseHandler):
         game_instance.prepare_info_context(context)
         context['game'] = game_instance
         self.render_response('game_info.html', **context)
+
+    def post(self, game_id):
+        user = users.get_current_user()
+
+        if user is None:
+            return #TODO need error
+
+        game_instance = get_game_instance(game_id)
+
+        action = self.request.get('action')
+        if action == 'join':
+            self.join_action(game_instance, user)
+        elif action == 'start':
+            self.start_action(game_instance, user)
+        else:
+            return #TODO need error
+
+    def join_action(self, game_instance, user):
+        result = {}
+        result['success'] = game_instance.add_user(user)
+        self.response.write(json.dumps(result))
+
+    def start_action(self, game_instance, user):
+        result = {}
+        result['success'] = game_instance.start_game()
+        self.response.write(json.dumps(result))

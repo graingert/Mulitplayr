@@ -36,3 +36,24 @@ class StartGameHandler(BaseHandler):
             return False
 
         return game_instance.start_game()
+
+class JoinGameHandler(BaseHandler):
+
+    @login_required
+    def get(self, game_id):
+        load_inherited_models(self.app)
+        user = users.get_current_user()
+        context = {}
+        context['message'] = self.try_game_join(game_id, user)
+        self.render_response('index.html', **context)
+        
+    def try_game_join(self, game_id, user):
+        game_id = int(game_id)
+        if not game_id:
+            return False
+
+        game_instance = BaseGameInstance.get_by_id(game_id)
+        if not game_instance:
+            return False
+
+        return game_instance.add_user(user)

@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <title>{% block title %}Title{% endblock %}</title>
 
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -41,7 +43,9 @@
         padding: 20px 20px 10px;
         margin: -20px -20px 20px;
       }
-    </style>
+	</style>
+{% block head %}
+{% endblock %}
   </head>
 
   <body>

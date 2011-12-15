@@ -1,4 +1,30 @@
 {% extends "base.html" %}
+
+{% block head %}
+<script>
+	function joingame(event){
+		$.post("#", {action:"join"},
+		function(data){
+			if (data.success)
+				location.reload();
+		}, "json");
+		event.preventDefault();
+	}
+	function startgame(event){
+		$.post("#", {action:"start"},
+		function(data){
+			if (data.success)
+				location.reload();
+		}, "json");
+		event.preventDefault();
+	}
+	$(document).ready(function(){
+		$("#joingame").click(joingame);
+		$("#startgame").click(startgame);
+	})
+</script>
+{% endblock %}
+
 {% block content %}
 <div class="row">
 	<div class="span5">
@@ -30,8 +56,8 @@
 <div class="well">
 	<a class="btn" href="{{ uri_for('lobby') }}">Return To Lobby</a>
 	{% if game.state == "open" %}
-	<a class="btn" href="{{ uri_for('joingame', game_id=game.key().id()) }}">Join</a>
-	<a class="btn" href="{{ uri_for('startgame', game_id=game.key().id()) }}">Start</a>
+	<a class="btn" href="#" id="joingame">Join</a>
+	<a class="btn" href="#" id="startgame">Start</a>
 	{% endif %}
 </div>
 {% endblock %}

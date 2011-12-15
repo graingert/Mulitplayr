@@ -87,5 +87,5 @@ class GameInfoHandler(BaseHandler):
 
     def start_action(self, game_instance, user):
         result = {}
-        result['success'] = game_instance.start_game()
+        result['success'] = game_instance.start_game() != None
         self.response.write(json.dumps(result))

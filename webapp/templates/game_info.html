@@ -30,7 +30,7 @@
 	<div class="span5">
 		<h2>Participants</h2>
 		<ul>
-			{% for user in game.participants %}
+			{% for user in game.players %}
 			<li>{{user.nickname()}}</li>
 			{% endfor %}
 		</ul>

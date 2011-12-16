@@ -5,7 +5,7 @@ from google.appengine.ext.db import polymodel
 from google.appengine.api import users
 
 class BaseGameState(polymodel.PolyModel):
-    current_participant = db.UserProperty()
+    current_player = db.UserProperty()
     last_sequence_number = db.IntegerProperty(required=True, default=0)
 
     def get_actions_since(self,seq_num):
@@ -15,21 +15,21 @@ class BaseGameState(polymodel.PolyModel):
         action.game_state = self
         action.sequence_number = last_sequence_number
         last_sequence_number += 1
-        action.participant = current_participant
+        action.player = current_player
         action.put()
         self.put()
 
 class BaseGameAction(polymodel.PolyModel):
     game_state = db.ReferenceProperty(BaseGameState)
     sequence_number = db.IntegerProperty(required=True)
-    participant = db.UserProperty()
+    player = db.UserProperty()
 
 class BaseGameInstance(polymodel.PolyModel):
     state = db.StringProperty(required=True, choices=set(["open", "playing", "finished"]))
     created = db.DateProperty(required=True)
-    participants = db.ListProperty(users.User)
+    players = db.ListProperty(users.User)
     current_state = db.ReferenceProperty(BaseGameState)
-    max_participants = 2
+    max_players = 2
 
     def start_game(self):
         # Check if the game can be started
@@ -38,7 +38,7 @@ class BaseGameInstance(polymodel.PolyModel):
 
         # Set the current to the initial state
         new_state = self.new_initial_state()
-        new_state.current_participant = self.participants[0]
+        new_state.current_player = self.players[0]
         new_state.put()
         self.current_state = new_state
         self.state = "playing"
@@ -51,9 +51,9 @@ class BaseGameInstance(polymodel.PolyModel):
             return False
         
         # Check if the user is already joined
-        if user in self.participants:
+        if user in self.players:
             return False
 
-        self.participants.append(user)
+        self.players.append(user)
         self.put()
         return True

@@ -18,6 +18,6 @@ class NewGameHandler(BaseHandler):
         now = datetime.datetime.now().date();
         instance = SimpleGameInstance(state = 'open',
                                       created = now,
-                                      participants = [user])
+                                      players = [user])
         instance.put()
         return webapp2.redirect_to('lobby')

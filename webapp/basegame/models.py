@@ -29,6 +29,7 @@ class BaseGameInstance(polymodel.PolyModel):
     created = db.DateProperty(required=True)
     participants = db.ListProperty(users.User)
     current_state = db.ReferenceProperty(BaseGameState)
+    max_participants = 2
 
     def start_game(self):
         # Check if the game can be started

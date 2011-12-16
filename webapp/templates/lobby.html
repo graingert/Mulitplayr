@@ -12,10 +12,6 @@
 		<td>{{game.key().id()}}</td>
 		<td>{{game.state}}</td>
 		<td style="text-align: right">
-		{% if game.state == "open" %}
-			<a class="btn" href="{{ uri_for('joingame', game_id=game.key().id()) }}">Join</a>
-			<a class="btn" href="{{ uri_for('startgame', game_id=game.key().id()) }}">Start</a>
-		{% endif %}
 		<a class="btn info" href="{{ uri_for('gameinfo', game_id=game.key().id()) }}">View</a>
 		</td>
 		</tr>

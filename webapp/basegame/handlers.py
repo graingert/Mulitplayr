@@ -32,24 +32,6 @@ class LobbyHandler(BaseHandler):
         self.context['games'] = BaseGameInstance.all().fetch(50)
         self.render_response('lobby.html')
 
-class StartGameHandler(BaseHandler):
-    
-    @login_required
-    def get(self, game_id):
-        load_inherited_models(self.app)
-        context = {'message' : get_game_instance(game_id).start_game() != False}
-        self.render_response('index.html', context)
-
-class JoinGameHandler(BaseHandler):
-
-    @login_required
-    def get(self, game_id):
-        load_inherited_models(self.app)
-        user = users.get_current_user()
-        context = {}
-        context['message'] = get_game_instance(game_id).add_user(user)
-        self.render_response('index.html', context)
-
 class GameInfoHandler(BaseHandler):
 
     @login_required

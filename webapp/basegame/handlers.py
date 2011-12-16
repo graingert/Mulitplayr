@@ -40,10 +40,8 @@ class GameInfoHandler(BaseHandler):
 
         game_instance = get_game_instance(game_id)
 
-        context = {}
-        game_instance.prepare_info_context(context)
-        context['game'] = game_instance
-        self.render_response('game_info.html', context)
+        self.context['game'] = game_instance
+        self.render_response('game_info.html')
 
     def post(self, game_id):
         user = users.get_current_user()

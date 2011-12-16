@@ -12,12 +12,17 @@ def jinja2_fact(app):
 
 class BaseHandler(webapp2.RequestHandler):
 
+    context = dict()
+
     @webapp2.cached_property
     def jinja2(self):
         # Returns a Jinja2 renderer cached in the app registry.
         return jinja2.get_jinja2(app=self.app, factory=jinja2_fact)
 
-    def render_response(self, _template, **context):
+    def render_response(self, _template, context = None):
         # Renders a template and writes the result to the response.
-        rv = self.jinja2.render_template(_template, **context)
+        if not context is None:
+            rv = self.jinja2.render_template(_template, **context)
+        else:
+            rv = self.jinja2.render_template(_template, **self.context)
         self.response.write(rv)

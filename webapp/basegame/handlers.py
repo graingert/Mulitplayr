@@ -68,3 +68,9 @@ class GameInfoHandler(BaseHandler):
         result = {}
         result['success'] = game_instance.start_game() != None
         self.response.write(json.dumps(result))
+
+class GamePlayHandler(BaseHandler):
+
+    @login_required
+    def get(self, game_id):
+        self.render_response('play.html')

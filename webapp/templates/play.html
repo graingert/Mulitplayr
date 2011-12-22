@@ -1,6 +1,10 @@
 {% extends "fluid.html" %}
 
 {% block sidebar %}
+<dl>
+	<dt>Current Player</dt>
+	<dd>{{ current_player.nickname() }}</dd>
+</dl>
 {% endblock %}
 
 {% block content %}

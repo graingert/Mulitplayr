@@ -73,4 +73,9 @@ class GamePlayHandler(BaseHandler):
 
     @login_required
     def get(self, game_id):
+        load_inherited_models(self.app)
+        game_instance = get_game_instance(game_id)
+        game_state = game_instance.current_state
+
+        self.context['current_player'] = game_state.current_player
         self.render_response('play.html')

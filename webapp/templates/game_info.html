@@ -59,5 +59,8 @@
 	<a class="btn" href="#" id="joingame">Join</a>
 	<a class="btn" href="#" id="startgame">Start</a>
 	{% endif %}
+	{% if game.state == "playing" %}
+	<a class="btn" href="{{ uri_for('gameplay', game_id=game.key().id()) }}">Play</a>
+	{% endif %}
 </div>
 {% endblock %}

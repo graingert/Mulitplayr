@@ -37,11 +37,13 @@ class GameInfoHandler(BaseHandler):
     @login_required
     def get(self, game_id):
         load_inherited_models(self.app)
-
         game_instance = get_game_instance(game_id)
 
+        self.redirect_to(game_instance.info_redirect, game_id = game_id)
+
+    def prepare_context(self, game_instance):
         self.context['game'] = game_instance
-        self.render_response('game_info.html')
+        self.context['play_redirect'] = game_instance.play_redirect
 
     def post(self, game_id):
         user = users.get_current_user()
@@ -71,11 +73,8 @@ class GameInfoHandler(BaseHandler):
 
 class GamePlayHandler(BaseHandler):
 
-    @login_required
-    def get(self, game_id):
-        load_inherited_models(self.app)
-        game_instance = get_game_instance(game_id)
+    def prepare_context(self, game_instance):
         game_state = game_instance.current_state
-
+        self.context['game'] = game_instance
+        self.context['state'] = game_state
         self.context['current_player'] = game_state.current_player
-        self.render_response('play.html')

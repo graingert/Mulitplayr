@@ -1,0 +1,32 @@
+{% extends "play.html" %}
+
+{% block head %}
+<script>
+	function makeguess(event){
+		guess_val = $("#guess_input").val();
+		$.post("#", {action:"guess", guess:guess_val},
+		function(data){
+			alert(data)
+		}, "json");
+		event.preventDefault();
+	}
+	$(document).ready(function(){
+		$("#make_guess").click(makeguess);
+	})
+</script>
+{% endblock %}
+
+{% block content %}
+<form>
+	<fieldset>
+		<legend>Make a Guess</legend>
+		<label for="guess_input">Guess Number</label>
+		<div class="input">
+			<input class="xlarge" id="guess_input" size="4" type="text" />
+		</div>
+		<div class="actions">
+			<button id="make_guess" class="btn primary">Make Guess</button>
+		</div>
+	</fieldset>
+</form>
+{% endblock %}

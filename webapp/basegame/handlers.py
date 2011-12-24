@@ -77,8 +77,24 @@ class GameInfoHandler(BaseHandler):
 
 class GamePlayHandler(BaseHandler):
 
+    def __init__(self, request, response):
+        self.initialize(request, response)
+        self.actionHandlers = {
+        }
+
     def prepare_context(self, game_instance):
         game_state = game_instance.current_state
         self.context['game'] = game_instance
         self.context['state'] = game_state
         self.context['current_player'] = game_state.current_player
+
+    def post(self, game_id):
+
+        user = users.get_current_user()
+        if user is None:
+            return #TODO need error
+
+        game_instance = get_game_instance(game_id)
+
+        action = self.request.get('action')
+        self.actionHandlers[action](game_instance)

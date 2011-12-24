@@ -13,15 +13,15 @@ class BaseGameState(polymodel.PolyModel):
 
     def add_action(self,action):
         action.game_state = self
-        action.sequence_number = last_sequence_number
-        last_sequence_number += 1
-        action.player = current_player
+        action.sequence_number = self.last_sequence_number
+        self.last_sequence_number += 1
+        action.player = self.current_player
         action.put()
         self.put()
 
 class BaseGameAction(polymodel.PolyModel):
     game_state = db.ReferenceProperty(BaseGameState)
-    sequence_number = db.IntegerProperty(required=True)
+    sequence_number = db.IntegerProperty()
     player = db.UserProperty()
 
 class BaseGameInstance(polymodel.PolyModel):

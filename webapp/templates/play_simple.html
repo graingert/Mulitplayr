@@ -2,18 +2,32 @@
 
 {% block head %}
 <script>
+	var result_template;
+
 	function makeguess(event){
-		guess_val = $("#guess_input").val();
+		var guess_val = $("#guess_input").val();
+
 		$.post("#", {action:"guess", guess:guess_val},
 		function(data){
-			alert(data)
+			$("#results").append(window.result_template(data));
 		}, "json");
+
 		event.preventDefault();
 	}
 	$(document).ready(function(){
+		var source   = $("#guess-template").html();
+		window.result_template = Handlebars.compile(source);
+
 		$("#make_guess").click(makeguess);
 	})
 </script>
+{% raw %}
+<script id="guess-template" type="text/x-handlebars-template">
+<div class="alert-message">
+	Go {{dir}} than {{guessed}}.
+</div>
+</script>
+{% endraw %}
 {% endblock %}
 
 {% block content %}
@@ -29,4 +43,5 @@
 		</div>
 	</fieldset>
 </form>
+<div id="results"/>
 {% endblock %}

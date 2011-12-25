@@ -53,4 +53,10 @@ class SimpleGamePlayHandler(GamePlayHandler):
         action = SimpleGameAction()
         action.guessed_number = int(self.request.get('guess'))
         game_state.add_action(action)
+        result['guessed'] = action.guessed_number
+        result['match'] = action.guessed_number == game_state.correct_number
+        if action.guessed_number < game_state.correct_number:
+            result['dir'] = "Higher"
+        if action.guessed_number > game_state.correct_number:
+            result['dir'] = "Lower"
         self.response.write(json.dumps(result))

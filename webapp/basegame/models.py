@@ -19,6 +19,13 @@ class BaseGameState(polymodel.PolyModel):
         action.put()
         self.put()
 
+    def get_info_dict(self, target=dict()):
+        """ Fill info about state into a dict. """
+        target['current_player'] = self.current_player
+        target['last_sequence_number'] = self.last_sequence_number
+
+        return target
+
 class BaseGameAction(polymodel.PolyModel):
     game_state = db.ReferenceProperty(BaseGameState)
     sequence_number = db.IntegerProperty()

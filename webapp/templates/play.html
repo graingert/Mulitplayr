@@ -1,10 +1,32 @@
 {% extends "fluid.html" %}
 
+{% block head %}
+<script>
+	function refresh_state(event){
+		$.get("", {action:"state"},
+		function(data){
+			$(".current-player").text(data["current_player"]);
+			$(document).trigger("new-state", data);
+		}, "json");
+	}
+
+	$(document).ready(function(){
+		$(document).on("refresh-state", refresh_state);
+		$(document).trigger("refresh-state");
+		$("#refresh-state").click(function(event){
+			$(document).trigger("refresh-state");
+			event.preventDefault();
+		});
+	})
+</script>
+{% endblock %}
+
 {% block sidebar %}
 <dl>
 	<dt>Current Player</dt>
-	<dd>{{ current_player.nickname() }}</dd>
+	<dd class="current-player"></dd>
 </dl>
+<a id="refresh-state" class="btn" href="#">Refresh State</a>
 {% endblock %}
 
 {% block content %}

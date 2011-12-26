@@ -1,24 +1,35 @@
 {% extends "play.html" %}
 
 {% block head %}
+{{ super() }}
 <script>
-	var result_template;
+	if ($.templates == null)
+		$.templates = {};
 
-	function makeguess(event){
+	function make_guess(event){
 		var guess_val = $("#guess_input").val();
 
-		$.post("#", {action:"guess", guess:guess_val},
+		$.post("", {action:"guess", guess:guess_val},
 		function(data){
-			$("#results").append(window.result_template(data));
+			var r_message = $($.templates.guess_result(data));
+			$("#results").prepend(r_message);
+			r_message.hide().slideDown(400);
 		}, "json");
 
 		event.preventDefault();
 	}
-	$(document).ready(function(){
-		var source   = $("#guess-template").html();
-		window.result_template = Handlebars.compile(source);
 
-		$("#make_guess").click(makeguess);
+	function update_from_state(event, state){
+		$("#last-guess").text(state["current_number"]);
+	}
+
+	$(document).ready(function(){
+		// Load templates
+		$.templates.guess_result = Handlebars.compile($("#guess-template").html());
+
+		// Bind events
+		$("#make_guess").click(make_guess);
+		$(document).on("new-state", update_from_state);
 	})
 </script>
 {% raw %}
@@ -31,6 +42,8 @@
 {% endblock %}
 
 {% block content %}
+<div id="last-guess" class="alert-message">
+</div>
 <form>
 	<fieldset>
 		<legend>Make a Guess</legend>

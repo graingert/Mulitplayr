@@ -16,8 +16,14 @@ class BaseGameState(polymodel.PolyModel):
         action.sequence_number = self.last_sequence_number
         self.last_sequence_number += 1
         action.player = self.current_player
-        action.put()
-        self.put()
+
+    def end_turn(self):
+        players = self.parent().players
+        current_index = players.index(self.current_player)
+        next_index = current_index + 1
+        if next_index >= len(players):
+            next_index = 0
+        self.current_player = players[next_index]
 
     def get_info_dict(self, target=dict()):
         """ Fill info about state into a dict. """

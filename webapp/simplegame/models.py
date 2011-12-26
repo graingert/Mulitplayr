@@ -22,7 +22,7 @@ class SimpleGameInstance(BaseGameInstance):
     play_redirect = "simplegameplay"
 
     def new_initial_state(self):
-        current_state = SimpleGameState()
+        current_state = SimpleGameState(parent=self)
         current_state.current_number = 1
         current_state.correct_number = random.randrange(1,101)
         return current_state

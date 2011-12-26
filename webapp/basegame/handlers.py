@@ -36,13 +36,28 @@ class GameInfoHandler(BaseHandler):
 
     def __init__(self, request, response):
         self.initialize(request, response)
-        self.actionHandlers = {
+        self.postHandlers = {
             'join' : self.join_action,
             'start' : self.start_action
+        }
+        self.getHandlers = {
         }
 
     @login_required
     def get(self, game_id):
+
+        action = self.request.get('action')
+
+        if action == '':
+            if self.get_page.__func__ == GameInfoHandler.get_page.__func__:
+                self.get_page(game_id)
+            else:
+                game_instance = get_game_instance(game_id)
+                self.get_page(game_instance)
+        else:
+            self.getHandlers[action](game_instance)
+
+    def get_page(self, game_id):
         load_inherited_models(self.app)
         game_instance = get_game_instance(game_id)
 
@@ -61,7 +76,7 @@ class GameInfoHandler(BaseHandler):
         game_instance = get_game_instance(game_id)
 
         action = self.request.get('action')
-        self.actionHandlers[action](game_instance)
+        self.postHandlers[action](game_instance)
 
     def join_action(self, game_instance):
         user = users.get_current_user()
@@ -79,7 +94,9 @@ class GamePlayHandler(BaseHandler):
 
     def __init__(self, request, response):
         self.initialize(request, response)
-        self.actionHandlers = {
+        self.postHandlers = {
+        }
+        self.getHandlers = {
         }
 
     def prepare_context(self, game_instance):
@@ -87,6 +104,17 @@ class GamePlayHandler(BaseHandler):
         self.context['game'] = game_instance
         self.context['state'] = game_state
         self.context['current_player'] = game_state.current_player
+
+    @login_required
+    def get(self, game_id):
+
+        action = self.request.get('action')
+        game_instance = get_game_instance(game_id)
+
+        if action == '':
+            self.get_page(game_instance)
+        else:
+            self.getHandlers[action](game_instance)
 
     def post(self, game_id):
 
@@ -97,4 +125,4 @@ class GamePlayHandler(BaseHandler):
         game_instance = get_game_instance(game_id)
 
         action = self.request.get('action')
-        self.actionHandlers[action](game_instance)
+        self.postHandlers[action](game_instance)

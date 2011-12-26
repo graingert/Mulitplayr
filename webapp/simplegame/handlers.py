@@ -26,9 +26,7 @@ class NewGameHandler(BaseHandler):
 
 class SimpleGameInfoHandler(GameInfoHandler):
     @login_required
-    def get(self, game_id):
-        game_instance = get_game_instance(game_id)
-
+    def get_page(self, game_instance):
         self.prepare_context(game_instance)
 
         self.render_response('game_info.html')
@@ -37,11 +35,10 @@ class SimpleGamePlayHandler(GamePlayHandler):
 
     def __init__(self, request, response):
         GamePlayHandler.__init__(self, request, response)
-        self.actionHandlers['guess'] = self.guess_action
 
-    @login_required
-    def get(self, game_id):
-        game_instance = get_game_instance(game_id)
+        self.postHandlers['guess'] = self.guess_action
+
+    def get_page(self, game_instance):
         game_state = game_instance.current_state
 
         self.prepare_context(game_instance)

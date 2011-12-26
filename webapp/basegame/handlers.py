@@ -1,7 +1,7 @@
 import webapp2
 import json
 
-from base import BaseHandler
+from base import BaseHandler, JSONEncoderGAE
 from webapp2_extras.appengine.users import login_required
 
 from models import *
@@ -9,11 +9,15 @@ from models import *
 class InvalidGameIdException(Exception):
     pass
 
+
 def load_inherited_models(app):
+    """ Load correct modules to resolve polymodels """
     for model in app.config['game_models']:
         webapp2.import_string(model)
 
+
 def get_game_instance(game_id):
+    """ Get the instance given by a game_id """
     game_id = int(game_id)
     if not game_id:
         raise InvalidGameIdException()
@@ -24,7 +28,11 @@ def get_game_instance(game_id):
 
     return game_instance
 
+
 class LobbyHandler(BaseHandler):
+    """
+    Simple lobby hander.
+    """
 
     @login_required
     def get(self):
@@ -32,7 +40,11 @@ class LobbyHandler(BaseHandler):
         self.context['games'] = BaseGameInstance.all().fetch(50)
         self.render_response('lobby.html')
 
+
 class GameInfoHandler(BaseHandler):
+    """
+    Base handler for game info.
+    """
 
     def __init__(self, request, response):
         self.initialize(request, response)
@@ -45,7 +57,7 @@ class GameInfoHandler(BaseHandler):
 
     @login_required
     def get(self, game_id):
-
+        """ Dispatch get actions to correct handler """
         action = self.request.get('action')
 
         if action == '':
@@ -58,17 +70,19 @@ class GameInfoHandler(BaseHandler):
             self.getHandlers[action](game_instance)
 
     def get_page(self, game_id):
+        """ Redirect to correct game info URI """
         load_inherited_models(self.app)
         game_instance = get_game_instance(game_id)
 
         self.redirect_to(game_instance.info_redirect, game_id = game_id)
 
     def prepare_context(self, game_instance):
+        """ Append base information to the render context """
         self.context['game'] = game_instance
         self.context['play_redirect'] = game_instance.play_redirect
 
     def post(self, game_id):
-
+        """ Dispatch post actions to correct handler """
         user = users.get_current_user()
         if user is None:
             return #TODO need error
@@ -90,16 +104,24 @@ class GameInfoHandler(BaseHandler):
         result['success'] = game_instance.start_game() != None
         self.response.write(json.dumps(result))
 
+
 class GamePlayHandler(BaseHandler):
+    """
+    Base handler for game play.
+    """
 
     def __init__(self, request, response):
         self.initialize(request, response)
+        # Actions for post envents
         self.postHandlers = {
         }
+        # Action for get events
         self.getHandlers = {
+            'state' : self.get_state,
         }
 
     def prepare_context(self, game_instance):
+        """ Append base information to the render context """
         game_state = game_instance.current_state
         self.context['game'] = game_instance
         self.context['state'] = game_state
@@ -107,17 +129,18 @@ class GamePlayHandler(BaseHandler):
 
     @login_required
     def get(self, game_id):
-
+        """ Dispatch get actions to correct handler """
         action = self.request.get('action')
         game_instance = get_game_instance(game_id)
 
+        # Render page on no action specified
         if action == '':
             self.get_page(game_instance)
         else:
             self.getHandlers[action](game_instance)
 
     def post(self, game_id):
-
+        """ Dispatch post actions to correct handler """
         user = users.get_current_user()
         if user is None:
             return #TODO need error
@@ -126,3 +149,8 @@ class GamePlayHandler(BaseHandler):
 
         action = self.request.get('action')
         self.postHandlers[action](game_instance)
+
+    def get_state(self, game_instance):
+        """ Outputs JSON data about the state """
+        data = game_instance.current_state.get_info_dict()
+        self.response.write(json.dumps(data, cls=JSONEncoderGAE))

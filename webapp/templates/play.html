@@ -26,6 +26,12 @@
 	<dt>Current Player</dt>
 	<dd class="current-player"></dd>
 </dl>
+<h2>Players</h2>
+<ul id="player-list">
+	{% for player in game.players %}
+	<li>{{ player.nickname() }}</li>
+	{% endfor %}
+</ul>
 <a id="refresh-state" class="btn" href="#">Refresh State</a>
 {% endblock %}
 

@@ -11,9 +11,7 @@
 
 		$.post("", {action:"guess", guess:guess_val},
 		function(data){
-			var r_message = $($.templates.guess_result(data));
-			$("#results").prepend(r_message);
-			r_message.hide().slideDown(400);
+			$.game.process_action(data["action"]);
 		}, "json");
 
 		event.preventDefault();
@@ -23,6 +21,12 @@
 		$("#last-guess").text(state["current_number"]);
 	}
 
+	function process_action(event, action){
+		var r_message = $($.templates.guess_result(action));
+		$("#results").prepend(r_message);
+		r_message.hide().slideDown(400);
+	}
+
 	$(document).ready(function(){
 		// Load templates
 		$.templates.guess_result = Handlebars.compile($("#guess-template").html());
@@ -30,12 +34,13 @@
 		// Bind events
 		$("#make_guess").click(make_guess);
 		$(document).on("game.new-state", update_from_state);
+		$(document).on("game.action-made", process_action);
 	})
 </script>
 {% raw %}
 <script id="guess-template" type="text/x-handlebars-template">
 <div class="alert-message">
-	Go {{dir}} than {{guessed}}.
+	Go {{dir}} than {{guessed_number}}.
 </div>
 </script>
 {% endraw %}

@@ -1,18 +1,9 @@
 {% extends "fluid.html" %}
 
 {% block head %}
+<script src="/static/playbase.js"></script>
 <script>
-	function refresh_state(event){
-		$.get("", {action:"state"},
-		function(data){
-			$(".current-player").text(data["current_player"]);
-			$(document).trigger("game.new-state", data);
-		}, "json");
-	}
-
 	$(document).ready(function(){
-		$(document).on("game.refresh-state", refresh_state);
-		$(document).trigger("game.refresh-state");
 		$("#refresh-state").click(function(event){
 			$(document).trigger("game.refresh-state");
 			event.preventDefault();

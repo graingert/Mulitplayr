@@ -178,6 +178,7 @@ class GamePlayHandler(BaseHandler):
         # Fetch the sequence query
         actions = state.get_actions_since(since)
         # Build the response data
-        data = [action.get_info_dict() for action in actions]
+        action_data = [action.get_info_dict() for action in actions]
+        data = {'actions' : action_data}
         # Output the JSON
         self.response.write(json.dumps(data, cls=JSONEncoderGAE))

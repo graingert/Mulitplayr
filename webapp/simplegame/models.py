@@ -39,5 +39,9 @@ class SimpleGameAction(BaseGameAction):
         BaseGameAction.get_info_dict(self, target)
         
         target['guessed_number'] = self.guessed_number
+        if self.guessed_number < self.parent().correct_number:
+            target['dir'] = "Higher"
+        if self.guessed_number > self.parent().correct_number:
+            target['dir'] = "Lower"
 
         return target

@@ -1,4 +1,5 @@
 import webapp2
+import inspect
 
 from google.appengine.ext import db
 from google.appengine.ext.db import polymodel
@@ -25,8 +26,10 @@ class BaseGameState(polymodel.PolyModel):
             next_index = 0
         self.current_player = players[next_index]
 
-    def get_info_dict(self, target=dict()):
+    def get_info_dict(self, target=None):
         """ Fill info about state into a dict. """
+        if target is None:
+            target = dict()
         target['current_player'] = self.current_player
         target['last_sequence_number'] = self.last_sequence_number
 
@@ -36,6 +39,16 @@ class BaseGameAction(polymodel.PolyModel):
     game_state = db.ReferenceProperty(BaseGameState)
     sequence_number = db.IntegerProperty()
     player = db.UserProperty()
+
+    def get_info_dict(self, target=None):
+        """ Fill info about action into a dict. """
+        if target is None:
+            target = dict()
+        target['player'] = self.player.nickname()
+        target['sequence_number'] = self.sequence_number
+
+        return target
+
 
 class BaseGameInstance(polymodel.PolyModel):
     state = db.StringProperty(required=True, choices=set(["open", "playing", "finished"]))

@@ -9,8 +9,10 @@ class SimpleGameState(BaseGameState):
     current_number = db.IntegerProperty()
     correct_number = db.IntegerProperty()
 
-    def get_info_dict(self, target=dict()):
+    def get_info_dict(self, target=None):
         """ Fill info about state into a dict. """
+        if target is None:
+            target = dict()
         BaseGameState.get_info_dict(self, target)
         
         target['current_number'] = self.current_number
@@ -29,3 +31,13 @@ class SimpleGameInstance(BaseGameInstance):
 
 class SimpleGameAction(BaseGameAction):
     guessed_number = db.IntegerProperty()
+
+    def get_info_dict(self, target=None):
+        """ Fill info about state into a dict. """
+        if target is None:
+            target = {}
+        BaseGameAction.get_info_dict(self, target)
+        
+        target['guessed_number'] = self.guessed_number
+
+        return target

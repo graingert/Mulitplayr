@@ -7,15 +7,15 @@ from google.appengine.api import users
 
 class BaseGameState(polymodel.PolyModel):
     current_player = db.UserProperty()
-    last_sequence_number = db.IntegerProperty(required=True, default=0)
+    last_sequence_number = db.IntegerProperty(required=True, default=-1)
 
     def get_actions_since(self,seq_num):
         return self.basegameaction_set.filter('sequence_number >', seq_num)
 
     def add_action(self,action):
         action.game_state = self
-        action.sequence_number = self.last_sequence_number
         self.last_sequence_number += 1
+        action.sequence_number = self.last_sequence_number
         action.player = self.current_player
 
     def end_turn(self):

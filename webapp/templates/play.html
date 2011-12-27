@@ -6,15 +6,15 @@
 		$.get("", {action:"state"},
 		function(data){
 			$(".current-player").text(data["current_player"]);
-			$(document).trigger("new-state", data);
+			$(document).trigger("game.new-state", data);
 		}, "json");
 	}
 
 	$(document).ready(function(){
-		$(document).on("refresh-state", refresh_state);
-		$(document).trigger("refresh-state");
+		$(document).on("game.refresh-state", refresh_state);
+		$(document).trigger("game.refresh-state");
 		$("#refresh-state").click(function(event){
-			$(document).trigger("refresh-state");
+			$(document).trigger("game.refresh-state");
 			event.preventDefault();
 		});
 	})

@@ -40,7 +40,7 @@ class LobbyHandler(BaseHandler):
     @login_required
     def get(self):
         load_inherited_models(self.app)
-        self.context['games'] = BaseGameInstance.all().fetch(50)
+        self.context['games'] = BaseGameInstance.all()
         self.render_response('lobby.html')
 
 
@@ -115,12 +115,13 @@ class GamePlayHandler(BaseHandler):
 
     def __init__(self, request, response):
         self.initialize(request, response)
-        # Actions for post envents
+        # Actions for post events
         self.postHandlers = {
         }
         # Action for get events
         self.getHandlers = {
             'state' : self.get_state,
+            'actions' : self.get_actions,
         }
 
     def prepare_context(self, game_instance):
@@ -164,4 +165,19 @@ class GamePlayHandler(BaseHandler):
     def get_state(self, game_instance):
         """ Outputs JSON data about the state """
         data = game_instance.current_state.get_info_dict()
+        self.response.write(json.dumps(data, cls=JSONEncoderGAE))
+
+    def get_actions(self, game_instance):
+        """ Gets a set of actions """
+        state = game_instance.current_state
+        # Get the sequence number to fetch from
+        try:
+            since = int(self.request.get('since'))
+        except ValueError:
+            since = -1
+        # Fetch the sequence query
+        actions = state.get_actions_since(since)
+        # Build the response data
+        data = [action.get_info_dict() for action in actions]
+        # Output the JSON
         self.response.write(json.dumps(data, cls=JSONEncoderGAE))

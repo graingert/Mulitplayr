@@ -48,17 +48,7 @@ class SimpleGamePlayHandler(GamePlayHandler):
         # Get State
         game_state = game_instance.current_state
 
-        user = users.get_current_user()
-        if user != game_state.current_player:
-            raise NotTurnException()
-
-        # Construct action
-        action = SimpleGameAction(parent = game_state)
-        action.guessed_number = int(self.request.get('guess'))
-        game_state.add_action(action)
-
-        # End players turn
-        game_state.end_turn()
+        action = game_state.guess_action(int(self.request.get('guess')))
 
         # Store data
         action.put()
@@ -69,8 +59,4 @@ class SimpleGamePlayHandler(GamePlayHandler):
         result['guessed'] = action.guessed_number
         result['match'] = action.guessed_number == game_state.correct_number
         result['action'] = action.get_info_dict()
-        if action.guessed_number < game_state.correct_number:
-            result['dir'] = "Higher"
-        if action.guessed_number > game_state.correct_number:
-            result['dir'] = "Lower"
         self.response.write(json.dumps(result))

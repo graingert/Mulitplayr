@@ -2,8 +2,10 @@ import webapp2
 import random
 
 from google.appengine.ext import db
+from google.appengine.api import users
 
 from basegame.models import BaseGameInstance, BaseGameState, BaseGameAction
+from basegame.handlers import NotTurnException
 
 class SimpleGameState(BaseGameState):
     current_number = db.IntegerProperty()
@@ -19,13 +21,33 @@ class SimpleGameState(BaseGameState):
 
         return target
 
+    def guess_action(self, guessed_number):
+        user = users.get_current_user()
+        if user != self.current_player:
+            raise NotTurnException()
+
+        # Construct action
+        action = SimpleGameAction(parent = self)
+        action.guessed_number = guessed_number
+        self.add_action(action)
+
+        # New state
+        self.current_number = guessed_number
+        if guessed_number == self.correct_number:
+            pass # TODO Win!
+        else:
+            # End players turn
+            self.end_turn()
+
+        return action
+
 class SimpleGameInstance(BaseGameInstance):
     info_redirect = "simplegameinfo"
     play_redirect = "simplegameplay"
 
     def new_initial_state(self):
         current_state = SimpleGameState(parent=self)
-        current_state.current_number = 1
+        current_state.current_number = -1
         current_state.correct_number = random.randrange(1,101)
         return current_state
 

@@ -27,9 +27,15 @@
 		}, "json");
 	}
 
-	$.game.process_action = function(action){
-		$.game.last_sequence_number = action["sequence_number"];
-		$(document).trigger("game.action-made", action);
+	$.game.process_action_response = function(response){
+		var error = response["error"];
+		if (error != null){
+			$.error(error);
+		} else {
+			var action = response["action"];
+			$.game.last_sequence_number = action["sequence_number"];
+			$(document).trigger("game.action-made", action);
+		}
 	}
 
 	$(document).ready(function(){

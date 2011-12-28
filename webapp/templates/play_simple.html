@@ -10,9 +10,7 @@
 		var guess_val = $("#guess_input").val();
 
 		$.post("", {action:"guess", guess:guess_val},
-		function(data){
-			$.game.process_action(data["action"]);
-		}, "json");
+			$.game.process_action_response, "json");
 
 		event.preventDefault();
 		$("#guess_input").val("");

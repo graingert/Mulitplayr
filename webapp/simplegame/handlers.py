@@ -5,7 +5,7 @@ import json
 from google.appengine.api import users
 from google.appengine.ext.db import Key
 
-from base import BaseHandler
+from base import BaseHandler, JSONEncoderGAE
 from models import *
 from basegame.handlers import *
 
@@ -59,4 +59,5 @@ class SimpleGamePlayHandler(GamePlayHandler):
         result['guessed'] = action.guessed_number
         result['match'] = action.guessed_number == game_state.correct_number
         result['action'] = action.get_info_dict()
-        self.response.write(json.dumps(result))
+        result['state'] = game_state.get_info_dict()
+        self.response.write(json.dumps(result, cls=JSONEncoderGAE))

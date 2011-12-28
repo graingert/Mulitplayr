@@ -1,24 +1,46 @@
 import webapp2
-import inspect
 
 from google.appengine.ext import db
 from google.appengine.ext.db import polymodel
 from google.appengine.api import users
 
+class NotTurnException(Exception):
+    pass
+
+class InvalidStateException(Exception):
+    pass
+
 class BaseGameState(polymodel.PolyModel):
     current_player = db.UserProperty()
     last_sequence_number = db.IntegerProperty(required=True, default=-1)
+    possible_states = set(['init', 'finished'])
+
+    def __init__(self, parent=None, key_name=None, **kwds):
+        polymodel.PolyModel.__init__(self, parent, key_name, **kwds)
 
     def get_actions_since(self,seq_num):
+        """ Get the actions since a given sequence number """
         return self.basegameaction_set.filter('sequence_number >', seq_num)
 
     def add_action(self,action):
+        """ Add info to action and increment sequence number. """
         action.game_state = self
         self.last_sequence_number += 1
         action.sequence_number = self.last_sequence_number
         action.player = self.current_player
 
+    def check_state(self, valid_state):
+        """ Check that the game is in a given state. """
+        if self.state != valid_state:
+            raise InvalidStateException
+
+    def check_states(self, valid_states):
+        """ Check that the game is in one of the given states. """
+        if self.state not in valid_states:
+            raise InvalidStateException
+
     def end_turn(self):
+        """ Move to the next player. """
         players = self.parent().players
         current_index = players.index(self.current_player)
         next_index = current_index + 1
@@ -26,12 +48,17 @@ class BaseGameState(polymodel.PolyModel):
             next_index = 0
         self.current_player = players[next_index]
 
+    def setup(self):
+        """ Setup the initial state. """
+        raise NotImplementedError
+
     def get_info_dict(self, target=None):
         """ Fill info about state into a dict. """
         if target is None:
             target = dict()
         target['current_player'] = self.current_player
         target['last_sequence_number'] = self.last_sequence_number
+        target['state'] = self.state
 
         return target
 

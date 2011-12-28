@@ -9,10 +9,6 @@ from models import *
 class InvalidGameIdException(Exception):
     pass
 
-class NotTurnException(Exception):
-    pass
-
-
 def load_inherited_models(app):
     """ Load correct modules to resolve polymodels """
     for model in app.config['game_models']:
@@ -142,17 +138,18 @@ class GamePlayHandler(BaseHandler):
             self.get_page(game_instance)
         else:
             self.getHandlers[action](game_instance)
-
-    def not_turn(self):
+    
+    def error_responce(self, message):
         result = {}
-        result['error'] = 'not-turn'
+        result['error'] = message
         self.response.write(json.dumps(result))
 
     def post(self, game_id):
         """ Dispatch post actions to correct handler """
         user = users.get_current_user()
         if user is None:
-            return #TODO need error
+            self.error_responce('invalid-user')
+            return
 
         game_instance = get_game_instance(game_id)
 
@@ -160,7 +157,9 @@ class GamePlayHandler(BaseHandler):
         try:
             self.postHandlers[action](game_instance)
         except NotTurnException:
-            self.not_turn()
+            self.error_responce('not-turn')
+        except InvalidStateException:
+            self.error_responce('invalid-state')
 
     def get_state(self, game_instance):
         """ Outputs JSON data about the state """

@@ -9,6 +9,7 @@
 		$.get("", {action:"state"},
 		function(data){
 			$(".current-player").text(data["current_player"]);
+			$(".current-state").text(data["state"]);
 			if (data["last_sequence_number"] > $.game.last_sequence_number){
 				$.game.refresh_actions();
 				$.game.last_sequence_number = data["last_sequence_number"];

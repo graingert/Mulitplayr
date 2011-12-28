@@ -56,8 +56,6 @@ class SimpleGamePlayHandler(GamePlayHandler):
 
         # Construct result
         result = {}
-        result['guessed'] = action.guessed_number
-        result['match'] = action.guessed_number == game_state.correct_number
         result['action'] = action.get_info_dict()
         result['state'] = game_state.get_info_dict()
         self.response.write(json.dumps(result, cls=JSONEncoderGAE))

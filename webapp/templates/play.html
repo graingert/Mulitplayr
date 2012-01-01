@@ -4,8 +4,8 @@
 <script src="/static/playbase.js"></script>
 <script>
 	$(document).ready(function(){
-		$("#refresh-state").click(function(event){
-			$(document).trigger("game.refresh");
+		$("#refresh").click(function(event){
+			$.game.trigger("refresh");
 			event.preventDefault();
 		});
 	})

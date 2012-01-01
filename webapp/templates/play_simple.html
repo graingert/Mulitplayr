@@ -21,7 +21,10 @@
 	}
 
 	function process_action(event, action){
-		var r_message = $($.templates.guess_result(action));
+		var template = $.templates.guess_result;
+		if(action["new_state"]!=null)
+			template = $.templates.guess_win_result;
+		var r_message = $(template(action));
 		$("#results").prepend(r_message);
 		r_message.hide().slideDown(400);
 	}
@@ -29,17 +32,23 @@
 	$(document).ready(function(){
 		// Load templates
 		$.templates.guess_result = Handlebars.compile($("#guess-template").html());
+		$.templates.guess_win_result = Handlebars.compile($("#win-template").html());
 
 		// Bind events
 		$("#make_guess").click(make_guess);
-		$(document).on("game.new-state", update_from_state);
-		$(document).on("game.action-made", process_action);
+		$.game.on("new-state", update_from_state);
+		$.game.on("guess-action", process_action);
 	})
 </script>
 {% raw %}
 <script id="guess-template" type="text/x-handlebars-template">
 <div class="alert-message">
 	Go {{dir}} than {{guessed_number}}.
+</div>
+</script>
+<script id="win-template" type="text/x-handlebars-template">
+<div class="alert-message">
+	Won with {{guessed_number}}.
 </div>
 </script>
 {% endraw %}

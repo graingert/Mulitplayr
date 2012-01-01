@@ -1,6 +1,6 @@
 (function( $ ) {
 	if ($.game == null)
-		$.game = {};
+		$.game = $({});
 
 	$.game.last_sequence_number = -1;
 	$.game.state = null;
@@ -25,11 +25,15 @@
 		var actions = data["actions"];
 
 		$.game.actions = $.game.actions.concat(actions);
-		for(i in actions)
-			$(document).trigger("game.action-made", actions[i]);
+		for(i in actions){
+			$.game.trigger("action-made", actions[i]);
+			var evt_name = actions[i]['type'] + "-action";
+			$.game.trigger(evt_name, actions[i]);
+		}
 
 		$.game.state = state;
-		$(document).trigger("game.new-state", state);
+		$.game.last_sequence_number = state['last_sequence_number'];
+		$.game.trigger("new-state", state);
 	}
 
 	$.game.run_action = function(request){
@@ -38,7 +42,7 @@
 	}
 
 	$(document).ready(function(){
-		$(document).on("game.refresh", $.game.refresh);
-		$(document).trigger("game.refresh");
+		$.game.on("refresh", $.game.refresh);
+		$.game.trigger("refresh");
 	})
 })( jQuery );

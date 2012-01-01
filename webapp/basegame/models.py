@@ -66,6 +66,7 @@ class BaseGameAction(polymodel.PolyModel):
     game_state = db.ReferenceProperty(BaseGameState)
     sequence_number = db.IntegerProperty()
     player = db.UserProperty()
+    new_state = db.StringProperty()
 
     def get_info_dict(self, target=None):
         """ Fill info about action into a dict. """
@@ -73,6 +74,8 @@ class BaseGameAction(polymodel.PolyModel):
             target = dict()
         target['player'] = self.player.nickname()
         target['sequence_number'] = self.sequence_number
+        if self.new_state != None:
+            target['new_state'] = self.new_state
 
         return target
 

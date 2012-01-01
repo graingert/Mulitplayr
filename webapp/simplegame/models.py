@@ -48,6 +48,7 @@ class SimpleGameState(BaseGameState):
         # New state
         self.current_number = guessed_number
         if guessed_number == self.correct_number:
+            action.new_state = 'finished'
             self.state = 'finished'
         else:
             # End players turn
@@ -73,6 +74,7 @@ class SimpleGameAction(BaseGameAction):
             target = {}
         BaseGameAction.get_info_dict(self, target)
         
+        target['type'] = 'guess'
         target['guessed_number'] = self.guessed_number
         if self.guessed_number < self.parent().correct_number:
             target['dir'] = "Higher"

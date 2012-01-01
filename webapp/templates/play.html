@@ -4,12 +4,32 @@
 <script src="/static/playbase.js"></script>
 <script>
 	$(document).ready(function(){
+		$.templates.player_list =
+			Handlebars.compile($("#player-list-template").html());
+
 		$("#refresh").click(function(event){
 			$.game.trigger("refresh");
 			event.preventDefault();
 		});
 	})
+	$.game.on("new-state", function(event, state){
+		$(".current-player").text(state["current_player"]);
+		$(".current-state").text(state["state"]);
+		$("#player-list").html($($.templates.player_list(state)))
+	});
 </script>
+{% raw %}
+<script id="player-list-template" type="text/x-handlebars-template">
+	{{#each players}}
+	<li>
+	{{this.nickname}}
+	{{#if this.active}}
+	(active)
+	{{/if}}
+	</li>
+	{{/each}}
+</script>
+{% endraw %}
 {% endblock %}
 
 {% block sidebar %}
@@ -21,9 +41,6 @@
 </dl>
 <h2>Players</h2>
 <ul id="player-list">
-	{% for player in game.players %}
-	<li>{{ player.nickname() }}</li>
-	{% endfor %}
 </ul>
 <a id="refresh" class="btn" href="#">Refresh State</a>
 {% endblock %}

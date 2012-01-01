@@ -7,12 +7,12 @@
 		$.templates = {};
 
 	function make_guess(event){
-		var guess_val = $("#guess_input").val();
-
-		$.post("", {action:"guess", guess:guess_val},
-			$.game.process_action_response, "json");
-
 		event.preventDefault();
+		var guess_val = $("#guess_input").val();
+		$.game.run_action({
+			action:"guess",
+			guess:guess_val,
+		});
 		$("#guess_input").val("");
 	}
 

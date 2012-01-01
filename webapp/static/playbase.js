@@ -3,44 +3,42 @@
 		$.game = {};
 
 	$.game.last_sequence_number = -1;
+	$.game.state = null;
 	$.game.actions = [];
 	
-	$.game.refresh_state = function(event){
-		$.get("", {action:"state"},
-		function(data){
-			$(".current-player").text(data["current_player"]);
-			$(".current-state").text(data["state"]);
-			if (data["last_sequence_number"] > $.game.last_sequence_number){
-				$.game.refresh_actions();
-				$.game.last_sequence_number = data["last_sequence_number"];
-			}
-			$(document).trigger("game.new-state", data);
-		}, "json");
+	$.game.refresh = function(event){
+		var request = {
+			action:"update",
+			from:$.game.last_sequence_number
+		}
+		$.get("",request,$.game.process_update,"json");
 	}
 
-	$.game.refresh_actions = function(){
-		$.get("", {action:"actions",since:$.game.last_sequence_number},
-		function(data){
-			$.game.actions = $.game.actions.concat(data["actions"]);
-			var actions = data["actions"]
-			for(i in actions)
-				$(document).trigger("game.action-made", actions[i]);
-		}, "json");
-	}
-
-	$.game.process_action_response = function(response){
-		var error = response["error"];
+	$.game.process_update = function(data){
+		var error = data["error"];
 		if (error != null){
 			$.error(error);
-		} else {
-			var action = response["action"];
-			$.game.last_sequence_number = action["sequence_number"];
-			$(document).trigger("game.action-made", action);
+			return
 		}
+
+		var state = data["state"];
+		var actions = data["actions"];
+
+		$.game.actions = $.game.actions.concat(actions);
+		for(i in actions)
+			$(document).trigger("game.action-made", actions[i]);
+
+		$.game.state = state;
+		$(document).trigger("game.new-state", state);
+	}
+
+	$.game.run_action = function(request){
+		request["last_sequence_number"] = $.game.last_sequence_number;
+		$.post("",request,$.game.process_update,"json");
 	}
 
 	$(document).ready(function(){
-		$(document).on("game.refresh-state", $.game.refresh_state);
-		$(document).trigger("game.refresh-state");
+		$(document).on("game.refresh", $.game.refresh);
+		$(document).trigger("game.refresh");
 	})
 })( jQuery );

@@ -116,8 +116,7 @@ class GamePlayHandler(BaseHandler):
         }
         # Action for get events
         self.getHandlers = {
-            'state' : self.get_state,
-            'actions' : self.get_actions,
+            'update' : self.get_update,
         }
 
     def prepare_context(self, game_instance):
@@ -161,23 +160,32 @@ class GamePlayHandler(BaseHandler):
         except InvalidStateException:
             self.error_responce('invalid-state')
 
-    def get_state(self, game_instance):
-        """ Outputs JSON data about the state """
-        data = game_instance.current_state.get_info_dict()
-        self.response.write(json.dumps(data, cls=JSONEncoderGAE))
+    def post_action(self, game_state, new_action):
+        last_seq_num = self.request.get('last_sequence_number')
+        actions = game_state.get_actions_since(last_seq_num)
+        # Construct result
+        result = {}
+        result['actions'] = [action.get_info_dict() for action in actions]
+        result['actions'].append(new_action.get_info_dict())
+        result['state'] = game_state.get_info_dict()
+        self.response.write(json.dumps(result, cls=JSONEncoderGAE))
+        # Store data
+        new_action.put()
+        game_state.put()
 
-    def get_actions(self, game_instance):
-        """ Gets a set of actions """
+    def get_update(self, game_instance):
+        """ Gets the state and actions from a given sequence number """
         state = game_instance.current_state
-        # Get the sequence number to fetch from
         try:
-            since = int(self.request.get('since'))
+            seq_from = int(self.request.get('from'))
         except ValueError:
-            since = -1
+            seq_from = -1
         # Fetch the sequence query
-        actions = state.get_actions_since(since)
+        actions = state.get_actions_since(seq_from)
         # Build the response data
         action_data = [action.get_info_dict() for action in actions]
-        data = {'actions' : action_data}
+        state_data = state.get_info_dict()
+        data = {'actions' : action_data,
+                'state' : state_data}
         # Output the JSON
         self.response.write(json.dumps(data, cls=JSONEncoderGAE))

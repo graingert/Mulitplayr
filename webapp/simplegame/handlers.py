@@ -45,17 +45,6 @@ class SimpleGamePlayHandler(GamePlayHandler):
         self.render_response('play_simple.html')
 
     def guess_action(self, game_instance):
-        # Get State
         game_state = game_instance.current_state
-
-        action = game_state.guess_action(int(self.request.get('guess')))
-
-        # Store data
-        action.put()
-        game_state.put()
-
-        # Construct result
-        result = {}
-        result['action'] = action.get_info_dict()
-        result['state'] = game_state.get_info_dict()
-        self.response.write(json.dumps(result, cls=JSONEncoderGAE))
+        new_action = game_state.guess_action(int(self.request.get('guess')))
+        self.post_action(game_state, new_action)

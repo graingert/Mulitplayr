@@ -5,7 +5,7 @@
 <script>
 	$(document).ready(function(){
 		$("#refresh-state").click(function(event){
-			$(document).trigger("game.refresh-state");
+			$(document).trigger("game.refresh");
 			event.preventDefault();
 		});
 	})
@@ -25,7 +25,7 @@
 	<li>{{ player.nickname() }}</li>
 	{% endfor %}
 </ul>
-<a id="refresh-state" class="btn" href="#">Refresh State</a>
+<a id="refresh" class="btn" href="#">Refresh State</a>
 {% endblock %}
 
 {% block content %}

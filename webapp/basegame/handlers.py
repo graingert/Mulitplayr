@@ -161,7 +161,7 @@ class GamePlayHandler(BaseHandler):
             self.error_responce('invalid-state')
 
     def post_action(self, game_state, new_action):
-        last_seq_num = self.request.get('last_sequence_number')
+        last_seq_num = int(self.request.get('last_sequence_number'))
         actions = game_state.get_actions_since(last_seq_num)
         # Construct result
         result = {}

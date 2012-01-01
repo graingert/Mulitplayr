@@ -56,6 +56,15 @@ class BaseGameState(polymodel.PolyModel):
         """ Fill info about state into a dict. """
         if target is None:
             target = dict()
+        instance = self.parent()
+        players = []
+        for player in instance.players:
+            player_data = {}
+            player_data['nickname'] = player.nickname()
+            if player == self.current_player:
+                player_data['active'] = True
+            players.append(player_data)
+        target['players'] = players
         target['current_player'] = self.current_player
         target['last_sequence_number'] = self.last_sequence_number
         target['state'] = self.state

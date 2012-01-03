@@ -22,14 +22,14 @@
 			var val = state.grid[position];
 			var text = ""
 			switch(val){
-				case 0:
+				case -1:
 				text = "_"
+				break;
+				case 0:
+				text = "O"
 				break;
 				case 1:
 				text = "X"
-				break;
-				case 2:
-				text = "O"
 				break;
 			}
 			$(this).text(text);

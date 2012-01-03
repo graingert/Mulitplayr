@@ -22,12 +22,15 @@ class OxState(BaseGameState):
 
         return target
 
-    def setup(self):
+    def setup(self,players):
         """ Setup the initial state. """
         self.check_state('init')
+
+        players[0].player_symbol = 'O'
+        players[1].player_symbol = 'X'
         
         for i in range(9):
-            self.grid.append(0)
+            self.grid.append(-1)
 
         self.state = 'playing'
 
@@ -36,7 +39,7 @@ class OxState(BaseGameState):
         self.check_state('playing')
 
         user = users.get_current_user()
-        if user != self.current_player:
+        if user != self.get_current_player():
             raise NotTurnException()
 
         # Construct action
@@ -45,20 +48,34 @@ class OxState(BaseGameState):
         self.add_action(action)
 
         # New state
-        self.grid[position] = 1
+        self.grid[position] = self.current_player_index
         # TODO Win Transition
         self.end_turn()
 
         return action
 
+
+class OxPlayer(BaseGamePlayer):
+    player_symbol = db.StringProperty(choices=set(['O','X']))
+
+    def get_info_dict(self, target=None):
+        """ Fill info about player into a dict. """
+        if target is None:
+            target = dict()
+        BaseGamePlayer.get_info_dict(self, target)
+
+        target['player_symbol'] = self.player_symbol
+
+        return target
+
+
 class OxInstance(BaseGameInstance):
     info_redirect = "oxgameinfo"
     play_redirect = "oxgameplay"
 
-    def new_initial_state(self):
-        current_state = OxState(parent=self)
-        current_state.setup()
-        return current_state
+    game_player_type = OxPlayer
+    game_state_type = OxState
+
 
 class OxPlaceAction(BaseGameAction):
     position = db.IntegerProperty()

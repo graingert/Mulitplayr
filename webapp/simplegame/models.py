@@ -37,7 +37,7 @@ class SimpleGameState(BaseGameState):
         self.check_state('guessing')
 
         user = users.get_current_user()
-        if user != self.getCurrentPlayer():
+        if user != self.get_current_player():
             raise NotTurnException()
 
         # Construct action

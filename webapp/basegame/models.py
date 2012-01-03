@@ -52,7 +52,7 @@ class BaseGameState(polymodel.PolyModel):
         """ Setup the initial state. """
         raise NotImplementedError
 
-    def getCurrentPlayer(self):
+    def get_current_player(self):
         players =  self.basegameplayer_set
         player_data = players.filter('play_index', self.current_player_index).get()
         return player_data.player

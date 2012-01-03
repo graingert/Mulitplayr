@@ -11,7 +11,8 @@ class InvalidStateException(Exception):
     pass
 
 class BaseGameState(polymodel.PolyModel):
-    current_player = db.UserProperty()
+    current_player_index = db.IntegerProperty(default=0)
+    total_players = db.IntegerProperty()
     last_sequence_number = db.IntegerProperty(required=True, default=-1)
     possible_states = set(['init', 'finished'])
 
@@ -27,7 +28,7 @@ class BaseGameState(polymodel.PolyModel):
         action.game_state = self
         self.last_sequence_number += 1
         action.sequence_number = self.last_sequence_number
-        action.player = self.current_player
+        action.player_index = self.current_player_index
 
     def check_state(self, valid_state):
         """ Check that the game is in a given state. """
@@ -41,16 +42,20 @@ class BaseGameState(polymodel.PolyModel):
 
     def end_turn(self):
         """ Move to the next player. """
-        players = self.parent().players
-        current_index = players.index(self.current_player)
-        next_index = current_index + 1
-        if next_index >= len(players):
+        players = self.basegameplayer_set
+        next_index = self.current_player_index + 1
+        if next_index >= self.total_players:
             next_index = 0
-        self.current_player = players[next_index]
+        self.current_player_index = next_index
 
     def setup(self):
         """ Setup the initial state. """
         raise NotImplementedError
+
+    def getCurrentPlayer(self):
+        players =  self.basegameplayer_set
+        player_data = players.filter('play_index', self.current_player_index).get()
+        return player_data.player
 
     def get_info_dict(self, target=None):
         """ Fill info about state into a dict. """
@@ -58,8 +63,9 @@ class BaseGameState(polymodel.PolyModel):
             target = dict()
         instance = self.parent()
         players = [player.get_info_dict() for player in self.basegameplayer_set]
+        players[self.current_player_index]['active'] = True
         target['players'] = players
-        target['current_player'] = self.current_player
+        target['current_player_index'] = self.current_player_index
         target['last_sequence_number'] = self.last_sequence_number
         target['state'] = self.state
 
@@ -84,14 +90,14 @@ class BaseGamePlayer(polymodel.PolyModel):
 class BaseGameAction(polymodel.PolyModel):
     game_state = db.ReferenceProperty(BaseGameState)
     sequence_number = db.IntegerProperty()
-    player = db.UserProperty()
+    player_index = db.IntegerProperty()
     new_state = db.StringProperty()
 
     def get_info_dict(self, target=None):
         """ Fill info about action into a dict. """
         if target is None:
             target = dict()
-        target['player'] = self.player.nickname()
+        target['player_index'] = self.player_index
         target['sequence_number'] = self.sequence_number
         if self.new_state != None:
             target['new_state'] = self.new_state
@@ -121,8 +127,8 @@ class BaseGameInstance(polymodel.PolyModel):
                 player=player,
                 play_index=i
                 ))
+        new_state.total_players = len(players)
         new_state.setup()
-        new_state.current_player = self.players[0]
         self.current_state = new_state
         self.state = "playing"
         new_state.put()

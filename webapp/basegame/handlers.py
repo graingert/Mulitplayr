@@ -124,7 +124,6 @@ class GamePlayHandler(BaseHandler):
         game_state = game_instance.current_state
         self.context['game'] = game_instance
         self.context['state'] = game_state
-        self.context['current_player'] = game_state.current_player
 
     @login_required
     def get(self, game_id):

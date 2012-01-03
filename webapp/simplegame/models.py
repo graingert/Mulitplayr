@@ -37,7 +37,7 @@ class SimpleGameState(BaseGameState):
         self.check_state('guessing')
 
         user = users.get_current_user()
-        if user != self.current_player:
+        if user != self.getCurrentPlayer():
             raise NotTurnException()
 
         # Construct action
@@ -56,14 +56,24 @@ class SimpleGameState(BaseGameState):
 
         return action
 
+
+class SimpleGamePlayer(BaseGamePlayer):
+    def get_info_dict(self, target=None):
+        """ Fill info about player into a dict. """
+        if target is None:
+            target = dict()
+        BaseGamePlayer.get_info_dict(self, target)
+
+        return target
+
+
 class SimpleGameInstance(BaseGameInstance):
     info_redirect = "simplegameinfo"
     play_redirect = "simplegameplay"
 
-    def new_initial_state(self):
-        current_state = SimpleGameState(parent=self)
-        current_state.setup()
-        return current_state
+    game_player_type = SimpleGamePlayer
+    game_state_type = SimpleGameState
+
 
 class SimpleGameAction(BaseGameAction):
     guessed_number = db.IntegerProperty()

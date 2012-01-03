@@ -23,7 +23,7 @@ class SimpleGameState(BaseGameState):
 
         return target
 
-    def setup(self):
+    def setup(self, players):
         """ Setup the initial state. """
         self.check_state('init')
 

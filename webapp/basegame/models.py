@@ -48,7 +48,7 @@ class BaseGameState(polymodel.PolyModel):
             next_index = 0
         self.current_player_index = next_index
 
-    def setup(self):
+    def setup(self,players):
         """ Setup the initial state. """
         raise NotImplementedError
 
@@ -128,7 +128,7 @@ class BaseGameInstance(polymodel.PolyModel):
                 play_index=i
                 ))
         new_state.total_players = len(players)
-        new_state.setup()
+        new_state.setup(players)
         self.current_state = new_state
         self.state = "playing"
         new_state.put()

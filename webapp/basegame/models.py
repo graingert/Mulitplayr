@@ -57,19 +57,29 @@ class BaseGameState(polymodel.PolyModel):
         if target is None:
             target = dict()
         instance = self.parent()
-        players = []
-        for player in instance.players:
-            player_data = {}
-            player_data['nickname'] = player.nickname()
-            if player == self.current_player:
-                player_data['active'] = True
-            players.append(player_data)
+        players = [player.get_info_dict() for player in self.basegameplayer_set]
         target['players'] = players
         target['current_player'] = self.current_player
         target['last_sequence_number'] = self.last_sequence_number
         target['state'] = self.state
 
         return target
+
+
+class BaseGamePlayer(polymodel.PolyModel):
+    game_state = db.ReferenceProperty(BaseGameState)
+    player = db.UserProperty()
+    play_index = db.IntegerProperty()
+
+    def get_info_dict(self, target=None):
+        """ Fill info about player into a dict. """
+        if target is None:
+            target = dict()
+        target['nickname'] = self.player.nickname()
+        target['play_index'] = self.play_index
+
+        return target
+
 
 class BaseGameAction(polymodel.PolyModel):
     game_state = db.ReferenceProperty(BaseGameState)
@@ -102,11 +112,21 @@ class BaseGameInstance(polymodel.PolyModel):
             return False
 
         # Set the current to the initial state
-        new_state = self.new_initial_state()
+        new_state = self.game_state_type(parent=self,key_name='state')
+        players = []
+        for i, player in enumerate(self.players):
+            players.append(self.game_player_type(
+                parent=self,
+                game_state=new_state,
+                player=player,
+                play_index=i
+                ))
+        new_state.setup()
         new_state.current_player = self.players[0]
-        new_state.put()
         self.current_state = new_state
         self.state = "playing"
+        new_state.put()
+        db.put(players)
         self.put()
         return self.current_state
 

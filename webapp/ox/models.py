@@ -6,6 +6,9 @@ from google.appengine.api import users
 
 from basegame.models import *
 
+class InvalidMoveException(Exception):
+    pass
+
 class OxState(BaseGameState):
     grid = db.ListProperty(int)
     possible_states = BaseGameState.possible_states | set(['playing'])
@@ -48,8 +51,26 @@ class OxState(BaseGameState):
         self.add_action(action)
 
         # New state
+        if self.grid[position] != -1:
+            raise InvalidMoveException()
         self.grid[position] = self.current_player_index
-        # TODO Win Transition
+        win_cons = [[1,1,1,0,0,0,0,0,0],
+                    [0,0,0,1,1,1,0,0,0],
+                    [0,0,0,0,0,0,1,1,1],
+                    [1,0,0,1,0,0,1,0,0],
+                    [0,1,0,0,1,0,0,1,0],
+                    [0,0,1,0,0,1,0,0,1],
+                    [1,0,0,0,1,0,0,0,1],
+                    [0,0,1,0,1,0,1,0,0]]
+        for check_var in [0,1]:
+            for cond in win_cons:
+                match = 0
+                for i,v in enumerate(cond):
+                    if self.grid[i] == check_var and v:
+                        match+=1
+                if match == 3:
+                    self.state = 'finished'
+                    action.new_state = 'finished'
         self.end_turn()
 
         return action

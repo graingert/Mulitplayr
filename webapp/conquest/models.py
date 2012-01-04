@@ -41,7 +41,7 @@ class ConquestGameState(BaseGameState):
             raise NotTurnException()
 
         # Construct action
-        action = SimpleGameAction(parent = self)
+        action = ConquestGameAction(parent = self)
         action.guessed_number = guessed_number
         self.add_action(action)
 

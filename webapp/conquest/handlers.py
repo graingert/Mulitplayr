@@ -36,7 +36,11 @@ class ConquestGamePlayHandler(GamePlayHandler):
     def __init__(self, request, response):
         GamePlayHandler.__init__(self, request, response)
 
-        self.postHandlers['guess'] = self.guess_action
+        self.postHandlers['place'] = self.make_action(ConquestGameState.place_action)
+        self.postHandlers['reinforce'] = self.make_action(ConquestGameState.reinforce_action)
+        self.postHandlers['attack'] = self.make_action(ConquestGameState.attack_action)
+        self.postHandlers['end_attack'] = self.make_action(ConquestGameState.end_attack_action)
+        self.postHandlers['move'] = self.make_action(ConquestGameState.move_action)
 
     def get_page(self, game_instance):
         game_state = game_instance.current_state
@@ -44,7 +48,9 @@ class ConquestGamePlayHandler(GamePlayHandler):
         self.prepare_context(game_instance)
         self.render_response('play_conquest.html')
 
-    def guess_action(self, game_instance):
-        game_state = game_instance.current_state
-        new_action = game_state.guess_action(int(self.request.get('guess')))
-        self.post_action(game_state, new_action)
+    def make_action(self, target):
+        def run_action(game_instance):
+            game_state = game_instance.current_state
+            new_action = target(game_state, self.request)
+            self.post_action(game_state, new_action)
+        return run_action

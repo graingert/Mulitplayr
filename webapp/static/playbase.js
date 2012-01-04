@@ -5,7 +5,7 @@
 	$.game.last_sequence_number = -1;
 	$.game.state = null;
 	$.game.actions = [];
-	
+
 	$.game.refresh = function(event){
 		var request = {
 			action:"update",
@@ -15,6 +15,7 @@
 	}
 
 	$.game.process_update = function(data){
+		$.game.trigger("update-received");
 		var error = data["error"];
 		if (error != null){
 			$.error(error);

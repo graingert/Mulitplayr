@@ -27,9 +27,11 @@
 
 		$.game.actions = $.game.actions.concat(actions);
 		for(i in actions){
-			$.game.trigger("action-made", actions[i]);
-			var evt_name = actions[i]['type'] + "-action";
-			$.game.trigger(evt_name, actions[i]);
+			if (actions[i]['sequence_number'] > $.game.last_sequence_number) {
+				$.game.trigger("action-made", actions[i]);
+				var evt_name = actions[i]['type'] + "-action";
+				$.game.trigger(evt_name, actions[i]);
+			}
 		}
 
 		$.game.state = state;

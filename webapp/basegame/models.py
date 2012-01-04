@@ -4,6 +4,8 @@ from google.appengine.ext import db
 from google.appengine.ext.db import polymodel
 from google.appengine.api import users
 
+from profile.models import *
+
 class NotTurnException(Exception):
     pass
 
@@ -74,14 +76,14 @@ class BaseGameState(polymodel.PolyModel):
 
 class BaseGamePlayer(polymodel.PolyModel):
     game_state = db.ReferenceProperty(BaseGameState)
-    player = db.UserProperty()
+    player = db.ReferenceProperty(UserProfile)
     play_index = db.IntegerProperty()
 
     def get_info_dict(self, target=None):
         """ Fill info about player into a dict. """
         if target is None:
             target = dict()
-        target['nickname'] = self.player.nickname()
+        target['nickname'] = self.player.name
         target['play_index'] = self.play_index
 
         return target
@@ -108,7 +110,7 @@ class BaseGameAction(polymodel.PolyModel):
 class BaseGameInstance(polymodel.PolyModel):
     state = db.StringProperty(required=True, choices=set(["open", "playing", "finished"]))
     created = db.DateProperty(required=True)
-    players = db.ListProperty(users.User)
+    players = db.ListProperty(db.Key) # Keys for UserProfile
     current_state = db.ReferenceProperty(BaseGameState)
     max_players = 2
 
@@ -140,11 +142,14 @@ class BaseGameInstance(polymodel.PolyModel):
         # Check if the game can be joined
         if self.state != "open":
             return False
-        
+
         # Check if the user is already joined
         if user in self.players:
             return False
 
-        self.players.append(user)
+        self.players.append(user.key())
         self.put()
         return True
+
+    def resolve_players(self):
+        return UserProfile.get(self.players)

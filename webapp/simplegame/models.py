@@ -5,6 +5,7 @@ from google.appengine.ext import db
 from google.appengine.api import users
 
 from basegame.models import *
+from profile.models import *
 
 class SimpleGameState(BaseGameState):
     current_number = db.IntegerProperty()
@@ -36,7 +37,7 @@ class SimpleGameState(BaseGameState):
         """ Make the guess of a number """
         self.check_state('guessing')
 
-        user = users.get_current_user()
+        user = UserProfile.get_current_user()
         if user != self.get_current_player():
             raise NotTurnException()
 

@@ -5,6 +5,7 @@ from base import BaseHandler, JSONEncoderGAE
 from webapp2_extras.appengine.users import login_required
 
 from models import *
+from profile.models import *
 
 class InvalidGameIdException(Exception):
     pass
@@ -82,7 +83,7 @@ class GameInfoHandler(BaseHandler):
 
     def post(self, game_id):
         """ Dispatch post actions to correct handler """
-        user = users.get_current_user()
+        user = UserProfile.get_current_user()
         if user is None:
             return #TODO need error
 
@@ -92,13 +93,13 @@ class GameInfoHandler(BaseHandler):
         self.postHandlers[action](game_instance)
 
     def join_action(self, game_instance):
-        user = users.get_current_user()
+        user = UserProfile.get_current_user()
         result = {}
         result['success'] = game_instance.add_user(user)
         self.response.write(json.dumps(result))
 
     def start_action(self, game_instance):
-        user = users.get_current_user()
+        user = UserProfile.get_current_user()
         result = {}
         result['success'] = game_instance.start_game() != None
         self.response.write(json.dumps(result))
@@ -136,7 +137,7 @@ class GamePlayHandler(BaseHandler):
             self.get_page(game_instance)
         else:
             self.getHandlers[action](game_instance)
-    
+
     def error_responce(self, message):
         result = {}
         result['error'] = message
@@ -144,7 +145,7 @@ class GamePlayHandler(BaseHandler):
 
     def post(self, game_id):
         """ Dispatch post actions to correct handler """
-        user = users.get_current_user()
+        user = UserProfile.get_current_user()
         if user is None:
             self.error_responce('invalid-user')
             return

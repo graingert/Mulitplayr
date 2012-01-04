@@ -5,7 +5,7 @@
 <script>
 	function ViewController() {
 		this.countTo = 5;
-		this.count = this.countTo;
+		this.count = 0;
 		this.refreshActive = true;
 
 		// Keep this in callbacks
@@ -20,8 +20,10 @@
 		});
 
 		$.game.on("update-received", function(event) {
-			self.count = self.countTo;
-			self.startRefreshTimer();
+			if (self.count == 0) {
+				self.startRefreshTimer();
+				self.count = self.countTo;
+			}
 		});
 	};
 	ViewController.prototype.startRefreshTimer = function() {
@@ -32,7 +34,9 @@
 			if (!this.refreshActive) {
 				return;
 			}
-			this.count--;
+			if (this.count > 0) {
+				this.count--;
+			}
 			// TODO: Make these use templates & CSS tricks
 			if (this.count <= 0) {
 				$('#refresh-timer').text("Refreshing");

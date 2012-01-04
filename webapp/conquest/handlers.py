@@ -21,7 +21,7 @@ class NewGameHandler(BaseHandler):
         now = datetime.datetime.now().date();
         instance = ConquestGameInstance(state = 'open',
                                         created = now,
-                                        players = [user])
+                                        players = [user.key()])
         instance.put()
         return webapp2.redirect_to('lobby')
 

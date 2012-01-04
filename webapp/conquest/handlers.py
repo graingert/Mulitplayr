@@ -7,11 +7,12 @@ from google.appengine.ext.db import Key
 
 from base import BaseHandler, JSONEncoderGAE
 from models import *
+from profile.models import *
 from basegame.handlers import *
 
 class NewGameHandler(BaseHandler):
     def get(self):
-        user = users.get_current_user()
+        user = UserProfile.get_current_user()
 
         if not user:
             self.redirect(users.create_login_url(self.request.uri))
@@ -20,7 +21,7 @@ class NewGameHandler(BaseHandler):
         now = datetime.datetime.now().date();
         instance = ConquestGameInstance(state = 'open',
                                         created = now,
-                                        players = [user])
+                                        players = [user.key()])
         instance.put()
         return webapp2.redirect_to('lobby')
 

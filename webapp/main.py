@@ -21,3 +21,7 @@ app = webapp2.WSGIApplication([
     webapp2.Route('/profile/', 'profile.handlers.ProfileViewHandler'),
     webapp2.Route('/profile/edit', 'profile.handlers.ProfileEditHandler'),
 ], debug=True, config=config)
+
+# Appstats
+from google.appengine.ext.appstats import recording
+app = recording.appstats_wsgi_middleware(app)

@@ -19,7 +19,7 @@ app = webapp2.WSGIApplication([
     webapp2.Route('/game/conquest/<game_id>/', 'conquest.handlers.ConquestGameInfoHandler', 'conquestgameinfo'),
     webapp2.Route('/game/conquest/<game_id>/play/', 'conquest.handlers.ConquestGamePlayHandler', 'conquestgameplay'),
     webapp2.Route('/profile/', 'profile.handlers.ProfileViewHandler'),
-    webapp2.Route('/profile/edit', 'profile.handlers.ProfileEditHandler'),
+    webapp2.Route('/profile/edit', 'profile.handlers.ProfileEditHandler', name='profile-edit'),
 ], debug=True, config=config)
 
 # Appstats

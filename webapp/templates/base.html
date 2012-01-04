@@ -71,17 +71,17 @@
 							{% endblock %}
 						</ul>
 					<ul class="nav secondary-nav">
-						{% if user %}
+						{% if profile %}
 						<li class="dropdown" data-dropdown="dropdown">
-							<a href="#" class="dropdown-toggle">{{user.nickname}}</a>
+							<a href="#" class="dropdown-toggle">{{profile.name}}</a>
 							<ul class="dropdown-menu">
-								<li><a href="#">Settings</a></li>
+								<li><a href="{{uri_for('profile-edit')}}">Settings</a></li>
 								<li><a href="#">Help</a></li>
 								<li class="divider"></li>
-								<li><a href="{{auth.create_logout_url}}">Sign Out</a></li>
+								<li><a href="{{auth.create_logout_url('/')}}">Sign Out</a></li>
 							</ul>
 						</li>
-						{% endif %}				
+						{% endif %}
 					</ul>
 				</div>
 			</div>

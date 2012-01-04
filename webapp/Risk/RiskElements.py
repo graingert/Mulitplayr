@@ -32,7 +32,7 @@ class Player(object):
 		self.ownedCards = []
 		self.ownedArmies = 0
 		
-	def isEliminated(self)
+	def isEliminated(self):
 		return len(self.ownedTerritories) == 0
 		
 	

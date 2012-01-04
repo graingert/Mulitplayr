@@ -91,7 +91,7 @@ class RiskGame(object):
 		self.currentPlayer = self.playerList[(self.playerList.index(self.currentPlayer) + 1) % len(self.playerList)]
 	
 	
-	def eliminatePlayer(self, player)
+	def eliminatePlayer(self, player):
 		self.currentPlayer.ownedCards.extend(player.ownedCards)
 		
 	"""------------------------------------"""	
@@ -116,7 +116,6 @@ class RiskGame(object):
 	
 	def setupPhaseEnd(self):			
 		self.currentPlayer = self.playerList[0]
-		self.nextPhase()
 			
 	"""---------Positioning phase----------"""	
 	
@@ -146,7 +145,7 @@ class RiskGame(object):
 	
 			
 	def positioningPhaseTerritorySelected(self, territory):		 
-		if len(self.bonusTerritories) > 0
+		if len(self.bonusTerritories) > 0:
 			if territory in bonusTerritories:
 				self.currentPlayer.ownedArmies += 2
 				self.placeArmies(territory, 2)
@@ -159,11 +158,11 @@ class RiskGame(object):
 		else:
 			self.placeArmies(territory)
 			if self.currentPlayer.armies == 0:
-				self.positioningPhaseEnd()
+				self.nextPhase()
 	
 	
 	def positioningPhaseEnd(self):
-		self.nextPhase()			
+		pass
 
 	"""----------Attacking phase-----------"""
 	
@@ -200,7 +199,7 @@ class RiskGame(object):
 		if result == 0: 
 			maxAttackArmies = min(self.selectedTerritories[0].armies - 1, 3)
 			maxDefendArmies = min(self.selectedTerritories[1].armies, 2)
-			if MaxAttackArmies > 0
+			if MaxAttackArmies > 0:
 				self.riskInterface.selectDice(maxAttackArmies, maxDefendArmies)
 		else:
 			enemyPlayer = self.selectedTerritories[1].owner
@@ -212,27 +211,30 @@ class RiskGame(object):
 			self.conqueredNewTerritory = True
 			minMoveArmies = min(attackArmies, self.selectedTerritories[0].armies - 1)
 			maxMoveArmies = self.selectedTerritories[0].armies - 1
-			self.riskInterface.moveArmies(minMoveArmies, maxMoveArmies)
+			if minMoveArmies == maxMoveArmies:
+				self.moveArmies(self.selectedTerritories[0], self.selectedTerritories[1], maxMoveArmies)
+			else:
+				self.riskInterface.moveArmies(minMoveArmies, maxMoveArmies)
 	
 			
-	def attackingPhaseEndBattle(self)
+	def attackingPhaseEndBattle(self):
 		del self.selectedTerritories
 		
-		if len(self.currentPlayer.ownedCards) >= 6
+		if len(self.currentPlayer.ownedCards) >= 6:
 			self.riskInterface.selectCardSet()
 		
 	
 	def attackingPhaseEnd(self):
 		if self.conqueredNewTerritory:
-			self.drawCard()
-		self.nextPhase()	
+			self.drawCard()	
 	
 	"""----------Fortifying phase----------"""
 	
 	def fortifyingPhase(self):
 		pass
 		
-	def foritfyingPhaseTerritorySelected(self, territory)
+		
+	def foritfyingPhaseTerritorySelected(self, territory):
 		if len(self.selectedTerritories) == 0 and territory.owner is self.currentPlayer and territory.armies > 1:
 			selectedTerritories.append(territory)
 		elif len(self.selectedTerritories) == 1 and territory.owner is self.currentPlayer and self.selectedTerritories[0].isNeighbour(territory):
@@ -240,7 +242,45 @@ class RiskGame(object):
 			maxMoveArmies = self.selectedTerritories[0].armies - 1
 			self.riskInterface.moveArmies(1, maxMoveArmies)
 			
-	def fortifyingPhase(self):
-		self.nextPhase()
+			
+	def fortifyingPhaseEnd(self):
+		pass
 		
 	"""------------------------------------"""
+	
+	def nextPhase():
+		if self.currentPhase == "Setup":
+			self.setupPhaseEnd()
+			self.currentPhase = "Positioning"
+		elif self.currentPhase == "Positioning":
+			self.positioningPhaseEnd()
+			self.currentPhase = "Attacking"
+		elif currentPhase == "Attacking":
+			self.attackingPhaseEnd()
+			self.currentPhase = "Fortifying"
+		elif self.currentPhase == "Fortifying":
+			self.fortifyingPhaseEnd()
+			self.currentPhase = "Positioning"
+			self.nextTurn()
+
+		
+	def territorySelected(self, territory):
+		if self.currentPhase == "Setup":
+			self.setupPlaceArmies(territory)
+		elif self.currentPhase == "Positioning":
+			self.positioningPhaseTerritorySelected(territory)
+		elif self.currentPhase == "Attacking":
+			self.attackingPhaseTerritorySelected(territory)
+		elif self.currentPhase == "Fortifying":
+			self.fortifyingPhaseTerritorySelected(territory)
+
+
+	def movingArmiesSelected(self, armies):
+		self.moveArmies(self.selectedTerritory[0], self.selectedTerritory[1], armies)
+		if currentPhase == "Fortifying":
+			self.nextPhase()
+
+		
+	def cardSetSelected(self, cardSet):
+		self.positioningPhaseCardsSelected(cardSet)
+

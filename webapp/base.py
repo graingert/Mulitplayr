@@ -23,6 +23,7 @@ def jinja2_fact(app):
     config = {
         'globals':{
             'uri_for':webapp2.uri_for,
+            'auth':users,
         },
     }
     return jinja2.Jinja2(app, config=config)

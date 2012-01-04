@@ -6,6 +6,8 @@ from google.appengine.ext import db
 
 from webapp2_extras import jinja2
 
+from profile.models import UserProfile
+
 class JSONEncoderGAE(json.JSONEncoder):
 
     """Encoder Compatible with GAE DB types"""
@@ -41,8 +43,9 @@ class BaseHandler(webapp2.RequestHandler):
 
     def render_response(self, _template, context = None):
         # Renders a template and writes the result to the response.
-        if not context is None:
-            rv = self.jinja2.render_template(_template, **context)
-        else:
-            rv = self.jinja2.render_template(_template, **self.context)
+        if context is None:
+            context = self.context
+        # Put things that are needed in all templates here
+        context["profile"] = UserProfile.get_current_user()
+        rv = self.jinja2.render_template(_template, **context)
         self.response.write(rv)

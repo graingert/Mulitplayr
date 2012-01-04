@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+{{ result }}
+<form method="POST">
+	<table>
+		<tr>
+			<td>Email:</td>
+			<td>{{ profile.user.email() }}</td>
+		</tr>
+		<tr>
+			<td>Nick:</td>
+			<td>
+				<input type="text" name="name" value="{{ profile.name }}" />
+			</td>
+		</tr>
+	</table>
+	<input type="submit" value="Save" />
+</form>
+{% endblock %}

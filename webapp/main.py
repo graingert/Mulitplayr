@@ -16,6 +16,6 @@ app = webapp2.WSGIApplication([
     webapp2.Route('/game/<game_id>/play/', 'basegame.handlers.GamePlayHandler', 'gameplay'),
     webapp2.Route('/game/simple/<game_id>/', 'simplegame.handlers.SimpleGameInfoHandler', 'simplegameinfo'),
     webapp2.Route('/game/simple/<game_id>/play/', 'simplegame.handlers.SimpleGamePlayHandler', 'simplegameplay'),
-    webapp2.Route('/game/conquest/<game_id>/', 'simplegame.handlers.SimpleGameInfoHandler', 'conquestgameinfo'),
-    webapp2.Route('/game/conquest/<game_id>/play/', 'simplegame.handlers.SimpleGamePlayHandler', 'conquestgameplay'),
+    webapp2.Route('/game/conquest/<game_id>/', 'conquest.handlers.ConquestGameInfoHandler', 'conquestgameinfo'),
+    webapp2.Route('/game/conquest/<game_id>/play/', 'conquest.handlers.ConquestGamePlayHandler', 'conquestgameplay'),
 ], debug=True, config=config)

@@ -6,7 +6,7 @@ from google.appengine.api import users
 
 from basegame.models import *
 
-class SimpleGameState(BaseGameState):
+class ConquestGameState(BaseGameState):
     current_number = db.IntegerProperty()
     correct_number = db.IntegerProperty()
     possible_states = BaseGameState.possible_states | set(['guessing'])
@@ -57,7 +57,7 @@ class SimpleGameState(BaseGameState):
         return action
 
 
-class SimpleGamePlayer(BaseGamePlayer):
+class ConquestGamePlayer(BaseGamePlayer):
     def get_info_dict(self, target=None):
         """ Fill info about player into a dict. """
         if target is None:
@@ -67,15 +67,15 @@ class SimpleGamePlayer(BaseGamePlayer):
         return target
 
 
-class SimpleGameInstance(BaseGameInstance):
+class ConquestGameInstance(BaseGameInstance):
     info_redirect = "conquestgameinfo"
     play_redirect = "conquestgameplay"
 
-    game_player_type = SimpleGamePlayer
-    game_state_type = SimpleGameState
+    game_player_type = ConquestGamePlayer
+    game_state_type = ConquestGameState
 
 
-class SimpleGameAction(BaseGameAction):
+class ConquestGameAction(BaseGameAction):
     guessed_number = db.IntegerProperty()
 
     def get_info_dict(self, target=None):

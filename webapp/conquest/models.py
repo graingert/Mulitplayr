@@ -7,6 +7,12 @@ from google.appengine.api import users
 from basegame.models import *
 from profile.models import *
 
+def load_contries():
+	contries = csv.DictReader(open("/static/board/indexmapping.csv"))
+	for country in contries:
+		country["index"] -= 1
+		country["id"] = country["label"].lower()
+
 
 class ConquestGameState(BaseGameState):
     possible_states = BaseGameState.possible_states | set([

@@ -89,6 +89,8 @@ class OxPlayer(BaseGamePlayer):
 
 
 class OxInstance(BaseGameInstance):
+    game_name = "ox"
+
     info_redirect = "oxgameinfo"
     play_redirect = "oxgameplay"
 

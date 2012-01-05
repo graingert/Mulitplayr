@@ -69,6 +69,8 @@ class SimpleGamePlayer(BaseGamePlayer):
 
 
 class SimpleGameInstance(BaseGameInstance):
+    game_name = "simple"
+
     info_redirect = "simplegameinfo"
     play_redirect = "simplegameplay"
 

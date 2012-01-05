@@ -12,6 +12,9 @@ class NotTurnException(Exception):
 class InvalidStateException(Exception):
     pass
 
+class InvalidActionParametersException(Exception):
+    pass
+
 class BaseGameState(polymodel.PolyModel):
     current_player_index = db.IntegerProperty(default=0)
     total_players = db.IntegerProperty()
@@ -54,10 +57,13 @@ class BaseGameState(polymodel.PolyModel):
         """ Setup the initial state. """
         raise NotImplementedError
 
-    def get_current_player(self):
+    def get_current_player_data(self):
         players =  self.basegameplayer_set
         player_data = players.filter('play_index', self.current_player_index).get()
-        return player_data.player
+        return player_data
+
+    def get_current_player(self):
+        return self.get_current_player_data().player
 
     def get_info_dict(self, target=None):
         """ Fill info about state into a dict. """

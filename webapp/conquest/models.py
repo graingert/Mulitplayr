@@ -7,6 +7,7 @@ from google.appengine.api import users
 from basegame.models import *
 from profile.models import *
 
+
 class ConquestGameState(BaseGameState):
     possible_states = BaseGameState.possible_states | set([
         'place','reinforce','attack','attack_victory','fortify'])
@@ -34,7 +35,10 @@ class ConquestGameState(BaseGameState):
         self.users_placed = 0
         for territory in range(42):
             self.territory_units.append(0)
-            self.territory_player.append(0)
+            self.territory_player.append(-1)
+        
+        for player in players:
+            player.owned_armies = 50 - 5 * self.total_players
 
         self.state = 'place'
 
@@ -43,16 +47,21 @@ class ConquestGameState(BaseGameState):
         self.check_state('place')
         self.is_current_player()
 
-        #TODO Check!
+        placements = request.POST.getall('placements[]')
+
         action = PlaceAction(parent = self)
         self.add_action(action)
+        player_data = self.get_current_player_data()
 
-        placements = request.POST.getall('placements[]')
+        total_units_placed = 0
         for i,placement in enumerate(placements):
             num_placed = int(placement)
+            total_units_placed += num_placed
             self.territory_units[i] = num_placed
             self.territory_player[i] = self.current_player_index
             action.placed_units.append(num_placed)
+        if total_units_placed > player_data.owned_armies:
+            raise InvalidActionParametersException()
         self.users_placed += 1
         if self.users_placed == self.total_players:
             action.new_state = 'reinforce'
@@ -134,11 +143,15 @@ class ConquestGameState(BaseGameState):
 
 
 class ConquestGamePlayer(BaseGamePlayer):
+    owned_armies = db.IntegerProperty()
+
     def get_info_dict(self, target=None):
         """ Fill info about player into a dict. """
         if target is None:
             target = dict()
         BaseGamePlayer.get_info_dict(self, target)
+
+        target['owned_armies'] = self.owned_armies
 
         return target
 

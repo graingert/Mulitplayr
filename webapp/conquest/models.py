@@ -1,5 +1,6 @@
 import webapp2
 import random
+import csv
 
 from google.appengine.ext import db
 from google.appengine.api import users
@@ -7,11 +8,32 @@ from google.appengine.api import users
 from basegame.models import *
 from profile.models import *
 
-def load_contries():
-	contries = csv.DictReader(open("/static/board/indexmapping.csv"))
-	for country in contries:
-		country["index"] -= 1
-		country["id"] = country["label"].lower()
+class TerritoryMapper():
+    def __init__(self):
+        self.territory_indexes = {}
+        self.territory_labels = {}
+
+        index_mapping_data = csv.DictReader(open("data/indexmapping.csv"))
+        for territory in index_mapping_data:
+            index = int(territory["index"])-1
+            label  = territory["label"].lower()
+            self.territory_indexes[label] = index
+            self.territory_labels[index] = label
+    
+    def get_territory_index(self, label):
+        return self.territory_indexes[label]
+
+    def get_territory_label(self, index):
+        return self.territory_labels[index]
+
+
+def get_territory_mapper():
+    app = webapp2.get_app()
+    territory_mapper = app.registry.get('conquest.territory_mapper')
+    if not territory_mapper:
+        territory_mapper = TerritoryMapper()
+        app.registry['conquest.territory_mapper'] = territory_mapper
+    return territory_mapper
 
 
 def attacking_phase_roll_dice(attack_armies, defend_armies):
@@ -41,8 +63,15 @@ class ConquestGameState(BaseGameState):
             target = dict()
         BaseGameState.get_info_dict(self, target)
 
-        target['territory_units'] = self.territory_units
-        target['territory_player'] = self.territory_player
+        territory_mapper = get_territory_mapper()
+        territories = {}
+        for i in range(len(self.territory_units)):
+            label = territory_mapper.get_territory_label(i)
+            data = {'player':self.territory_player[i],
+                    'units':self.territory_units[i]
+                   }
+            territories[label] = data
+        target['territories'] = territories
 
         return target
 
@@ -152,10 +181,7 @@ class ConquestGameState(BaseGameState):
 
         if self.territory_units[destination] <= 0:
             self.territory_player[destination] = self.current_player_index
-            if (attackers - loose_rolls) == 1:
-                self.territory_units[destination] = 1
-            else:
-                action.new_state = 'attack_victory'
+            action.new_state = 'attack_victory'
 
         action.origin = origin
         action.destination = destination
@@ -202,6 +228,7 @@ class ConquestGameState(BaseGameState):
 
         action.origin = origin
         action.destination = destination
+        action.units = units
 
         action.new_state = 'reinforce'
         self.state = 'reinforce'
@@ -254,7 +281,12 @@ class PlaceAction(BaseGameAction):
         if target is None:
             target = {}
         BaseGameAction.get_info_dict(self, target)
-        target['placed_units'] = self.placed_units
+        territory_mapper = get_territory_mapper()
+        placements = {}
+        for i,placement in enumerate(self.placed_units):
+            label = territory_mapper.get_territory_label(i)
+            placements[label] = placement
+        target['placed_units'] = placements
         target['action_type'] = 'place'
         return target
 
@@ -272,8 +304,9 @@ class AttackAction(BaseGameAction):
         if target is None:
             target = {}
         BaseGameAction.get_info_dict(self, target)
-        target['origin'] = self.origin
-        target['destination'] = self.destination
+        territory_mapper = get_territory_mapper()
+        target['origin'] = territory_mapper.get_territory_label(self.origin)
+        target['destination'] = territory_mapper.get_territory_label(self.destination)
         target['attackers'] = self.attackers
         target['action_type'] = 'attack'
         return target
@@ -289,8 +322,9 @@ class MoveAction(BaseGameAction):
         if target is None:
             target = {}
         BaseGameAction.get_info_dict(self, target)
-        target['origin'] = self.origin
-        target['destination'] = self.destination
+        territory_mapper = get_territory_mapper()
+        target['origin'] = territory_mapper.get_territory_label(self.origin)
+        target['destination'] = territory_mapper.get_territory_label(self.destination)
         target['units'] = self.units
-        target['action_type'] = 'attack'
+        target['action_type'] = 'move'
         return target

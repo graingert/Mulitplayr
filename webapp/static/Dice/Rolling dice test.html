@@ -7,27 +7,35 @@
 
 	<script>
 	$(function() {
-		var stopRollID
+		var stopAttackRollID;
+		var stopDefenceRollID;
 
 		function animateDice(noAttackDice, noDefenceDice){
 			if (noAttackDice == 1){
 				$("#attackDie1").fadeTo(500, 0.4);
-				stopRollID = setInterval(function() { rollDice([$("#attackDie1")]); }, 250);
+				stopAttackRollID = setInterval(function() { rollDice([$("#attackDie1")]); }, 250);
 			}
 			if (noAttackDice == 2){
 				$("#attackDie1").fadeTo(500, 0.4);
 				$("#attackDie2").fadeTo(500, 0.4);
-				stopRollID = setInterval(function() { rollDice([$("#attackDie1"), $("#attackDie2")]); }, 250);
+				stopAttackRollID = setInterval(function() { rollDice([$("#attackDie1"), $("#attackDie2")]); }, 250);
 			}
 			if (noAttackDice == 3){
 				$("#attackDie1").fadeTo(500, 0.4);
 				$("#attackDie2").fadeTo(500, 0.4);
 				$("#attackDie3").fadeTo(500, 0.4);
-				stopRollID = setInterval(function() { rollDice([$("#attackDie1"), $("#attackDie2"), $("#attackDie3")]); }, 250);
+				stopAttackRollID = setInterval(function() { rollDice([$("#attackDie1"), $("#attackDie2"), $("#attackDie3")]); }, 250);
 			}
 			
-			if (noDefenceDice = 1){}
-			if (noDefenceDice = 2){}
+			if (noDefenceDice == 1){
+				$("#defenceDie1").fadeTo(500, 0.4);
+				stopDefenceRollID = setInterval(function() { rollDice([$("#defenceDie1")]); }, 250);
+			}
+			if (noDefenceDice == 2){
+				$("#defenceDie1").fadeTo(500, 0.4);
+				$("#defenceDie2").fadeTo(500, 0.4);
+				stopDefenceRollID = setInterval(function() { rollDice([$("#defenceDie1"), $("#defenceDie2")]); }, 250);
+			}
 		}
 
 		function rollDice(diceArray){
@@ -41,7 +49,7 @@
 		
 		function animateDie(objDie){
 			objDie.fadeTo(500, 0.4);
-			stopRollId = setInterval(function() { rollDie(objDie); }, 100);
+			stopRollID = setInterval(function() { rollDie(objDie); }, 100);
 		}
 		
 		function rollDie(objDie){
@@ -49,21 +57,22 @@
 			objDie.attr("src", "White" + randomNum + "blur.svg");
 		}
 		
-		function stopDie(number){
-			clearInterval(stopRollID);
+		function stopDice(number){
+			clearInterval(stopAttackRollID);
+			clearInterval(stopDefenceRollID);
+			
 			$("#die").fadeTo(500, 1);
 			$("#die").attr("src", "White" + number + ".svg");
 		}
 		
 		$("#start").click(function() {
-			//animateDie($("#attackDie1"));
-			
-			animateDice(3,1);
+		
+			animateDice(3,2);
 			return false;
 		})
 		
-		$( "#button" ).click(function() {
-			stopDie(2);
+		$( "#stop" ).click(function() {
+			stopDice(2);
 			return false;
 		});
 	});

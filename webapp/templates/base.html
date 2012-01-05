@@ -73,7 +73,10 @@
 					<ul class="nav secondary-nav">
 						{% if profile %}
 						<li class="dropdown" data-dropdown="dropdown">
-							<a href="#" class="dropdown-toggle">{{profile.name}}</a>
+							<a href="#" class="dropdown-toggle">
+								<img src="{{profile.gravatar_url()}}" />
+								{{profile.name}}
+							</a>
 							<ul class="dropdown-menu">
 								<li><a href="{{uri_for('profile-edit')}}">Settings</a></li>
 								<li><a href="#">Help</a></li>

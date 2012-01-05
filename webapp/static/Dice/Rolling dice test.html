@@ -1,0 +1,87 @@
+<html>
+<head><title>fujsadkflj a;sdjf ;al sjd</title>
+
+	<script src="jquery-1.6.2.js"></script>
+
+<meta charset="utf-8">
+
+	<script>
+	$(function() {
+		var stopRollID
+
+		function animateDice(noAttackDice, noDefenceDice){
+			if (noAttackDice == 1){
+				$("#attackDie1").fadeTo(500, 0.4);
+				stopRollID = setInterval(function() { rollDice([$("#attackDie1")]); }, 250);
+			}
+			if (noAttackDice == 2){
+				$("#attackDie1").fadeTo(500, 0.4);
+				$("#attackDie2").fadeTo(500, 0.4);
+				stopRollID = setInterval(function() { rollDice([$("#attackDie1"), $("#attackDie2")]); }, 250);
+			}
+			if (noAttackDice == 3){
+				$("#attackDie1").fadeTo(500, 0.4);
+				$("#attackDie2").fadeTo(500, 0.4);
+				$("#attackDie3").fadeTo(500, 0.4);
+				stopRollID = setInterval(function() { rollDice([$("#attackDie1"), $("#attackDie2"), $("#attackDie3")]); }, 250);
+			}
+			
+			if (noDefenceDice = 1){}
+			if (noDefenceDice = 2){}
+		}
+
+		function rollDice(diceArray){
+			var i = 0;
+			for (i=0;i<diceArray.length;i++){
+				var randomNum = Math.ceil(Math.random()*6);
+				diceArray[i].attr("src", "White" + randomNum + "blur.svg");
+			}
+		}
+		
+		
+		function animateDie(objDie){
+			objDie.fadeTo(500, 0.4);
+			stopRollId = setInterval(function() { rollDie(objDie); }, 100);
+		}
+		
+		function rollDie(objDie){
+			var randomNum = Math.ceil(Math.random()*6);
+			objDie.attr("src", "White" + randomNum + "blur.svg");
+		}
+		
+		function stopDie(number){
+			clearInterval(stopRollID);
+			$("#die").fadeTo(500, 1);
+			$("#die").attr("src", "White" + number + ".svg");
+		}
+		
+		$("#start").click(function() {
+			//animateDie($("#attackDie1"));
+			
+			animateDice(3,1);
+			return false;
+		})
+		
+		$( "#button" ).click(function() {
+			stopDie(2);
+			return false;
+		});
+	});
+	</script>
+</head>
+
+<body>
+<a href="#" id="start">START</a>
+<a href="#" id="stop">STOP</a>
+
+<div id="attackDice">
+<img id="attackDie1" src="White1.svg">
+<img id="attackDie2" src="White1.svg">
+<img id="attackDie3" src="White1.svg">
+</div id="defenceDice">
+<img id="defenceDie1" src="White1.svg">
+<img id="defenceDie2" src="White1.svg">
+<div>
+</div>
+</body>
+</html>

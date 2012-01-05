@@ -73,6 +73,11 @@ class BaseGameState(polymodel.PolyModel):
 
         return target
 
+    def is_current_player(self):
+        user = UserProfile.get_current_user()
+        if user != self.get_current_player():
+            raise NotTurnException()
+
 
 class BaseGamePlayer(polymodel.PolyModel):
     game_state = db.ReferenceProperty(BaseGameState)

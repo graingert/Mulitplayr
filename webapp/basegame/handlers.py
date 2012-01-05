@@ -11,6 +11,9 @@ from profile.models import *
 class InvalidGameIdException(Exception):
     pass
 
+class GameTypeNotFoundError(Exception):
+    pass
+
 def load_inherited_models(app):
     """ Load correct modules to resolve polymodels """
     for game_name, game in app.config['games'].iteritems():
@@ -28,6 +31,8 @@ def get_game_instance(game_id):
         raise InvalidGameIdException()
 
     return game_instance
+
+
 
 
 class LobbyHandler(BaseHandler):
@@ -56,7 +61,8 @@ class LobbyHandler(BaseHandler):
         # Filter here because you can't do OR on datastore ;(
         games = [game for game in games
                 if game.state == 'open'
-                or current_user.key() in game.players]
+                or (current_user.key() in game.players
+                    and game.state != 'finished')]
         self.context['groupedGames'] = itertools.groupby(games,group_func)
         self.render_response('lobby.html')
 
@@ -222,3 +228,30 @@ class NewGameHandler(BaseHandler):
     def get(self):
         self.context['games'] = self.app.config['games']
         self.render_response("new_game.html")
+
+class ActiveGamesHandler(BaseHandler):
+    """
+    Handler for starting a new game.
+
+    This offers a listing of the avaible games and forwards to the
+    appropriate new game URI for that game
+    """
+
+    @login_required
+    def get(self):
+        load_inherited_models(self.app)
+
+        user = UserProfile.get_current_user()
+        games = list(BaseGameInstance.gql(
+                "WHERE state = 'playing' AND players = :1", user).run())
+        result = {'games':[]}
+        for game in games:
+            current_player = game.current_state.get_current_player()
+            game_dict = {
+                    'awaitingPlayerMove': (current_player == user),
+                    'currentPlayer': current_player.name,
+                    'type': self.app.config['games'][game.game_name]['human'],
+                    'uri': webapp2.uri_for(game.play_redirect, game_id=game.key().id())
+            }
+            result['games'].append(game_dict)
+        self.response.write(json.dumps(result, cls=JSONEncoderGAE))

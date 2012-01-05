@@ -16,6 +16,39 @@
     <!-- Le styles -->
     <link href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css" rel="stylesheet">
     <link href="/static/base.css" rel="stylesheet">
+	<script type="text/javascript">
+		if ($.templates == null)
+			$.templates = {};
+
+		$(document).ready(function(event) {
+			$.templates.active_games_dropdown =
+				Handlebars.compile($('#active-games-dropdown-template').html());
+			$.getJSON('/game/active', function(data) {
+				var awaiting = 0;
+				for(i in data.games) {
+					awaiting += (data.games[i].awaitingPlayerMove ? 1 : 0);
+				}
+				$('#active-games-await').text(awaiting);
+				$('#active-games-dropdown').html(
+					$($.templates.active_games_dropdown(data)));
+			});
+		});
+	</script>
+{% raw %}
+	<script id="active-games-dropdown-template" type="text/x-handlebars-template">
+		{{#if games}}
+		{{#each games}}
+		<li>
+			<a href="{{this.uri}}">
+			{{this.type}} (Waiting for {{this.currentPlayer}})
+			</a>
+		</li>
+		{{/each}}
+		{{else}}
+		<li><a href='#'>No active games</a></li>
+		{{/if}}
+	</script>
+{% endraw %}
 {% block head %}
 {% endblock %}
   </head>
@@ -28,6 +61,14 @@
 						<ul class="nav">
 							{% block nav %}
 								<li><a href="/lobby/">Lobby</a><li>
+								<li class="dropdown" data-dropdown="dropdown">
+									<a href="#" class="dropdown-toggle">
+										Active Games (
+										<span id='active-games-await'>0</span>)
+									</a>
+									<ul class="dropdown-menu" id="active-games-dropdown">
+									</ul>
+								</li>
 							{% endblock %}
 						</ul>
 					<ul class="nav secondary-nav">

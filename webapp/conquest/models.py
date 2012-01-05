@@ -157,6 +157,8 @@ class ConquestGamePlayer(BaseGamePlayer):
 
 
 class ConquestGameInstance(BaseGameInstance):
+    game_name = 'conquest'
+
     info_redirect = "conquestgameinfo"
     play_redirect = "conquestgameplay"
 

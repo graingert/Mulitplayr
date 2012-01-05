@@ -1,5 +1,6 @@
 import webapp2
 import json
+import itertools
 
 from base import BaseHandler, JSONEncoderGAE
 from webapp2_extras.appengine.users import login_required
@@ -33,11 +34,30 @@ class LobbyHandler(BaseHandler):
     """
     Simple lobby hander.
     """
+    human_game_states = {
+            'playing': 'DO NOT WANT',
+            'player-playing': 'Active games',
+            'open': 'Available games',
+            'player-open': 'Joined games',
+    }
 
     @login_required
     def get(self):
         load_inherited_models(self.app)
-        self.context['games'] = BaseGameInstance.all()
+
+        current_user = UserProfile.get_current_user()
+        def group_func(x):
+            state = x.state
+            if current_user.key() in x.players:
+                state = "player-" + state
+            return LobbyHandler.human_game_states[state]
+
+        games = BaseGameInstance.all()
+        # Filter here because you can't do OR on datastore ;(
+        games = [game for game in games
+                if game.state == 'open'
+                or current_user.key() in game.players]
+        self.context['groupedGames'] = itertools.groupby(games,group_func)
         self.render_response('lobby.html')
 
 

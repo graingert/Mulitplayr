@@ -1,10 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
+{% for state, games in groupedGames %}
+<h2>{{ state }}</h2>
 <table>
 	<thead>
 		<th>ID</th>
 		<th>Players</th>
-		<th>State</th>
 		<th class="pull-right"></th>
 	</thead>
 	<tbody>
@@ -12,7 +13,6 @@
 		<tr>
 		<td>{{game.key().id()}}</td>
 		<td>{{game.players|count}} of {{game.max_players}}</td>
-		<td>{{game.state}}</td>
 		<td style="text-align: right">
 		<a class="btn info" href="{{ uri_for('gameinfo', game_id=game.key().id()) }}">View</a>
 		</td>
@@ -20,5 +20,6 @@
 		{% endfor %}
 	</tbody>
 <table>
+{% endfor %}
 	<a class="btn" href="{{ uri_for('newgame') }}">New Game</a>
 {% endblock %}

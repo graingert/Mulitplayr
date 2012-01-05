@@ -10,7 +10,11 @@ class UserProfile(db.Model):
         gae_user = users.get_current_user()
         if gae_user is None: # Handle not being logged in
             return None
-        our_user = UserProfile.get_or_insert(gae_user.user_id(), user=gae_user, name="n00bie {0}".format(gae_user.user_id()))
+        our_user = UserProfile.get_or_insert(
+			gae_user.user_id(),
+			user=gae_user,
+			name=gae_user.nickname().rsplit("@",1)[0],
+		)
         return our_user
 
     def __eq__(self, other):

@@ -2,19 +2,17 @@
 
 {% block head %}
 {{ super() }}
+<style type="text/css">
+	body{padding-top: 40px; background: #eee}
+	.content{background: #fff;}
+	.sidebar div{background: #fff; padding: 4px; border: 1px solid #bbb; margin-top: 4px;}
+	#map{background: #7799ee;}
+	g.region:hover path{fill: #770077 !important;}
+	g.continent>path:hover{fill: #770077 !important;}
+</style>
 <script>
 	if ($.templates == null)
 		$.templates = {};
-
-	function make_guess(event){
-		event.preventDefault();
-		var guess_val = $("#guess_input").val();
-		$.game.run_action({
-			action:"guess",
-			guess:guess_val,
-		});
-		$("#guess_input").val("");
-	}
 
 	function update_from_state(event, state){
 		$("#last-guess").text(state["current_number"]);
@@ -28,17 +26,21 @@
 		$("#results").prepend(r_message);
 		r_message.hide().slideDown(400);
 	}
+	
+	function prepmap() {
+		$('#map g.region').click(function() {
+				alert($(this).prop('id'));
+				});
 
-	$(document).ready(function(){
-		// Load templates
-		$.templates.guess_result = Handlebars.compile($("#guess-template").html());
-		$.templates.guess_win_result = Handlebars.compile($("#win-template").html());
-
-		// Bind events
-		$("#make_guess").click(make_guess);
-		$.game.on("new-state", update_from_state);
-		$.game.on("guess-action", process_action);
-	})
+		// hack as regions unfinished
+		$('#map g.continent>path').click(function() {
+				alert($(this).prop('id'));
+				});
+	};
+	
+	$(document).ready(function() {
+		$('#map').load('/static/board/map.svg', prepmap);
+	});
 </script>
 {% raw %}
 <script id="guess-template" type="text/x-handlebars-template">
@@ -55,19 +57,8 @@
 {% endblock %}
 
 {% block content %}
-<div id="last-guess" class="alert-message">
-</div>
-<form>
-	<fieldset>
-		<legend>Make a Guess</legend>
-		<label for="guess_input">Guess Number</label>
-		<div class="input">
-			<input class="xlarge" id="guess_input" size="4" type="text" />
-		</div>
-		<div class="actions">
-			<button id="make_guess" class="btn primary">Make Guess</button>
-		</div>
-	</fieldset>
-</form>
+
+<div id="map"/>
+
 <div id="results"/>
 {% endblock %}

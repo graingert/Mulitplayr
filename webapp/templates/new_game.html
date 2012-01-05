@@ -1,7 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
 <h2>Create new game</h2>
+<ul>
 {% for game_name, game in games.iteritems() %}
-<a href="{{ uri_for('newgame-' + game_name) }}" class="btn">{{ game['human'] }}</a><br />
+	<li>
+		<a href="{{ uri_for('newgame-' + game_name) }}" class="btn">{{ game['human'] }}</a>
+	</li>
 {% endfor %}
+</ul>
 {% endblock %}

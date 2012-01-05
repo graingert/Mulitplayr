@@ -13,8 +13,8 @@ class InvalidGameIdException(Exception):
 
 def load_inherited_models(app):
     """ Load correct modules to resolve polymodels """
-    for model in app.config['game_models']:
-        webapp2.import_string(model)
+    for game_name, game in app.config['games'].iteritems():
+        webapp2.import_string(game['model'])
 
 
 def get_game_instance(game_id):
@@ -209,3 +209,16 @@ class GamePlayHandler(BaseHandler):
                 'state' : state_data}
         # Output the JSON
         self.response.write(json.dumps(data, cls=JSONEncoderGAE))
+
+class NewGameHandler(BaseHandler):
+    """
+    Handler for starting a new game.
+
+    This offers a listing of the avaible games and forwards to the
+    appropriate new game URI for that game
+    """
+
+    @login_required
+    def get(self):
+        self.context['games'] = self.app.config['games']
+        self.render_response("new_game.html")

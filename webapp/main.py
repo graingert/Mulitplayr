@@ -14,6 +14,10 @@ config = {
             'human': 'Number Guessing',
             'model': 'simplegame.models',
         },
+        'ox': {
+            'human': 'Naughts and Crosses',
+            'model': 'ox.models',
+        },
     }
 }
 
@@ -26,6 +30,9 @@ app = webapp2.WSGIApplication([
     webapp2.Route('/game/simple/newgame/', 'simplegame.handlers.NewGameHandler', 'newgame-simple'),
     webapp2.Route('/game/simple/<game_id>/', 'simplegame.handlers.SimpleGameInfoHandler', 'simplegameinfo'),
     webapp2.Route('/game/simple/<game_id>/play/', 'simplegame.handlers.SimpleGamePlayHandler', 'simplegameplay'),
+    webapp2.Route('/game/ox/newgame/', 'ox.handlers.NewGameHandler', 'newgame-ox'),
+    webapp2.Route('/game/ox/<game_id>/', 'ox.handlers.OxInfoHandler', 'oxgameinfo'),
+    webapp2.Route('/game/ox/<game_id>/play/', 'ox.handlers.OxPlayHandler', 'oxgameplay'),
     # For the newgame page to work newgame routes must have the name 'newgame-<game_name>'
     webapp2.Route('/game/conquest/newgame/', 'conquest.handlers.NewGameHandler', 'newgame-conquest'),
     webapp2.Route('/game/conquest/<game_id>/', 'conquest.handlers.ConquestGameInfoHandler', 'conquestgameinfo'),

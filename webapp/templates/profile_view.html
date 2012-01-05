@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<table>
+	<tr>
+		<td>Email:</td>
+		<td>{{profile.user.email()}}</td>
+	</tr>
+	<tr>
+		<td>Nick:</td>
+		<td>{{profile.name}}</td>
+	</tr>
+</table>
+{% endblock %}

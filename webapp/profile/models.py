@@ -1,5 +1,6 @@
 from google.appengine.ext import db
 from google.appengine.api import users
+import urllib, hashlib
 
 class UserProfile(db.Model):
     name = db.StringProperty()
@@ -16,6 +17,19 @@ class UserProfile(db.Model):
 			name=gae_user.nickname().rsplit("@",1)[0],
 		)
         return our_user
+    
+    def gravatar_url(self, size=48, default="identicon", force_default="n", rating="g", secure=False):
+		federated_image_service = "http://www.gravatar.com/avatar/"
+		if secure:
+			federated_image_service = "https://secure.gravatar.com/avatar/"
+		gravatar_url = federated_image_service + hashlib.md5(self.user.email().lower()).hexdigest() + "?"
+		gravatar_url += urllib.urlencode({
+			'd':default,
+			's':str(size),
+			'f':force_default,
+			'r':rating, 
+		})
+		return gravatar_url
 
     def __eq__(self, other):
         """ Equality is based on the GAE User """

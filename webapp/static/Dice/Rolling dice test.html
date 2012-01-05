@@ -57,12 +57,23 @@
 			objDie.attr("src", "White" + randomNum + "blur.svg");
 		}
 		
-		function stopDice(number){
+		function stopDice(attack1, attack2, attack3, defence1, defence2){
 			clearInterval(stopAttackRollID);
 			clearInterval(stopDefenceRollID);
 			
-			$("#die").fadeTo(500, 1);
-			$("#die").attr("src", "White" + number + ".svg");
+			$("#attackDie1").fadeTo(500, 1);
+			$("#attackDie2").fadeTo(500, 1);
+			$("#attackDie3").fadeTo(500, 1);
+			
+			$("#defenceDie1").fadeTo(500, 1);
+			$("#defenceDie2").fadeTo(500, 1);
+			
+			$("#attackDie1").attr("src", "White" + attack1 + ".svg");
+			$("#attackDie2").attr("src", "White" + attack2 + ".svg");
+			$("#attackDie3").attr("src", "White" + attack3 + ".svg");
+					
+			$("#defenceDie1").attr("src", "White" + defence1 + ".svg");
+			$("#defenceDie2").attr("src", "White" + defence2 + ".svg");
 		}
 		
 		$("#start").click(function() {
@@ -72,7 +83,7 @@
 		})
 		
 		$( "#stop" ).click(function() {
-			stopDice(2);
+			stopDice(2, 3, 4, 1, 6);
 			return false;
 		});
 	});

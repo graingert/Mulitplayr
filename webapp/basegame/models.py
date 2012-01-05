@@ -154,11 +154,13 @@ class BaseGameInstance(polymodel.PolyModel):
         if self.state != "open":
             return False
 
+        user_key = user.key()
+
         # Check if the user is already joined
-        if user in self.players:
+        if user_key in self.players:
             return False
 
-        self.players.append(user.key())
+        self.players.append(user_key)
         self.put()
         return True
 

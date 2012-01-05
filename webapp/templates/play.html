@@ -30,6 +30,9 @@
 		var self = this;
 		setTimeout(function() { self.refreshState(); }, 1000);
 	}
+	ViewController.prototype.stopRefreshTimer = function() {
+		this.refreshActive = false;
+	}
 	ViewController.prototype.refreshState = function() {
 			if (!this.refreshActive) {
 				return;
@@ -53,6 +56,11 @@
 
 		$("#refresh").click(function(event){
 			$.game.trigger("refresh");
+			event.preventDefault();
+		});
+
+		$("#stop-refresh").click(function(event){
+			viewControl.stopRefreshTimer();
 			event.preventDefault();
 		});
 	});
@@ -90,6 +98,7 @@
 </ul>
 <span id="refresh-timer"></span><br />
 <a id="refresh" class="btn" href="#">Force update</a>
+<a id="stop-refresh" class="btn" href="#">Stop updates</a>
 {% endblock %}
 
 {% block content %}

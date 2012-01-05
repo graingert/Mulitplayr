@@ -74,7 +74,7 @@
 						{% if profile %}
 						<li class="dropdown" data-dropdown="dropdown">
 							<a href="#" class="dropdown-toggle">
-								<img src="{{profile.gravatar_url()}}" />
+								<img src="{{profile.gravatar_url()|safe}}" />
 								{{profile.name}}
 							</a>
 							<ul class="dropdown-menu">

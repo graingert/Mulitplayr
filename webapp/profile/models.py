@@ -18,7 +18,7 @@ class UserProfile(db.Model):
 		)
         return our_user
     
-    def gravatar_url(self, size=48, default="identicon", force_default="n", rating="g", secure=False):
+    def gravatar_url(self, size=48, default="identicon", rating="g", secure=False):
 		federated_image_service = "http://www.gravatar.com/avatar/"
 		if secure:
 			federated_image_service = "https://secure.gravatar.com/avatar/"
@@ -26,7 +26,6 @@ class UserProfile(db.Model):
 		gravatar_url += urllib.urlencode({
 			'd':default,
 			's':str(size),
-			'f':force_default,
 			'r':rating, 
 		})
 		return gravatar_url

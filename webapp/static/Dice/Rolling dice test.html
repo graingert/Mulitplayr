@@ -1,23 +1,30 @@
 <html>
-<head><title>Dice demo</title>
+<head>
+	<title>Dice demo</title>
 
 	<script src="jquery-1.6.2.js"></script>
 
-<meta charset="utf-8">
+	<meta charset="utf-8">
 
 	<script>
 	$(function() {
-		var stopAttackRollID;
+		var stopAttackRollID = 0;
 		var stopDefenceRollID;
 
 		function animateDice(noAttackDice, noDefenceDice){
+			//Don't reaminate if dice are already spinning
+			if (stopAttackRollID != 0){return;}
+			
 			if (noAttackDice == 1){
 				$("#attackDie1").fadeTo(500, 0.4);
+				$("#attackDie2").fadeTo(500, 0);
+				$("#attackDie3").fadeTo(500, 0);
 				stopAttackRollID = setInterval(function() { rollAttackDice([$("#attackDie1")]); }, 250);
 			}
 			if (noAttackDice == 2){
 				$("#attackDie1").fadeTo(500, 0.4);
 				$("#attackDie2").fadeTo(500, 0.4);
+				$("#attackDie3").fadeTo(500, 0);
 				stopAttackRollID = setInterval(function() { rollAttackDice([$("#attackDie1"), $("#attackDie2")]); }, 250);
 			}
 			if (noAttackDice == 3){
@@ -29,6 +36,7 @@
 			
 			if (noDefenceDice == 1){
 				$("#defenceDie1").fadeTo(500, 0.4);
+				$("#defenceDie2").fadeTo(500, 0);
 				stopDefenceRollID = setInterval(function() { rollDefenceDice([$("#defenceDie1")]); }, 250);
 			}
 			if (noDefenceDice == 2){
@@ -67,29 +75,30 @@
 			clearInterval(stopAttackRollID);
 			clearInterval(stopDefenceRollID);
 			
-			$("#attackDie1").fadeTo(500, 1);
-			$("#attackDie2").fadeTo(500, 1);
-			$("#attackDie3").fadeTo(500, 1);
-			
-			$("#defenceDie1").fadeTo(500, 1);
-			$("#defenceDie2").fadeTo(500, 1);
-			
+			stopAttackRollID = 0;
+						
 			$("#attackDie1").attr("src", "White" + attack1 + ".svg");
 			$("#attackDie2").attr("src", "White" + attack2 + ".svg");
 			$("#attackDie3").attr("src", "White" + attack3 + ".svg");
 					
 			$("#defenceDie1").attr("src", "Red" + defence1 + ".svg");
 			$("#defenceDie2").attr("src", "Red" + defence2 + ".svg");
+			
+			$("#attackDie1").fadeTo(500, 1);
+			if (attack2 != 0) {$("#attackDie2").fadeTo(500, 1);}
+			if (attack3 != 0) {$("#attackDie3").fadeTo(500, 1);}
+			
+			$("#defenceDie1").fadeTo(500, 1);
+			if (defence2 != 0) {$("#defenceDie2").fadeTo(500, 1);}
 		}
 		
 		$("#start").click(function() {
-		
 			animateDice(3,2);
 			return false;
 		})
 		
 		$( "#stop" ).click(function() {
-			stopDice(2, 3, 4, 1, 6);
+			stopDice(2, 3, 4, 5, 6);
 			return false;
 		});
 	});

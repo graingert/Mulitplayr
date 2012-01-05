@@ -1,0 +1,107 @@
+{% extends "play.html" %}
+
+{% block head %}
+{{ super() }}
+<script>
+	if ($.templates == null)
+		$.templates = {};
+
+	function place_marker(event){
+		event.preventDefault();
+		var target = $(event.target);
+		var position = target.attr("position");
+		$.game.run_action({
+			action:"place",
+			position:position,
+		});
+	}
+
+	function update_from_state(event, state){
+		$(".ox-grid .cell").each(function(index){
+			var position = $(this).attr("position");
+			var val = state.grid[position];
+			var text = ""
+			switch(val){
+				case -1:
+				text = "_"
+				break;
+				case 0:
+				text = "O"
+				break;
+				case 1:
+				text = "X"
+				break;
+			}
+			$(this).text(text);
+		});
+	}
+
+	function process_action(event, action){
+		var template = $.templates.guess_result;
+		if(action["new_state"]!=null)
+			template = $.templates.guess_win_result;
+		var r_message = $(template(action));
+		$("#results").prepend(r_message);
+		r_message.hide().slideDown(400);
+	}
+
+	$(document).ready(function(){
+		// Load templates
+		$.templates.guess_result = Handlebars.compile($("#guess-template").html());
+		$.templates.guess_win_result = Handlebars.compile($("#win-template").html());
+
+		// Bind events
+		$(".ox-grid .cell").click(place_marker);
+		$.game.on("new-state", update_from_state);
+		$.game.on("guess-action", process_action);
+	})
+</script>
+{% raw %}
+<script id="guess-template" type="text/x-handlebars-template">
+<div class="alert-message">
+	Go {{dir}} than {{guessed_number}}.
+</div>
+</script>
+<script id="win-template" type="text/x-handlebars-template">
+<div class="alert-message">
+	{{player}} won with {{guessed_number}}.
+</div>
+</script>
+<style type="text/css">
+	.ox-grid {
+		margin-left:auto;
+		margin-right:auto;
+		width:300px;
+	}
+	.ox-grid .cell {
+		height:60px;
+		border:1px solid #333;
+		margin-left:0;
+		background:#eee;
+		text-align:center;
+		font-size:80px;
+		padding-top:40px;
+	}
+</style>
+{% endraw %}
+{% endblock %}
+
+{% block content %}
+<div class="ox-grid">
+	<div class="row">
+		<div class="span2 cell" position="0">1</div>
+		<div class="span2 cell" position="1">2</div>
+		<div class="span2 cell" position="2">3</div>
+	</div>
+	<div class="row">
+		<div class="span2 cell" position="3">4</div>
+		<div class="span2 cell" position="4">5</div>
+		<div class="span2 cell" position="5">6</div>
+	</div>
+	<div class="row">
+		<div class="span2 cell" position="6">7</div>
+		<div class="span2 cell" position="7">8</div>
+		<div class="span2 cell" position="8">9</div>
+	</div>
+</div>
+{% endblock %}

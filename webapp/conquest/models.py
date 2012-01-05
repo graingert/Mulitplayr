@@ -14,6 +14,18 @@ def load_contries():
 		country["id"] = country["label"].lower()
 
 
+def attacking_phase_roll_dice(attack_armies, defend_armies):
+    attack_dice = [random.randint(1, 6) for i in range(attack_armies)]
+    attack_dice.sort()
+    attack_dice.reverse()
+
+    defend_dice = [random.randint(1, 6) for i in range(defend_armies)]
+    defend_dice.sort()
+    defend_dice.reverse()
+
+    return [attack_dice, defend_dice]
+
+
 class ConquestGameState(BaseGameState):
     possible_states = BaseGameState.possible_states | set([
         'place','reinforce','attack','attack_victory','fortify'])
@@ -89,7 +101,7 @@ class ConquestGameState(BaseGameState):
 
         total_units_placed = 0
         for i,placement in enumerate(placements):
-            if self.territory_player != self.current_player_index:
+            if self.territory_player[i] != self.current_player_index:
                 raise InvalidActionParametersException()
             num_placed = int(placement)
             total_units_placed += num_placed
@@ -102,17 +114,6 @@ class ConquestGameState(BaseGameState):
         self.state = 'attack'
 
         return action
-
-    def attacking_phase_roll_dice(attack_armies, defend_armies):
-        attack_dice = [random.randint(1, 6) for i in range(attackArmies)]
-        attack_dice.sort()
-        attact_dice.reverse()	
-
-        defend_dice = [random.randint(1, 6) for i in range(defendArmies)]
-        defend_dice.sort()
-        defend_dice.reverse()
-
-    return [attack_dice, defend_dice]
 
     def attack_action(self, request):
         """ Atack a territory """
@@ -159,8 +160,8 @@ class ConquestGameState(BaseGameState):
         action.origin = origin
         action.destination = destination
         action.attackers = attackers
-        action.attack_rolls = attack_rolls
-        action.defend_rolls = defend_rolls
+        action.attack_rolls = attack_dice
+        action.defend_rolls = defend_dice
 
         return action
 
@@ -186,15 +187,15 @@ class ConquestGameState(BaseGameState):
         destination = int(request.get('destination'))
         units = int(request.get('units'))
 
-        units_at_origin = territory_units[origin]
+        units_at_origin = self.territory_units[origin]
         if units >= units_at_origin:
-            raise InvalidStateException
+            raise InvalidActionParametersException
 
-        if territory_player[destination] != self.current_player_index:
-            raise InvalidStateException
+        if self.territory_player[destination] != self.current_player_index:
+            raise InvalidActionParametersException
 
-        territory_units[origin] -= units
-        territory_units[destination] += units
+        self.territory_units[origin] -= units
+        self.territory_units[destination] += units
 
         action = MoveAction(parent = self)
         self.add_action(action)

@@ -47,7 +47,7 @@
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
-     inkscape:current-layer="Great_Britain"
+     inkscape:current-layer="Central_America"
      fit-margin-top="0"
      fit-margin-left="0"
      fit-margin-right="0"
@@ -88,7 +88,7 @@
          style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          x="334.49469"
          y="84.222458"
-         id="Scandinavia_UnitCount"
+         id="UnitCount"
          sodipodi:linespacing="125%"><tspan
            id="tspan9"
            sodipodi:role="line"
@@ -105,7 +105,7 @@
          id="path48"
          style="fill:#88edff;fill-opacity:1;stroke:#000000;stroke-opacity:1"
          inkscape:connector-curvature="0" />
-      <path
+      <pathp0rter
          d="m 410.97,42.3 c 2.38,2.66 4.75,5.34 7.03,8.1 -3.48,-1.52 -9.46,-1.97 -7.03,-8.1 z"
          id="path66"
          style="fill:#88edff;fill-opacity:1;stroke:#000000;stroke-opacity:1"
@@ -125,7 +125,7 @@
          style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          x="398.37204"
          y="113.90546"
-         id="Scandinavia_UnitCount-8"
+         id="UnitCount1"
          sodipodi:linespacing="125%"><tspan
            id="tspan9-2"
            sodipodi:role="line"
@@ -148,7 +148,7 @@
          style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          x="279.81064"
          y="86.674911"
-         id="Scandinavia_UnitCount-6"
+         id="UnitCount2"
          sodipodi:linespacing="125%"><tspan
            id="tspan9-5"
            sodipodi:role="line"
@@ -170,7 +170,7 @@
          style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          x="332.03464"
          y="136.49602"
-         id="Great_Britain_UnitCount-1"
+         id="UnitCount3"
          sodipodi:linespacing="125%"><tspan
            id="tspan9-4-7"
            sodipodi:role="line"
@@ -199,7 +199,7 @@
          style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          x="296.74301"
          y="120.51123"
-         id="Great_Britain_UnitCount"
+         id="UnitCount4"
          sodipodi:linespacing="125%"><tspan
            id="tspan9-4"
            sodipodi:role="line"
@@ -221,7 +221,7 @@
          style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          x="307.65115"
          y="157.2937"
-         id="Scandinavia_UnitCount-4"
+         id="UnitCount5"
          sodipodi:linespacing="125%"><tspan
            id="tspan9-0"
            sodipodi:role="line"
@@ -248,7 +248,7 @@
          style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          x="353.19089"
          y="161.59666"
-         id="Scandinavia_UnitCount-9"
+         id="UnitCount6"
          sodipodi:linespacing="125%"><tspan
            id="tspan9-48"
            sodipodi:role="line"
@@ -277,7 +277,7 @@
          style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          x="44.053688"
          y="70.871376"
-         id="Scandinavia_UnitCount-8-4-26"
+         id="UnitCount7"
          sodipodi:linespacing="125%"><tspan
            id="tspan9-2-5-01"
            sodipodi:role="line"
@@ -299,7 +299,7 @@
          style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          x="106.00635"
          y="73.88559"
-         id="Scandinavia_UnitCount-8-4-97"
+         id="UnitCount8"
          sodipodi:linespacing="125%"><tspan
            id="tspan9-2-5-37"
            sodipodi:role="line"
@@ -331,7 +331,7 @@
          style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          x="200.21495"
          y="112.48279"
-         id="Scandinavia_UnitCount-8-4-07"
+         id="UnitCount9"
          sodipodi:linespacing="125%"><tspan
            id="tspan9-2-5-63"
            sodipodi:role="line"
@@ -428,7 +428,7 @@
          style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          x="258.08231"
          y="37.373714"
-         id="Scandinavia_UnitCount-8-4-615"
+         id="text75"
          sodipodi:linespacing="125%"><tspan
            id="tspan9-2-5-420"
            sodipodi:role="line"
@@ -450,7 +450,7 @@
          style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          x="106.96369"
          y="112.42591"
-         id="Scandinavia_UnitCount-8-4-29"
+         id="UnitCount10"
          sodipodi:linespacing="125%"><tspan
            id="tspan9-2-5-13"
            sodipodi:role="line"
@@ -472,7 +472,7 @@
          style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          x="145.56088"
          y="112.45435"
-         id="Scandinavia_UnitCount-8-4-59"
+         id="UnitCount11"
          sodipodi:linespacing="125%"><tspan
            id="tspan9-2-5-84"
            sodipodi:role="line"
@@ -489,62 +489,63 @@
          id="path1000007"
          style="fill:#ffec76;fill-opacity:1;stroke:#000000;stroke-opacity:1"
          inkscape:connector-curvature="0" />
+      <text
+         xml:space="preserve"
+         style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         x="106.96369"
+         y="155.0231"
+         id="UnitCount14"
+         sodipodi:linespacing="125%"><tspan
+           id="tspan9-2-5-61"
+           sodipodi:role="line"
+           x="106.96369"
+           y="155.0231">1</tspan></text>
     </g>
-    <g
-       class="region"
-       id="Eastern_United_States"
+  </g>
+  <g
+     class="region"
+     id="Eastern_United_States"
+     style="fill:#e2c300;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+     inkscape:label="Eastern_United_States"
+     transform="translate(19.211864,30.837924)">
+    <path
+       d="m 148.16,124.03 c 4.34,0.05 8.68,0.14 13.03,0.22 -2.82,1.35 -5.49,3.01 -8.07,4.77 4.91,0.42 9.83,0.71 14.74,1.11 -3.96,4.04 -6.44,9.18 -8.7,14.3 0.85,0.42 2.54,1.26 3.39,1.68 2.04,-4.37 3.39,-9.17 6.74,-12.77 0.56,3.48 1.23,6.94 1.94,10.39 l 0.13,0.93 c -0.45,1.05 -0.91,2.09 -1.35,3.14 6.96,-1.97 12.69,-6.42 18.65,-10.3 1.14,-0.22 2.28,-0.45 3.43,-0.67 6.85,-0.68 12.35,-4.71 17.98,-8.25 0.31,1.85 0.95,5.57 1.26,7.43 -5.35,2.45 -10.47,5.63 -14.21,10.24 -4.71,5.79 -14.5,7.49 -15,16.32 -3.9,2.91 -8.23,5.41 -11.56,9.01 -5.16,6.14 2.04,16.41 -5.24,21.35 -0.85,-5.15 -1.71,-10.32 -1.85,-15.55 -10.38,0.36 -20.8,0.49 -31.07,2.24 -3.9,1.24 -6.43,4.75 -9.17,7.58 -1.01,-1.49 -2.05,-2.98 -3.2,-4.37 2.28,-13.21 10.35,-28.91 25.78,-28.85 0.98,-9.96 1.96,-19.94 2.35,-29.95 z"
+       id="path1000008"
        style="fill:#e2c300;fill-opacity:1;stroke:#000000;stroke-opacity:1"
-       inkscape:label="Eastern_United_States">
-      <path
-         d="m 148.16,124.03 c 4.34,0.05 8.68,0.14 13.03,0.22 -2.82,1.35 -5.49,3.01 -8.07,4.77 4.91,0.42 9.83,0.71 14.74,1.11 -3.96,4.04 -6.44,9.18 -8.7,14.3 0.85,0.42 2.54,1.26 3.39,1.68 2.04,-4.37 3.39,-9.17 6.74,-12.77 0.56,3.48 1.23,6.94 1.94,10.39 l 0.13,0.93 c -0.45,1.05 -0.91,2.09 -1.35,3.14 6.96,-1.97 12.69,-6.42 18.65,-10.3 1.14,-0.22 2.28,-0.45 3.43,-0.67 6.85,-0.68 12.35,-4.71 17.98,-8.25 0.31,1.85 0.95,5.57 1.26,7.43 -5.35,2.45 -10.47,5.63 -14.21,10.24 -4.71,5.79 -14.5,7.49 -15,16.32 -3.9,2.91 -8.23,5.41 -11.56,9.01 -5.16,6.14 2.04,16.41 -5.24,21.35 -0.85,-5.15 -1.71,-10.32 -1.85,-15.55 -10.38,0.36 -20.8,0.49 -31.07,2.24 -3.9,1.24 -6.43,4.75 -9.17,7.58 -1.01,-1.49 -2.05,-2.98 -3.2,-4.37 2.28,-13.21 10.35,-28.91 25.78,-28.85 0.98,-9.96 1.96,-19.94 2.35,-29.95 z"
-         id="path1000008"
-         style="fill:#e2c300;fill-opacity:1;stroke:#000000;stroke-opacity:1"
-         inkscape:connector-curvature="0" />
-      <text
-         xml:space="preserve"
-         style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-         x="153.61777"
-         y="167.19373"
-         id="Scandinavia_UnitCount-8-4-84"
-         sodipodi:linespacing="125%"><tspan
-           id="tspan9-2-5-96"
-           sodipodi:role="line"
-           x="153.61777"
-           y="167.19373">1</tspan></text>
-    </g>
-    <g
-       class="region"
-       id="Central_America"
-       style="fill:#fff196;fill-opacity:1;stroke:#000000;stroke-opacity:1"
-       inkscape:label="Central_America">
-      <path
-         d="m 88.21,173.64 c 10.55,3.21 22.98,1.62 31.82,9.19 1.15,1.39 2.19,2.88 3.2,4.37 -0.64,5.18 -3.33,12.85 2.78,15.82 6.71,3.51 12.74,-3.59 19.45,-3.6 -1.75,3.91 -4.57,7.31 -6.01,11.36 0.84,1.83 2.13,3.43 2.92,5.29 -1.46,3.8 -4.07,7.02 -5.88,10.65 -0.58,0.07 -1.73,0.23 -2.31,0.3 -2.1,-4.79 -3.6,-10.06 -7.22,-13.97 -5.15,-3.69 -12.08,-3.74 -16.96,-7.96 0.18,-2.58 -0.03,-5.27 -1.61,-7.42 -3.78,-5.71 -5.95,-12.27 -8.51,-18.57 -1.35,-0.04 -2.71,-0.07 -4.06,-0.1 0.92,4.5 1.94,9 2.84,13.51 -4.07,-5.95 -6.6,-12.79 -10.45,-18.87 z"
-         id="path1000009"
-         style="fill:#fff196;fill-opacity:1;stroke:#000000;stroke-opacity:1"
-         inkscape:connector-curvature="0" />
-      <text
-         xml:space="preserve"
-         style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-         x="112.03479"
-         y="203.70561"
-         id="Scandinavia_UnitCount-8-4-37"
-         sodipodi:linespacing="125%"><tspan
-           id="tspan9-2-5-88"
-           sodipodi:role="line"
-           x="112.03479"
-           y="203.70561">1</tspan></text>
-    </g>
+       inkscape:connector-curvature="0" />
     <text
        xml:space="preserve"
        style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-       x="106.96369"
-       y="155.0231"
-       id="Scandinavia_UnitCount-8-4-06"
+       x="153.61777"
+       y="167.19373"
+       id="UnitCount12"
        sodipodi:linespacing="125%"><tspan
-         id="tspan9-2-5-61"
+         id="tspan9-2-5-96"
          sodipodi:role="line"
-         x="106.96369"
-         y="155.0231">1</tspan></text>
+         x="153.61777"
+         y="167.19373">1</tspan></text>
+  </g>
+  <g
+     class="region"
+     id="Central_America"
+     style="fill:#fff196;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+     inkscape:label="Central_America">
+    <path
+       d="m 106.7047,203.76076 c 10.55,3.21 22.98,1.62 31.82,9.19 1.15,1.39 2.19,2.88 3.2,4.37 -0.64,5.18 -3.33,12.85 2.78,15.82 6.71,3.51 12.74,-3.59 19.45,-3.6 -1.75,3.91 -4.57,7.31 -6.01,11.36 0.84,1.83 2.13,3.43 2.92,5.29 -1.46,3.8 -4.07,7.02 -5.88,10.65 -0.58,0.07 -1.73,0.23 -2.31,0.3 -2.1,-4.79 -3.6,-10.06 -7.22,-13.97 -5.15,-3.69 -12.08,-3.74 -16.96,-7.96 0.18,-2.58 -0.03,-5.27 -1.61,-7.42 -3.78,-5.71 -5.95,-12.27 -8.51,-18.57 -1.35,-0.04 -2.71,-0.07 -4.06,-0.1 0.92,4.5 1.94,9 2.84,13.51 -4.07,-5.95 -6.6,-12.79 -10.45,-18.87 z"
+       id="path1000009"
+       style="fill:#fff196;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="127.09517"
+       y="224.50328"
+       id="UnitCount13"
+       sodipodi:linespacing="125%"><tspan
+         id="tspan9-2-5-88"
+         sodipodi:role="line"
+         x="127.09517"
+         y="224.50328">1</tspan></text>
   </g>
   <g
      class="continent"
@@ -587,7 +588,7 @@
          style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          x="498.77457"
          y="75.178757"
-         id="Scandinavia_UnitCount-8-4-1"
+         id="UnitCount15"
          sodipodi:linespacing="125%"><tspan
            id="tspan9-2-5-5"
            sodipodi:role="line"
@@ -639,7 +640,7 @@
          style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          x="562.60193"
          y="65.138504"
-         id="Scandinavia_UnitCount-8-4-2"
+         id="UnitCount16"
          sodipodi:linespacing="125%"><tspan
            id="tspan9-2-5-7"
            sodipodi:role="line"
@@ -661,7 +662,7 @@
          style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          x="464.35083"
          y="100.99655"
-         id="Scandinavia_UnitCount-8-4-7"
+         id="UnitCount17"
          sodipodi:linespacing="125%"><tspan
            id="tspan9-2-5-1"
            sodipodi:role="line"
@@ -683,7 +684,7 @@
          style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          x="452.87628"
          y="150.48067"
-         id="Scandinavia_UnitCount-8-4"
+         id="UnitCount18"
          sodipodi:linespacing="125%"><tspan
            id="tspan9-2-5"
            sodipodi:role="line"
@@ -705,7 +706,7 @@
          style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          x="545.39008"
          y="111.03681"
-         id="Scandinavia_UnitCount-8-4-23"
+         id="UnitCount19"
          sodipodi:linespacing="125%"><tspan
            id="tspan9-2-5-2"
            sodipodi:role="line"
@@ -732,7 +733,7 @@
          style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          x="624.27777"
          y="67.289986"
-         id="Scandinavia_UnitCount-8-4-6"
+         id="UnitCount20"
          sodipodi:linespacing="125%"><tspan
            id="tspan9-2-5-14"
            sodipodi:role="line"
@@ -754,7 +755,7 @@
          style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          x="553.99597"
          y="146.17769"
-         id="Scandinavia_UnitCount-8-4-21"
+         id="UnitCount21"
          sodipodi:linespacing="125%"><tspan
            id="tspan9-2-5-6"
            sodipodi:role="line"
@@ -787,7 +788,7 @@
          style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          x="537.50128"
          y="187.05588"
-         id="Scandinavia_UnitCount-8-4-8"
+         id="UnitCount22"
          sodipodi:linespacing="125%"><tspan
            id="tspan9-2-5-57"
            sodipodi:role="line"
@@ -850,7 +851,7 @@
          style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          x="488.73431"
          y="220.04529"
-         id="Scandinavia_UnitCount-8-4-61"
+         id="UnitCount23"
          sodipodi:linespacing="125%"><tspan
            id="tspan9-2-5-8"
            sodipodi:role="line"
@@ -877,7 +878,7 @@
          style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          x="548.97583"
          y="241.56012"
-         id="Scandinavia_UnitCount-8-4-9"
+         id="UnitCount24"
          sodipodi:linespacing="125%"><tspan
            id="tspan9-2-5-27"
            sodipodi:role="line"
@@ -906,7 +907,7 @@
          style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          x="160.7173"
          y="244.27435"
-         id="Scandinavia_UnitCount-8-4-34"
+         id="UnitCount25"
          sodipodi:linespacing="125%"><tspan
            id="tspan9-2-5-46"
            sodipodi:role="line"
@@ -939,7 +940,7 @@
          style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          x="173.90215"
          y="308.17014"
-         id="Scandinavia_UnitCount-8-4-13"
+         id="UnitCount26"
          sodipodi:linespacing="125%"><tspan
            id="tspan9-2-5-89"
            sodipodi:role="line"
@@ -961,7 +962,7 @@
          style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          x="182.01588"
          y="362.93796"
-         id="Scandinavia_UnitCount-8-4-0"
+         id="UnitCount27"
          sodipodi:linespacing="125%"><tspan
            id="tspan9-2-5-06"
            sodipodi:role="line"
@@ -973,7 +974,7 @@
        style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
        x="213.45667"
        y="287.88577"
-       id="Scandinavia_UnitCount-8-4-5"
+       id="UnitCount28"
        sodipodi:linespacing="125%"><tspan
          id="tspan9-2-5-09"
          sodipodi:role="line"
@@ -1001,7 +1002,7 @@
          style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          x="309.80746"
          y="249.34546"
-         id="Scandinavia_UnitCount-8-4-28"
+         id="UnitCount29"
          sodipodi:linespacing="125%"><tspan
            id="tspan9-2-5-60"
            sodipodi:role="line"
@@ -1023,7 +1024,7 @@
          style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          x="359.50418"
          y="222.97577"
-         id="Scandinavia_UnitCount-8-4-24"
+         id="UnitCount30"
          sodipodi:linespacing="125%"><tspan
            id="tspan9-2-5-86"
            sodipodi:role="line"
@@ -1045,7 +1046,7 @@
          style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          x="397.03027"
          y="277.74359"
-         id="Scandinavia_UnitCount-8-4-31"
+         id="UnitCount31"
          sodipodi:linespacing="125%"><tspan
            id="tspan9-2-5-98"
            sodipodi:role="line"
@@ -1067,7 +1068,7 @@
          style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          x="362.54684"
          y="311.2128"
-         id="Scandinavia_UnitCount-8-4-65"
+         id="UnitCount32"
          sodipodi:linespacing="125%"><tspan
            id="tspan9-2-5-0"
            sodipodi:role="line"
@@ -1101,7 +1102,7 @@
        style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
        x="366.60373"
        y="376.1228"
-       id="Scandinavia_UnitCount-8-4-77"
+       id="UnitCount33"
        sodipodi:linespacing="125%"><tspan
          id="tspan9-2-5-9"
          sodipodi:role="line"
@@ -1149,7 +1150,7 @@
          style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          x="640.81226"
          y="310.19751"
-         id="Scandinavia_UnitCount-8-4-3"
+         id="UnitCount34"
          sodipodi:linespacing="125%"><tspan
            id="tspan9-2-5-12"
            sodipodi:role="line"
@@ -1251,7 +1252,7 @@
          style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          x="582.68243"
          y="296.42294"
-         id="Scandinavia_UnitCount-8-4-33"
+         id="UnitCount35"
          sodipodi:linespacing="125%"><tspan
            id="tspan9-2-5-4"
            sodipodi:role="line"
@@ -1273,7 +1274,7 @@
          style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          x="594.87415"
          y="375.31064"
-         id="Scandinavia_UnitCount-8-4-87"
+         id="UnitCount36"
          sodipodi:linespacing="125%"><tspan
            id="tspan9-2-5-42"
            sodipodi:role="line"
@@ -1300,7 +1301,7 @@
          style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          x="648.66125"
          y="374.23489"
-         id="Scandinavia_UnitCount-8-4-11"
+         id="UnitCount37"
          sodipodi:linespacing="125%"><tspan
            id="tspan9-2-5-3"
            sodipodi:role="line"

@@ -168,9 +168,9 @@
     </g>
     <g
        class="region"
-       id="northerne-europe"
+       id="northern-europe"
        style="fill:#00b7ee;fill-opacity:1;stroke:#000000;stroke-opacity:1"
-       inkscape:label="Northern_Europe"
+       inkscape:label="Northern-Europe"
        data-units="0"
        data-owner="-1">
       <path
@@ -214,7 +214,7 @@
        class="region"
        id="western-europe"
        style="fill:#007489;fill-opacity:1;stroke:#000000;stroke-opacity:1"
-       inkscape:label="Western_Europe"
+       inkscape:label="Western-Europe"
        data-units="0"
        data-owner="-1">
       <path
@@ -262,7 +262,7 @@
      data-owner="-1">
     <g
        class="region"
-       id="Alaska"
+       id="alaska"
        style="fill:#ffd871;fill-opacity:1;stroke:#000000;stroke-opacity:1"
        inkscape:label="Alaska"
        data-units="0"
@@ -283,7 +283,7 @@
        class="region"
        id="north-west-territory"
        style="fill:#ffea00;fill-opacity:1;stroke:#000000;stroke-opacity:1"
-       inkscape:label="North_West_Territory"
+       inkscape:label="North-West-Territory"
        data-units="0"
        data-owner="-1">
       <path
@@ -446,7 +446,7 @@
        class="region"
        id="western-united-states"
        style="fill:#ffec76;fill-opacity:1;stroke:#000000;stroke-opacity:1"
-       inkscape:label="Western_United_States"
+       inkscape:label="Western-United-States"
        data-units="0"
        data-owner="-1">
       <path
@@ -466,7 +466,7 @@
      class="region"
      id="eastern-united-states"
      style="fill:#e2c300;fill-opacity:1;stroke:#000000;stroke-opacity:1"
-     inkscape:label="Eastern_United_States"
+     inkscape:label="Eastern-United-States"
      transform="translate(19.211864,30.837924)"
      data-units="0"
      data-owner="-1">
@@ -486,7 +486,7 @@
      class="region"
      id="central-america"
      style="fill:#fff196;fill-opacity:1;stroke:#000000;stroke-opacity:1"
-     inkscape:label="Central_America"
+     inkscape:label="Central-America"
      data-units="0"
      data-owner="-1">
     <path
@@ -510,7 +510,7 @@
      data-owner="-1">
     <g
        class="region"
-       id="Siberia"
+       id="siberia"
        style="fill:#3fd000;fill-opacity:1;stroke:#000000;stroke-opacity:1"
        inkscape:label="Siberia"
        data-units="0"
@@ -699,9 +699,9 @@
     </g>
     <g
        class="region"
-       id="middle_east"
+       id="middle-east"
        style="fill:#007000;fill-opacity:1;stroke:#000000;stroke-opacity:1"
-       inkscape:label="Middle_East"
+       inkscape:label="Middle-East"
        data-units="0"
        data-owner="-1">
       <path
@@ -889,9 +889,9 @@
      data-owner="-1">
     <g
        class="region"
-       id="North_Africa"
+       id="north-africa"
        style="fill:#ffcc51;fill-opacity:1;stroke:#000000;stroke-opacity:1"
-       inkscape:label="North_Africa"
+       inkscape:label="North-Africa"
        data-units="0"
        data-owner="-1">
       <path
@@ -929,7 +929,7 @@
        class="region"
        id="east-africa"
        style="fill:#f7ae00;fill-opacity:1;stroke:#000000;stroke-opacity:1"
-       inkscape:label="East_Africa"
+       inkscape:label="East-Africa"
        data-units="0"
        data-owner="-1">
       <path
@@ -967,7 +967,7 @@
        class="region"
        id="south-africa"
        style="fill:#ffbf23;fill-opacity:1;stroke:#000000;stroke-opacity:1"
-       inkscape:label="South_Africa"
+       inkscape:label="South-Africa"
        data-units="0"
        data-owner="-1">
       <path
@@ -1131,7 +1131,7 @@
        class="region"
        id="western-australia"
        style="fill:#91ac19;fill-opacity:1;stroke:#000000;stroke-opacity:1"
-       inkscape:label="Western_Australia"
+       inkscape:label="Western-Australia"
        data-units="0"
        data-owner="-1">
       <path

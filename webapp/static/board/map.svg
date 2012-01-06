@@ -54,13 +54,13 @@
      fit-margin-bottom="0" />
   <g
      class="continent"
-     id="Europe"
+     id="europe"
      style="fill:#48e3ff;fill-opacity:1;stroke:#000000;stroke-opacity:1"
      transform="translate(19.01797,30.386249)"
      inkscape:label="Europe">
     <g
        class="region"
-       id="Scandinavia"
+       id="scandinavia"
        style="fill:#00c9ec;fill-opacity:1;stroke:#000000;stroke-opacity:1"
        inkscape:label="Scandinavia">
       <path
@@ -97,7 +97,7 @@
     </g>
     <g
        class="region"
-       id="Ukraine"
+       id="ukraine"
        style="fill:#88edff;fill-opacity:1;stroke:#000000;stroke-opacity:1"
        inkscape:label="Ukraine">
       <path
@@ -134,7 +134,7 @@
     </g>
     <g
        class="region"
-       id="Iceland"
+       id="iceland"
        style="fill:#009db9;fill-opacity:1;stroke:#000000;stroke-opacity:1"
        inkscape:label="Iceland">
       <path
@@ -157,7 +157,7 @@
     </g>
     <g
        class="region"
-       id="Northern_Europe"
+       id="northerne-europe"
        style="fill:#00b7ee;fill-opacity:1;stroke:#000000;stroke-opacity:1"
        inkscape:label="Northern_Europe">
       <path
@@ -179,7 +179,7 @@
     </g>
     <g
        class="region"
-       id="Great_Britain"
+       id="great-britain"
        style="fill:#00c4e7;fill-opacity:1;stroke:#000000;stroke-opacity:1"
        inkscape:label="Great Britain">
       <path
@@ -208,7 +208,7 @@
     </g>
     <g
        class="region"
-       id="Western_Europe"
+       id="western-europe"
        style="fill:#007489;fill-opacity:1;stroke:#000000;stroke-opacity:1"
        inkscape:label="Western_Europe">
       <path
@@ -230,7 +230,7 @@
     </g>
     <g
        class="region"
-       id="Southern_Europe"
+       id="southern-europe"
        style="fill:#00b4d5;fill-opacity:1;stroke:#000000;stroke-opacity:1"
        inkscape:label="Southern Europe">
       <path
@@ -258,7 +258,7 @@
   </g>
   <g
      class="continent"
-     id="North_America"
+     id="north-america"
      style="fill:#ffdc00;fill-opacity:1;stroke:#000000;stroke-opacity:1"
      transform="translate(19.01797,30.386249)"
      inkscape:label="North America">
@@ -286,7 +286,7 @@
     </g>
     <g
        class="region"
-       id="North_West_Territory"
+       id="north-west-territory"
        style="fill:#ffea00;fill-opacity:1;stroke:#000000;stroke-opacity:1"
        inkscape:label="North_West_Territory">
       <path
@@ -308,7 +308,7 @@
     </g>
     <g
        class="region"
-       id="Quebec"
+       id="quebec"
        style="fill:#ffe221;fill-opacity:1;stroke:#000000;stroke-opacity:1"
        inkscape:label="Quebec">
       <path
@@ -340,7 +340,7 @@
     </g>
     <g
        class="region"
-       id="Greenland"
+       id="greenland"
        style="fill:#ffd000;fill-opacity:1;stroke:#000000;stroke-opacity:1"
        inkscape:label="Greenland">
       <path
@@ -437,7 +437,7 @@
     </g>
     <g
        class="region"
-       id="Alberta"
+       id="alberta"
        style="fill:#ffdc00;fill-opacity:1;stroke:#000000;stroke-opacity:1"
        inkscape:label="Alberta">
       <path
@@ -459,7 +459,7 @@
     </g>
     <g
        class="region"
-       id="Ontario"
+       id="ontario"
        style="fill:#f5dc00;fill-opacity:1;stroke:#000000;stroke-opacity:1"
        inkscape:label="Ontario">
       <path
@@ -481,7 +481,7 @@
     </g>
     <g
        class="region"
-       id="Western_United_States"
+       id="western-united-states"
        style="fill:#ffec76;fill-opacity:1;stroke:#000000;stroke-opacity:1"
        inkscape:label="Western_United_States">
       <path
@@ -504,7 +504,7 @@
   </g>
   <g
      class="region"
-     id="Eastern_United_States"
+     id="wastern-united-states"
      style="fill:#e2c300;fill-opacity:1;stroke:#000000;stroke-opacity:1"
      inkscape:label="Eastern_United_States"
      transform="translate(19.211864,30.837924)">
@@ -527,7 +527,7 @@
   </g>
   <g
      class="region"
-     id="Central_America"
+     id="central-america"
      style="fill:#fff196;fill-opacity:1;stroke:#000000;stroke-opacity:1"
      inkscape:label="Central_America">
     <path
@@ -549,7 +549,7 @@
   </g>
   <g
      class="continent"
-     id="Asia"
+     id="asia"
      style="fill:#00d200;fill-opacity:1;stroke:#000000;stroke-opacity:1"
      transform="translate(19.01797,30.386249)"
      inkscape:label="Asia">
@@ -597,7 +597,7 @@
     </g>
     <g
        class="region"
-       id="Yakutsk"
+       id="yakutsk"
        style="fill:#58ff58;fill-opacity:1;stroke:#000000;stroke-opacity:1"
        inkscape:label="Yakutsk">
       <path
@@ -649,7 +649,7 @@
     </g>
     <g
        class="region"
-       id="Ural"
+       id="ural"
        style="fill:#3dff3d;fill-opacity:1;stroke:#000000;stroke-opacity:1"
        inkscape:label="Ural">
       <path
@@ -671,7 +671,7 @@
     </g>
     <g
        class="region"
-       id="Afghanistan"
+       id="afghanistan"
        style="fill:#00ac00;fill-opacity:1;stroke:#000000;stroke-opacity:1"
        inkscape:label="Afghanistan">
       <path
@@ -693,7 +693,7 @@
     </g>
     <g
        class="region"
-       id="Irkutsk"
+       id="irkutsk"
        style="fill:#00d200;fill-opacity:1;stroke:#000000;stroke-opacity:1"
        inkscape:label="Irkutsk">
       <path
@@ -715,7 +715,7 @@
     </g>
     <g
        class="region"
-       id="Kamchatka"
+       id="kamchatka"
        style="fill:#00d000;fill-opacity:1;stroke:#000000;stroke-opacity:1"
        inkscape:label="Kamchatka">
       <path
@@ -742,7 +742,7 @@
     </g>
     <g
        class="region"
-       id="Mongolia"
+       id="mongolia"
        style="fill:#00a900;fill-opacity:1;stroke:#000000;stroke-opacity:1"
        inkscape:label="Mongolia">
       <path
@@ -764,7 +764,7 @@
     </g>
     <g
        class="region"
-       id="China"
+       id="china"
        style="fill:#00e200;fill-opacity:1;stroke:#000000;stroke-opacity:1"
        inkscape:label="China">
       <path
@@ -775,7 +775,7 @@
     </g>
     <g
        class="region"
-       id="Middle_East"
+       id="middle_east"
        style="fill:#007000;fill-opacity:1;stroke:#000000;stroke-opacity:1"
        inkscape:label="Middle_East">
       <path
@@ -797,7 +797,7 @@
     </g>
     <g
        class="region"
-       id="Japan"
+       id="japan"
        style="fill:#008700;fill-opacity:1;stroke:#000000;stroke-opacity:1"
        inkscape:label="Japan">
       <path
@@ -833,7 +833,7 @@
     </g>
     <g
        class="region"
-       id="India"
+       id="india"
        style="fill:#55ff55;fill-opacity:1;stroke:#000000;stroke-opacity:1"
        inkscape:label="India">
       <path
@@ -860,7 +860,7 @@
     </g>
     <g
        class="region"
-       id="Siam"
+       id="siam"
        style="fill:#00d200;fill-opacity:1;stroke:#000000;stroke-opacity:1"
        inkscape:label="Siam">
       <path
@@ -888,7 +888,7 @@
   </g>
   <g
      class="continent"
-     id="South_America"
+     id="south-america"
      style="fill:#dc2f00;fill-opacity:1;stroke:#000000;stroke-opacity:1"
      transform="translate(19.01797,30.386249)"
      inkscape:label="South America">
@@ -916,7 +916,7 @@
     </g>
     <g
        class="region"
-       id="Brazil"
+       id="brazil"
        style="fill:#ff3b06;fill-opacity:1;stroke:#000000;stroke-opacity:1"
        inkscape:label="Brazil">
       <path
@@ -927,7 +927,7 @@
     </g>
     <g
        class="region"
-       id="Peru"
+       id="peru"
        style="fill:#ff5f33;fill-opacity:1;stroke:#000000;stroke-opacity:1"
        inkscape:label="Peru">
       <path
@@ -949,7 +949,7 @@
     </g>
     <g
        class="region"
-       id="Argentina"
+       id="argentina"
        style="fill:#ff8361;fill-opacity:1;stroke:#000000;stroke-opacity:1"
        inkscape:label="Argentina">
       <path
@@ -983,7 +983,7 @@
   </g>
   <g
      class="continent"
-     id="Africa"
+     id="africa"
      style="fill:#ffb400;fill-opacity:1;stroke:#000000;stroke-opacity:1"
      transform="translate(19.01797,30.386249)"
      inkscape:label="Africa">
@@ -1011,7 +1011,7 @@
     </g>
     <g
        class="region"
-       id="Egypt"
+       id="egypt"
        style="fill:#be8600;fill-opacity:1;stroke:#000000;stroke-opacity:1"
        inkscape:label="Egypt">
       <path
@@ -1033,7 +1033,7 @@
     </g>
     <g
        class="region"
-       id="East_Africa"
+       id="east-africa"
        style="fill:#f7ae00;fill-opacity:1;stroke:#000000;stroke-opacity:1"
        inkscape:label="East_Africa">
       <path
@@ -1055,7 +1055,7 @@
     </g>
     <g
        class="region"
-       id="Congo"
+       id="congo"
        style="fill:#e7a200;fill-opacity:1;stroke:#000000;stroke-opacity:1"
        inkscape:label="Congo">
       <path
@@ -1077,7 +1077,7 @@
     </g>
     <g
        class="region"
-       id="South_Africa"
+       id="south-africa"
        style="fill:#ffbf23;fill-opacity:1;stroke:#000000;stroke-opacity:1"
        inkscape:label="South_Africa">
       <path
@@ -1088,7 +1088,7 @@
     </g>
     <g
        class="region"
-       id="Madagascar"
+       id="madagascar"
        style="fill:#ffb400;fill-opacity:1;stroke:#000000;stroke-opacity:1"
        inkscape:label="Madagascar">
       <path
@@ -1111,13 +1111,13 @@
   </g>
   <g
      class="continent"
-     id="Australia"
+     id="australia"
      style="fill:#91ac19;fill-opacity:1;stroke:#000000;stroke-opacity:1"
      transform="translate(19.01797,30.386249)"
      inkscape:label="Australia">
     <g
        class="region"
-       id="New_Guinea"
+       id="new-guinea"
        style="fill:#d7ec79;fill-opacity:1;stroke:#000000;stroke-opacity:1"
        inkscape:label="New Guinea">
       <path
@@ -1159,7 +1159,7 @@
     </g>
     <g
        class="region"
-       id="Indonesia"
+       id="indonesia"
        style="fill:#54640f;fill-opacity:1;stroke:#000000;stroke-opacity:1"
        inkscape:label="Indonesia">
       <path
@@ -1261,7 +1261,7 @@
     </g>
     <g
        class="region"
-       id="Western_Australia"
+       id="western-australia"
        style="fill:#91ac19;fill-opacity:1;stroke:#000000;stroke-opacity:1"
        inkscape:label="Western_Australia">
       <path
@@ -1283,7 +1283,7 @@
     </g>
     <g
        class="region"
-       id="Eastern_Australia"
+       id="eastern-australia"
        style="fill:#638814;fill-opacity:1;stroke:#000000;stroke-opacity:1"
        inkscape:label="Eastern Australia">
       <path

@@ -41,7 +41,13 @@
 
 	$.game.run_action = function(request){
 		request["last_sequence_number"] = $.game.last_sequence_number;
-		$.post("",request,$.game.process_update,"json");
+		$.ajax({
+			type: "POST",
+			data: JSON.stringify(request),
+			contentType: "application/json; charset=utf-8",
+			success: $.game.process_update,
+			dataType: "json"
+		});
 	}
 
 	$(document).ready(function(){

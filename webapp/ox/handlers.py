@@ -47,5 +47,5 @@ class OxPlayHandler(GamePlayHandler):
 
     def place_action(self, game_instance):
         game_state = game_instance.current_state
-        new_action = game_state.place_action(int(self.request.get('position')))
+        new_action = game_state.place_action(int(self.request_data['position']))
         self.post_action(game_state, new_action)

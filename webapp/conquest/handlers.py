@@ -52,6 +52,6 @@ class ConquestGamePlayHandler(GamePlayHandler):
     def make_action(self, target):
         def run_action(game_instance):
             game_state = game_instance.current_state
-            new_action = target(game_state, self.request)
+            new_action = target(game_state, self.request_data)
             self.post_action(game_state, new_action)
         return run_action

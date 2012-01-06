@@ -15,9 +15,27 @@ class GameTypeNotFoundError(Exception):
     pass
 
 def load_inherited_models(app):
-    """ Load correct modules to resolve polymodels """
+    """ Load correct modules to resolve polymodels
+    Returns the modules loaded
+    """
+    model_modules = []
     for game_name, game in app.config['games'].iteritems():
-        webapp2.import_string(game['model'])
+        model_modules.append(webapp2.import_string(game['model']))
+    return model_modules
+
+def find_game_instance_classes(app):
+    """ Get a list of BaseGameInstance classes """
+    import inspect
+    game_instance_classes = []
+    # Find all the model modules
+    for model_module in load_inherited_models(app):
+        # Grab the members of the model module
+        for (name, item) in inspect.getmembers(model_module):
+            # Filter the memebers - the ones that are classes, in the module
+            # we're looking at that inherits from BaseGameInstance
+            if inspect.isclass(item) and inspect.getmodule(item) == model_module and issubclass(item, BaseGameInstance):
+                game_instance_classes.append(item)
+    return game_instance_classes
 
 
 def get_game_instance(game_id):
@@ -126,6 +144,9 @@ class GameInfoHandler(BaseHandler):
 
     def start_action(self, game_instance):
         user = UserProfile.get_current_user()
+        if user.key() not in game_instance.players:
+            self.error(403)
+            return
         result = {}
         result['success'] = game_instance.start_game() != None
         self.response.write(json.dumps(result))
@@ -230,7 +251,7 @@ class NewGameHandler(BaseHandler):
 
     @login_required
     def get(self):
-        self.context['games'] = self.app.config['games']
+        self.context['games'] = find_game_instance_classes(self.app)
         self.render_response("new_game.html")
 
 class ActiveGamesHandler(BaseHandler):

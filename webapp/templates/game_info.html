@@ -56,11 +56,14 @@
 <div class="well">
 	<a class="btn" href="{{ uri_for('lobby') }}">Return To Lobby</a>
 	{% if game.state == "open" %}
-	<a class="btn" href="#" id="joingame">Join</a>
-	<a class="btn" href="#" id="startgame">Start</a>
+	{% if profile.key() not in game.players %}
+	<a class="btn primary" href="#" id="joingame">Join</a>
+	{% else %}
+	<a class="btn primary" href="#" id="startgame">Start</a>
+	{% endif %}
 	{% endif %}
 	{% if game.state == "playing" %}
-	<a class="btn" href="{{ uri_for(play_redirect, game_id=game.key().id()) }}">Play</a>
+	<a class="btn primary" href="{{ uri_for(play_redirect, game_id=game.key().id()) }}">Play</a>
 	{% endif %}
 </div>
 {% endblock %}

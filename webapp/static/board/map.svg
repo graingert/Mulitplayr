@@ -7,7 +7,7 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   viewBox="0 0 671.17998 426"
+   viewBox="0 0 700 460"
    version="1.1"
    id="svg2"
    inkscape:version="0.48.2 r9819"
@@ -40,9 +40,9 @@
      inkscape:window-height="716"
      id="namedview230"
      showgrid="false"
-     inkscape:zoom="1.394387"
-     inkscape:cx="188.69401"
-     inkscape:cy="307.98301"
+     inkscape:zoom="0.9859805"
+     inkscape:cx="253.73627"
+     inkscape:cy="228.51344"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
@@ -55,7 +55,7 @@
      class="continent"
      id="Europe"
      style="fill:#48e3ff;fill-opacity:1;stroke:#000000;stroke-opacity:1"
-     transform="translate(-6.11,0.5)"
+     transform="translate(9.89,18.5)"
      inkscape:label="Europe">
     <g
        class="region"
@@ -82,6 +82,17 @@
          id="path72"
          style="fill:#00c9ec;fill-opacity:1;stroke:#000000;stroke-opacity:1"
          inkscape:connector-curvature="0" />
+      <text
+         xml:space="preserve"
+         style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         x="334.49469"
+         y="84.222458"
+         id="Scandinavia_UnitCount"
+         sodipodi:linespacing="125%"><tspan
+           id="tspan9"
+           sodipodi:role="line"
+           x="334.49469"
+           y="84.222458">1</tspan></text>
     </g>
     <g
        class="region"
@@ -106,7 +117,19 @@
       <path
          d="m 367.42,54.6 c 4.11,0.06 7.87,1.83 11.61,3.35 5.07,2.23 11.36,3.52 13.67,9.26 -7.72,2.88 -15.21,-0.96 -22.44,-3.28 1.3,7.12 9.59,9.28 11.14,16.33 2.15,0.2 4.32,0.2 6.48,0.1 -1.06,-2.11 -2.11,-4.24 -3.07,-6.4 2.36,1.38 4.68,2.83 7.02,4.26 2.83,-2.8 5.93,-5.31 9.17,-7.63 -0.99,-2.64 -1.99,-5.28 -2.99,-7.91 1.5,0.67 3,1.35 4.51,2.04 -0.47,1.29 -0.95,2.59 -1.42,3.88 6.45,3.1 11.68,-2.89 17.04,-5.47 4.12,-3.5 9.61,-2.48 14.54,-2.74 -0.56,-1.34 -1.14,-2.68 -1.71,-4.02 6.46,0.92 12.75,2.61 19.07,4.15 -2.21,6.47 -7.53,11.99 -7.49,19.11 0.5,8.99 0.33,18.5 4.2,26.81 3.57,4.53 4.93,10.12 6.17,15.63 -11.05,5.94 -24.08,0.48 -35.39,5.54 -2.63,0.93 -3.69,3.89 -4.47,6.32 -0.76,5.18 2.34,9.57 4.39,14.03 -1.29,3.03 -4.01,6.4 -2.29,9.79 2.62,5.75 7.9,10.52 7.15,17.41 -6.78,-1.54 -12.2,-5.92 -18.24,-9.05 -2.36,-8.6 -14.56,-11.68 -13.42,-21.6 -1.79,1.09 -3.65,2.06 -5.33,3.31 1.06,0.84 2.14,1.66 3.25,2.44 -1.58,1.22 -3.16,2.44 -4.75,3.65 -2.41,-2.29 -4.9,-4.48 -7.26,-6.82 -1.36,1.89 -2.7,3.8 -3.91,5.78 -3.11,-4.5 -4.63,-10.14 -8.76,-13.86 -1.71,-1.7 -4.22,-0.9 -6.32,-0.73 3.93,-6.92 0.36,-14.81 -4.89,-19.86 -3.12,-3.24 -0.34,-7.94 0.03,-11.66 1.19,1.12 2.39,2.22 3.56,3.36 1.2,-1.61 2.48,-3.16 3.81,-4.66 -1.82,-1.17 -3.68,-2.29 -5.54,-3.41 5.84,-1.05 11.73,-1.75 17.66,-2.06 -1.61,-1.72 -3.23,-3.41 -4.85,-5.12 3.79,-6.16 3.15,-13.6 0.96,-20.2 C 366,68.23 366.89,61.28 367.42,54.6 z"
          id="path78"
-         style="fill:#88edff;fill-opacity:1;stroke:#000000;stroke-opacity:1" />
+         style="fill:#88edff;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+         inkscape:connector-curvature="0" />
+      <text
+         xml:space="preserve"
+         style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         x="398.37204"
+         y="113.90546"
+         id="Scandinavia_UnitCount-8"
+         sodipodi:linespacing="125%"><tspan
+           id="tspan9-2"
+           sodipodi:role="line"
+           x="398.37204"
+           y="113.90546">1</tspan></text>
     </g>
     <g
        class="region"
@@ -114,10 +137,22 @@
        style="fill:#009db9;fill-opacity:1;stroke:#000000;stroke-opacity:1"
        inkscape:label="Iceland">
       <path
-         d="m 273.74,74.72 c 6.7,0.83 13.44,0.48 20.15,0.46 1.58,2.49 1.16,7.23 -2.52,7.26 -4.92,0.49 -10.37,1.56 -15,-0.75 -1.08,-2.25 -1.79,-4.64 -2.63,-6.97 z"
+         d="m 273.74,74.72 c 6.7,0.83 13.97787,0.121419 20.68787,0.101419 1.58,2.49 -1.52935,10.098645 -5.20935,10.128645 -4.02355,2.641483 -5.34988,3.890773 -9.97988,-2.005032 C 278.15864,80.695032 274.58,77.05 273.74,74.72 z"
          id="path1000000"
          style="fill:#009db9;fill-opacity:1;stroke:#000000;stroke-opacity:1"
-         inkscape:connector-curvature="0" />
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="ccccc" />
+      <text
+         xml:space="preserve"
+         style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         x="280.16922"
+         y="86.495621"
+         id="Scandinavia_UnitCount-6"
+         sodipodi:linespacing="125%"><tspan
+           id="tspan9-5"
+           sodipodi:role="line"
+           x="280.16922"
+           y="86.495621">1</tspan></text>
     </g>
     <g
        class="region"
@@ -129,6 +164,17 @@
          id="path1000001"
          style="fill:#00b7ee;fill-opacity:1;stroke:#000000;stroke-opacity:1"
          inkscape:connector-curvature="0" />
+      <text
+         xml:space="preserve"
+         style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         x="332.03464"
+         y="136.49602"
+         id="Great_Britain_UnitCount-1"
+         sodipodi:linespacing="125%"><tspan
+           id="tspan9-4-7"
+           sodipodi:role="line"
+           x="332.03464"
+           y="136.49602">1</tspan></text>
     </g>
     <g
        class="region"
@@ -136,20 +182,28 @@
        style="fill:#00c4e7;fill-opacity:1;stroke:#000000;stroke-opacity:1"
        inkscape:label="Great Britain">
       <path
-         d="m 298.09,108.54 c 1.34,-1.52 2.77,-2.96 4.38,-4.2 0.17,4.24 0.66,8.46 1.04,12.68 1.53,4.49 4.05,8.6 5.71,13.05 -1.82,4.25 -7.48,3.21 -10.98,1.91 -0.34,-1.78 -0.68,-3.56 -1.05,-5.33 1.99,-0.63 3.98,-1.29 5.98,-1.91 -3.74,-5.44 -5.62,-11.73 -8.05,-17.8 0.99,0.53 1.98,1.06 2.97,1.6 z"
+         d="m 298.85066,108.03289 c 1.34,-1.52 4.10568,-2.36324 5.71568,-3.60324 0.17,4.24 -0.80882,8.19106 -0.42882,12.41106 1.53,4.49 3.42248,8.77929 5.08248,13.22929 -1.82,4.25 -11.44086,4.09744 -14.94086,2.79744 -0.34,-1.78 3.28086,-4.44744 2.91086,-6.21744 1.99,-0.63 0.43023,-2.30422 2.43023,-2.92422 -3.74,-5.44 -2.07023,-10.71578 -4.50023,-16.78578 0.99,0.53 2.74066,0.55289 3.73066,1.09289 z"
          id="path102"
          style="fill:#00c4e7;fill-opacity:1;stroke:#000000;stroke-opacity:1"
-         inkscape:connector-curvature="0" />
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="ccccccccc" />
       <path
-         d="m 289.04,116.96 c 1.64,1.13 3.32,2.22 5.02,3.27 -0.79,3.2 -1.61,6.4 -2.3,9.63 -1.48,0.79 -4.44,2.36 -5.92,3.15 0.51,-5.46 1.36,-10.87 3.2,-16.05 z"
+         d="m 289.04,116.96 c 1.64,1.13 3.32,2.22 5.02,3.27 -0.79,3.2 -1.61,6.4 -2.3,9.63 -1.48,0.79 -4.35035,1.01532 -5.83035,1.80532 0.51,-5.46 1.27035,-9.52532 3.11035,-14.70532 z"
          id="path108"
          style="fill:#00c4e7;fill-opacity:1;stroke:#000000;stroke-opacity:1"
-         inkscape:connector-curvature="0" />
-      <path
-         d="m 293.19,137.15 c 1.56,-2.21 4.02,-3.05 6.63,-3.15 -2.06,1.35 -4.32,2.32 -6.63,3.15 z"
-         id="path122"
-         style="fill:#00c4e7;fill-opacity:1;stroke:#000000;stroke-opacity:1"
-         inkscape:connector-curvature="0" />
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="ccccc" />
+      <text
+         xml:space="preserve"
+         style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         x="296.11551"
+         y="118.51123"
+         id="Great_Britain_UnitCount"
+         sodipodi:linespacing="125%"><tspan
+           id="tspan9-4"
+           sodipodi:role="line"
+           x="296.11551"
+           y="118.51123">1</tspan></text>
     </g>
     <g
        class="region"
@@ -161,6 +215,17 @@
          id="path1000002"
          style="fill:#007489;fill-opacity:1;stroke:#000000;stroke-opacity:1"
          inkscape:connector-curvature="0" />
+      <text
+         xml:space="preserve"
+         style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         x="307.65115"
+         y="157.2937"
+         id="Scandinavia_UnitCount-4"
+         sodipodi:linespacing="125%"><tspan
+           id="tspan9-0"
+           sodipodi:role="line"
+           x="307.65115"
+           y="157.2937">1</tspan></text>
     </g>
     <g
        class="region"
@@ -177,13 +242,24 @@
          id="path142"
          style="fill:#00b4d5;fill-opacity:1;stroke:#000000;stroke-opacity:1"
          inkscape:connector-curvature="0" />
+      <text
+         xml:space="preserve"
+         style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         x="353.19089"
+         y="161.59666"
+         id="Scandinavia_UnitCount-9"
+         sodipodi:linespacing="125%"><tspan
+           id="tspan9-48"
+           sodipodi:role="line"
+           x="353.19089"
+           y="161.59666">1</tspan></text>
     </g>
   </g>
   <g
      class="continent"
      id="North_America"
      style="fill:#ffdc00;fill-opacity:1;stroke:#000000;stroke-opacity:1"
-     transform="translate(-6.11,0.5)"
+     transform="translate(9.89,18.5)"
      inkscape:label="North America">
     <g
        class="region"
@@ -195,6 +271,17 @@
          id="path1000003"
          style="fill:#ffd871;fill-opacity:1;stroke:#000000;stroke-opacity:1"
          inkscape:connector-curvature="0" />
+      <text
+         xml:space="preserve"
+         style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         x="44.053688"
+         y="70.871376"
+         id="Scandinavia_UnitCount-8-4-26"
+         sodipodi:linespacing="125%"><tspan
+           id="tspan9-2-5-01"
+           sodipodi:role="line"
+           x="44.053688"
+           y="70.871376">1</tspan></text>
     </g>
     <g
        class="region"
@@ -206,6 +293,17 @@
          id="path1000004"
          style="fill:#ffea00;fill-opacity:1;stroke:#000000;stroke-opacity:1"
          inkscape:connector-curvature="0" />
+      <text
+         xml:space="preserve"
+         style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         x="106.00635"
+         y="73.88559"
+         id="Scandinavia_UnitCount-8-4-97"
+         sodipodi:linespacing="125%"><tspan
+           id="tspan9-2-5-37"
+           sodipodi:role="line"
+           x="106.00635"
+           y="73.88559">1</tspan></text>
     </g>
     <g
        class="region"
@@ -227,6 +325,17 @@
          id="path123"
          style="fill:#ffe221;fill-opacity:1;stroke:#000000;stroke-opacity:1"
          inkscape:connector-curvature="0" />
+      <text
+         xml:space="preserve"
+         style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         x="200.21495"
+         y="112.48279"
+         id="Scandinavia_UnitCount-8-4-07"
+         sodipodi:linespacing="125%"><tspan
+           id="tspan9-2-5-63"
+           sodipodi:role="line"
+           x="200.21495"
+           y="112.48279">1</tspan></text>
     </g>
     <g
        class="region"
@@ -313,6 +422,17 @@
          id="path54"
          style="fill:#ffd000;fill-opacity:1"
          inkscape:connector-curvature="0" />
+      <text
+         xml:space="preserve"
+         style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         x="258.08231"
+         y="37.373714"
+         id="Scandinavia_UnitCount-8-4-615"
+         sodipodi:linespacing="125%"><tspan
+           id="tspan9-2-5-420"
+           sodipodi:role="line"
+           x="258.08231"
+           y="37.373714">1</tspan></text>
     </g>
     <g
        class="region"
@@ -324,6 +444,17 @@
          id="path1000005"
          style="fill:#ffdc00;fill-opacity:1;stroke:#000000;stroke-opacity:1"
          inkscape:connector-curvature="0" />
+      <text
+         xml:space="preserve"
+         style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         x="106.96369"
+         y="112.42591"
+         id="Scandinavia_UnitCount-8-4-29"
+         sodipodi:linespacing="125%"><tspan
+           id="tspan9-2-5-13"
+           sodipodi:role="line"
+           x="106.96369"
+           y="112.42591">1</tspan></text>
     </g>
     <g
        class="region"
@@ -335,6 +466,17 @@
          id="path1000006"
          style="fill:#f5dc00;fill-opacity:1;stroke:#000000;stroke-opacity:1"
          inkscape:connector-curvature="0" />
+      <text
+         xml:space="preserve"
+         style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         x="145.56088"
+         y="112.45435"
+         id="Scandinavia_UnitCount-8-4-59"
+         sodipodi:linespacing="125%"><tspan
+           id="tspan9-2-5-84"
+           sodipodi:role="line"
+           x="145.56088"
+           y="112.45435">1</tspan></text>
     </g>
     <g
        class="region"
@@ -357,6 +499,17 @@
          id="path1000008"
          style="fill:#e2c300;fill-opacity:1;stroke:#000000;stroke-opacity:1"
          inkscape:connector-curvature="0" />
+      <text
+         xml:space="preserve"
+         style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         x="153.61777"
+         y="167.19373"
+         id="Scandinavia_UnitCount-8-4-84"
+         sodipodi:linespacing="125%"><tspan
+           id="tspan9-2-5-96"
+           sodipodi:role="line"
+           x="153.61777"
+           y="167.19373">1</tspan></text>
     </g>
     <g
        class="region"
@@ -368,13 +521,35 @@
          id="path1000009"
          style="fill:#fff196;fill-opacity:1;stroke:#000000;stroke-opacity:1"
          inkscape:connector-curvature="0" />
+      <text
+         xml:space="preserve"
+         style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         x="112.03479"
+         y="203.70561"
+         id="Scandinavia_UnitCount-8-4-37"
+         sodipodi:linespacing="125%"><tspan
+           id="tspan9-2-5-88"
+           sodipodi:role="line"
+           x="112.03479"
+           y="203.70561">1</tspan></text>
     </g>
+    <text
+       xml:space="preserve"
+       style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="106.96369"
+       y="155.0231"
+       id="Scandinavia_UnitCount-8-4-06"
+       sodipodi:linespacing="125%"><tspan
+         id="tspan9-2-5-61"
+         sodipodi:role="line"
+         x="106.96369"
+         y="155.0231">1</tspan></text>
   </g>
   <g
      class="continent"
      id="Asia"
      style="fill:#00d200;fill-opacity:1;stroke:#000000;stroke-opacity:1"
-     transform="translate(-6.11,0.5)"
+     transform="translate(9.89,18.5)"
      inkscape:label="Asia">
     <g
        class="region"
@@ -406,6 +581,17 @@
          id="path28"
          style="fill:#3fd000;fill-opacity:1;stroke:#000000;stroke-opacity:1"
          inkscape:connector-curvature="0" />
+      <text
+         xml:space="preserve"
+         style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         x="498.77457"
+         y="75.178757"
+         id="Scandinavia_UnitCount-8-4-1"
+         sodipodi:linespacing="125%"><tspan
+           id="tspan9-2-5-5"
+           sodipodi:role="line"
+           x="498.77457"
+           y="75.178757">1</tspan></text>
     </g>
     <g
        class="region"
@@ -447,6 +633,17 @@
          id="path52"
          style="fill:#58ff58;fill-opacity:1;stroke:#000000;stroke-opacity:1"
          inkscape:connector-curvature="0" />
+      <text
+         xml:space="preserve"
+         style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         x="562.60193"
+         y="65.138504"
+         id="Scandinavia_UnitCount-8-4-2"
+         sodipodi:linespacing="125%"><tspan
+           id="tspan9-2-5-7"
+           sodipodi:role="line"
+           x="562.60193"
+           y="65.138504">1</tspan></text>
     </g>
     <g
        class="region"
@@ -458,6 +655,17 @@
          id="path1000010"
          style="fill:#3dff3d;fill-opacity:1;stroke:#000000;stroke-opacity:1"
          inkscape:connector-curvature="0" />
+      <text
+         xml:space="preserve"
+         style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         x="464.35083"
+         y="100.99655"
+         id="Scandinavia_UnitCount-8-4-7"
+         sodipodi:linespacing="125%"><tspan
+           id="tspan9-2-5-1"
+           sodipodi:role="line"
+           x="464.35083"
+           y="100.99655">1</tspan></text>
     </g>
     <g
        class="region"
@@ -469,6 +677,17 @@
          id="path1000011"
          style="fill:#00ac00;fill-opacity:1;stroke:#000000;stroke-opacity:1"
          inkscape:connector-curvature="0" />
+      <text
+         xml:space="preserve"
+         style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         x="452.87628"
+         y="150.48067"
+         id="Scandinavia_UnitCount-8-4"
+         sodipodi:linespacing="125%"><tspan
+           id="tspan9-2-5"
+           sodipodi:role="line"
+           x="452.87628"
+           y="150.48067">1</tspan></text>
     </g>
     <g
        class="region"
@@ -480,6 +699,17 @@
          id="path1000012"
          style="fill:#00d200;fill-opacity:1;stroke:#000000;stroke-opacity:1"
          inkscape:connector-curvature="0" />
+      <text
+         xml:space="preserve"
+         style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         x="545.39008"
+         y="111.03681"
+         id="Scandinavia_UnitCount-8-4-23"
+         sodipodi:linespacing="125%"><tspan
+           id="tspan9-2-5-2"
+           sodipodi:role="line"
+           x="545.39008"
+           y="111.03681">1</tspan></text>
     </g>
     <g
        class="region"
@@ -496,6 +726,17 @@
          id="path94"
          style="fill:#00d000;fill-opacity:1;stroke:#000000;stroke-opacity:1"
          inkscape:connector-curvature="0" />
+      <text
+         xml:space="preserve"
+         style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         x="624.27777"
+         y="67.289986"
+         id="Scandinavia_UnitCount-8-4-6"
+         sodipodi:linespacing="125%"><tspan
+           id="tspan9-2-5-14"
+           sodipodi:role="line"
+           x="624.27777"
+           y="67.289986">1</tspan></text>
     </g>
     <g
        class="region"
@@ -507,6 +748,17 @@
          id="path1000013"
          style="fill:#00a900;fill-opacity:1;stroke:#000000;stroke-opacity:1"
          inkscape:connector-curvature="0" />
+      <text
+         xml:space="preserve"
+         style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         x="553.99597"
+         y="146.17769"
+         id="Scandinavia_UnitCount-8-4-21"
+         sodipodi:linespacing="125%"><tspan
+           id="tspan9-2-5-6"
+           sodipodi:role="line"
+           x="553.99597"
+           y="146.17769">1</tspan></text>
     </g>
     <g
        class="region"
@@ -529,6 +781,17 @@
          id="path1000016"
          style="fill:#007000;fill-opacity:1;stroke:#000000;stroke-opacity:1"
          inkscape:connector-curvature="0" />
+      <text
+         xml:space="preserve"
+         style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         x="537.50128"
+         y="187.05588"
+         id="Scandinavia_UnitCount-8-4-8"
+         sodipodi:linespacing="125%"><tspan
+           id="tspan9-2-5-57"
+           sodipodi:role="line"
+           x="537.50128"
+           y="187.05588">1</tspan></text>
     </g>
     <g
        class="region"
@@ -581,6 +844,17 @@
          id="path180"
          style="fill:#55ff55;fill-opacity:1;stroke:#000000;stroke-opacity:1"
          inkscape:connector-curvature="0" />
+      <text
+         xml:space="preserve"
+         style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         x="488.73431"
+         y="220.04529"
+         id="Scandinavia_UnitCount-8-4-61"
+         sodipodi:linespacing="125%"><tspan
+           id="tspan9-2-5-8"
+           sodipodi:role="line"
+           x="488.73431"
+           y="220.04529">1</tspan></text>
     </g>
     <g
        class="region"
@@ -597,13 +871,24 @@
          id="path182"
          style="fill:#00d200;fill-opacity:1;stroke:#000000;stroke-opacity:1"
          inkscape:connector-curvature="0" />
+      <text
+         xml:space="preserve"
+         style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         x="548.97583"
+         y="241.56012"
+         id="Scandinavia_UnitCount-8-4-9"
+         sodipodi:linespacing="125%"><tspan
+           id="tspan9-2-5-27"
+           sodipodi:role="line"
+           x="548.97583"
+           y="241.56012">1</tspan></text>
     </g>
   </g>
   <g
      class="continent"
      id="South_America"
      style="fill:#dc2f00;fill-opacity:1;stroke:#000000;stroke-opacity:1"
-     transform="translate(-6.11,0.5)"
+     transform="translate(9.89,18.5)"
      inkscape:label="South America">
     <g
        class="region"
@@ -615,6 +900,17 @@
          id="path1000017"
          style="fill:#a52300;fill-opacity:1;stroke:#000000;stroke-opacity:1"
          inkscape:connector-curvature="0" />
+      <text
+         xml:space="preserve"
+         style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         x="160.7173"
+         y="244.27435"
+         id="Scandinavia_UnitCount-8-4-34"
+         sodipodi:linespacing="125%"><tspan
+           id="tspan9-2-5-46"
+           sodipodi:role="line"
+           x="160.7173"
+           y="244.27435">1</tspan></text>
     </g>
     <g
        class="region"
@@ -637,6 +933,17 @@
          id="path1000019"
          style="fill:#ff5f33;fill-opacity:1;stroke:#000000;stroke-opacity:1"
          inkscape:connector-curvature="0" />
+      <text
+         xml:space="preserve"
+         style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         x="173.90215"
+         y="308.17014"
+         id="Scandinavia_UnitCount-8-4-13"
+         sodipodi:linespacing="125%"><tspan
+           id="tspan9-2-5-89"
+           sodipodi:role="line"
+           x="173.90215"
+           y="308.17014">1</tspan></text>
     </g>
     <g
        class="region"
@@ -648,13 +955,35 @@
          id="path1000020"
          style="fill:#ff8361;fill-opacity:1;stroke:#000000;stroke-opacity:1"
          inkscape:connector-curvature="0" />
+      <text
+         xml:space="preserve"
+         style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         x="182.01588"
+         y="362.93796"
+         id="Scandinavia_UnitCount-8-4-0"
+         sodipodi:linespacing="125%"><tspan
+           id="tspan9-2-5-06"
+           sodipodi:role="line"
+           x="182.01588"
+           y="362.93796">1</tspan></text>
     </g>
+    <text
+       xml:space="preserve"
+       style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="213.45667"
+       y="287.88577"
+       id="Scandinavia_UnitCount-8-4-5"
+       sodipodi:linespacing="125%"><tspan
+         id="tspan9-2-5-09"
+         sodipodi:role="line"
+         x="213.45667"
+         y="287.88577">1</tspan></text>
   </g>
   <g
      class="continent"
      id="Africa"
      style="fill:#ffb400;fill-opacity:1;stroke:#000000;stroke-opacity:1"
-     transform="translate(-6.11,0.5)"
+     transform="translate(9.89,18.5)"
      inkscape:label="Africa">
     <g
        class="region"
@@ -666,6 +995,17 @@
          id="path1000021"
          style="fill:#ffcc51;fill-opacity:1;stroke:#000000;stroke-opacity:1"
          inkscape:connector-curvature="0" />
+      <text
+         xml:space="preserve"
+         style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         x="309.80746"
+         y="249.34546"
+         id="Scandinavia_UnitCount-8-4-28"
+         sodipodi:linespacing="125%"><tspan
+           id="tspan9-2-5-60"
+           sodipodi:role="line"
+           x="309.80746"
+           y="249.34546">1</tspan></text>
     </g>
     <g
        class="region"
@@ -677,6 +1017,17 @@
          id="path1000022"
          style="fill:#be8600;fill-opacity:1;stroke:#000000;stroke-opacity:1"
          inkscape:connector-curvature="0" />
+      <text
+         xml:space="preserve"
+         style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         x="359.50418"
+         y="222.97577"
+         id="Scandinavia_UnitCount-8-4-24"
+         sodipodi:linespacing="125%"><tspan
+           id="tspan9-2-5-86"
+           sodipodi:role="line"
+           x="359.50418"
+           y="222.97577">1</tspan></text>
     </g>
     <g
        class="region"
@@ -688,6 +1039,17 @@
          id="path1000023"
          style="fill:#f7ae00;fill-opacity:1;stroke:#000000;stroke-opacity:1"
          inkscape:connector-curvature="0" />
+      <text
+         xml:space="preserve"
+         style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         x="397.03027"
+         y="277.74359"
+         id="Scandinavia_UnitCount-8-4-31"
+         sodipodi:linespacing="125%"><tspan
+           id="tspan9-2-5-98"
+           sodipodi:role="line"
+           x="397.03027"
+           y="277.74359">1</tspan></text>
     </g>
     <g
        class="region"
@@ -699,6 +1061,17 @@
          id="path1000024"
          style="fill:#e7a200;fill-opacity:1;stroke:#000000;stroke-opacity:1"
          inkscape:connector-curvature="0" />
+      <text
+         xml:space="preserve"
+         style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         x="362.54684"
+         y="311.2128"
+         id="Scandinavia_UnitCount-8-4-65"
+         sodipodi:linespacing="125%"><tspan
+           id="tspan9-2-5-0"
+           sodipodi:role="line"
+           x="362.54684"
+           y="311.2128">1</tspan></text>
     </g>
     <g
        class="region"
@@ -722,12 +1095,23 @@
          style="fill:#ffb400;fill-opacity:1;stroke:#000000;stroke-opacity:1"
          inkscape:connector-curvature="0" />
     </g>
+    <text
+       xml:space="preserve"
+       style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="366.60373"
+       y="376.1228"
+       id="Scandinavia_UnitCount-8-4-77"
+       sodipodi:linespacing="125%"><tspan
+         id="tspan9-2-5-9"
+         sodipodi:role="line"
+         x="366.60373"
+         y="376.1228">1</tspan></text>
   </g>
   <g
      class="continent"
      id="Australia"
      style="fill:#91ac19;fill-opacity:1;stroke:#000000;stroke-opacity:1"
-     transform="translate(-6.11,0.5)"
+     transform="translate(9.89,18.5)"
      inkscape:label="Australia">
     <g
        class="region"
@@ -759,6 +1143,17 @@
          id="path204"
          style="fill:#d7ec79;fill-opacity:1;stroke:#000000;stroke-opacity:1"
          inkscape:connector-curvature="0" />
+      <text
+         xml:space="preserve"
+         style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         x="640.81226"
+         y="310.19751"
+         id="Scandinavia_UnitCount-8-4-3"
+         sodipodi:linespacing="125%"><tspan
+           id="tspan9-2-5-12"
+           sodipodi:role="line"
+           x="640.81226"
+           y="310.19751">1</tspan></text>
     </g>
     <g
        class="region"
@@ -850,6 +1245,17 @@
          id="path222"
          style="fill:#54640f;fill-opacity:1;stroke:#000000;stroke-opacity:1"
          inkscape:connector-curvature="0" />
+      <text
+         xml:space="preserve"
+         style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         x="582.68243"
+         y="296.42294"
+         id="Scandinavia_UnitCount-8-4-33"
+         sodipodi:linespacing="125%"><tspan
+           id="tspan9-2-5-4"
+           sodipodi:role="line"
+           x="582.68243"
+           y="296.42294">1</tspan></text>
     </g>
     <g
        class="region"
@@ -861,6 +1267,17 @@
          id="path1000027"
          style="fill:#91ac19;fill-opacity:1;stroke:#000000;stroke-opacity:1"
          inkscape:connector-curvature="0" />
+      <text
+         xml:space="preserve"
+         style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         x="594.87415"
+         y="375.31064"
+         id="Scandinavia_UnitCount-8-4-87"
+         sodipodi:linespacing="125%"><tspan
+           id="tspan9-2-5-42"
+           sodipodi:role="line"
+           x="594.87415"
+           y="375.31064">1</tspan></text>
     </g>
     <g
        class="region"
@@ -877,11 +1294,23 @@
          id="path228"
          style="fill:#638814;fill-opacity:1;stroke:#000000;stroke-opacity:1"
          inkscape:connector-curvature="0" />
+      <text
+         xml:space="preserve"
+         style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         x="648.66125"
+         y="374.23489"
+         id="Scandinavia_UnitCount-8-4-11"
+         sodipodi:linespacing="125%"><tspan
+           id="tspan9-2-5-3"
+           sodipodi:role="line"
+           x="648.66125"
+           y="374.23489">1</tspan></text>
     </g>
   </g>
   <g
      id="connections"
-     inkscape:label="connections">
+     inkscape:label="connections"
+     transform="translate(16,18)">
     <title
        id="title3653">connections</title>
     <path
@@ -889,126 +1318,129 @@
        inkscape:connector-curvature="0"
        id="path3588"
        d="m 276.82415,126.58686 11.20565,-11.9228"
-      style="fill:none;stroke:#000000;stroke-width:1.00000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:1.00000001,3.00000005;stroke-dashoffset:0" />
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1.00000001, 3.00000005;stroke-dashoffset:0" />
     <path
        transform="scale(0.8,0.8)"
        inkscape:connector-curvature="0"
        id="path3590"
        d="m 196.50212,126.22828 82.8321,-64.903071"
-       style="fill:none;stroke:#000000;stroke-width:1.00000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:1.00000001,3.00000005;stroke-dashoffset:0" />
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1.00000001, 3.00000005;stroke-dashoffset:0" />
     <path
        transform="scale(0.8,0.8)"
        inkscape:connector-curvature="0"
        id="path3592"
        d="M 178.21451,86.784426 273.59693,50.567794"
-       style="fill:none;stroke:#000000;stroke-width:1.00000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:1.00000001,3.00000005;stroke-dashoffset:0" />
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1.00000001, 3.00000005;stroke-dashoffset:0" />
     <path
        transform="scale(0.8,0.8)"
        inkscape:connector-curvature="0"
        id="path3594"
        d="m 311.60646,335.99788 19.36335,-9.68167"
-       style="fill:none;stroke:#000000;stroke-width:1.00000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:1.00000001,3.00000005;stroke-dashoffset:0" />
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1.00000001, 3.00000005;stroke-dashoffset:0" />
     <path
        transform="scale(0.8,0.8)"
        inkscape:connector-curvature="0"
        id="path3596"
        d="m 385.83263,232.90598 -6.63374,-12.55031"
-       style="fill:none;stroke:#000000;stroke-width:1.00000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:1.00000001,3.00000005;stroke-dashoffset:0" />
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1.00000001, 3.00000005;stroke-dashoffset:0" />
     <path
        transform="scale(0.8,0.8)"
        inkscape:connector-curvature="0"
        id="path3598"
        d="m 404.47882,229.85805 6.27515,-21.33554"
-       style="fill:none;stroke:#000000;stroke-width:1.00000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:1.00000001,3.00000005;stroke-dashoffset:0" />
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1.00000001, 3.00000005;stroke-dashoffset:0" />
     <path
        transform="scale(0.8,0.8)"
        inkscape:connector-curvature="0"
        id="path3600"
        d="m 442.12977,247.2492 -18.4669,-22.76986"
-       style="fill:none;stroke:#000000;stroke-width:1.00000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:1.00000001,3.00000005;stroke-dashoffset:0" />
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1.00000001, 3.00000005;stroke-dashoffset:0" />
     <path
        transform="scale(0.8,0.8)"
        inkscape:connector-curvature="0"
        id="path3602"
        d="m 396.94863,154.55614 -23.84561,-4.48225"
-      style="fill:none;stroke:#000000;stroke-width:1.00000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:1.00000001,3.00000005;stroke-dashoffset:0" />
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1.00000001, 3.00000005;stroke-dashoffset:0" />
     <path
        transform="scale(0.8,0.8)"
        inkscape:connector-curvature="0"
        id="path3604"
-       d="m 391.21134,129.45551 -20.08051,11.83315"
-       style="fill:none;stroke:#000000;stroke-width:1.00000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:1.00000001,3.00000005;stroke-dashoffset:0" />
+       d="m 391.21134,129.45551 -17.83938,10.48847"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1.00000001, 3.00000005;stroke-dashoffset:0"
+       sodipodi:nodetypes="cc" />
     <path
        transform="scale(0.8,0.8)"
        inkscape:connector-curvature="0"
        id="path3606"
-       d="m 354.45683,147.56382 -6.45444,-42.67108"
-       style="fill:none;stroke:#000000;stroke-width:1.00000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:1.00000001,3.00000005;stroke-dashoffset:0" />
+       d="m 354.45683,147.56382 -5.7821,-37.29237"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1.00000001, 3.00000005;stroke-dashoffset:0"
+       sodipodi:nodetypes="cc" />
     <path
        transform="scale(0.8,0.8)"
        inkscape:connector-curvature="0"
        id="path3608"
        d="m 357.86335,201.3509 -4.48226,-36.21663"
-      style="fill:none;stroke:#000000;stroke-width:1.00000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:1.00000001,3.00000005;stroke-dashoffset:0" />
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1.00000001, 3.00000005;stroke-dashoffset:0" />
     <path
        transform="scale(0.8,0.8)"
        inkscape:connector-curvature="0"
        id="path3610"
-       d="M 389.59772,110.45074 355.71187,103.817"
-       style="fill:none;stroke:#000000;stroke-width:1.00000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:1.00000001,3.00000005;stroke-dashoffset:0" />
+       d="M 389.59772,110.45074 358.62534,103.817"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1.00000001, 3.00000005;stroke-dashoffset:0"
+       sodipodi:nodetypes="cc" />
     <path
        transform="scale(0.8,0.8)"
        inkscape:connector-curvature="0"
        id="path3612"
        d="M 342.98226,94.493906 337.96213,83.377911"
-      style="fill:none;stroke:#000000;stroke-width:1.00000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:1.00000001,3.00000005;stroke-dashoffset:0" />
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1.00000001, 3.00000005;stroke-dashoffset:0" />
     <path
        transform="scale(0.8,0.8)"
        inkscape:connector-curvature="0"
        id="path3614"
        d="M 506.13639,389.42638 524.424,437.47616"
-      style="fill:none;stroke:#000000;stroke-width:1.00000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:1.00000001,3.00000005;stroke-dashoffset:0" />
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1.00000001, 3.00000005;stroke-dashoffset:0" />
     <path
        transform="scale(0.8,0.8)"
        inkscape:connector-curvature="0"
        id="path3616"
        d="m 485.87659,472.25847 22.0527,-3.04793"
-       style="fill:none;stroke:#000000;stroke-width:1.00000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:1.00000001,3.00000005;stroke-dashoffset:0" />
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1.00000001, 3.00000005;stroke-dashoffset:0" />
     <path
        transform="scale(0.8,0.8)"
        inkscape:connector-curvature="0"
        id="path3618"
        d="m 707.83793,325.24046 16.13612,26.71425"
-      style="fill:none;stroke:#000000;stroke-width:1.00000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:1.00000001,3.00000005;stroke-dashoffset:0" />
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1.00000001, 3.00000005;stroke-dashoffset:0" />
     <path
        transform="scale(0.8,0.8)"
        inkscape:connector-curvature="0"
        id="path3620"
        d="m 708.01722,392.6536 14.7018,47.51192"
-       style="fill:none;stroke:#000000;stroke-width:1.00000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:1.00000001,3.00000005;stroke-dashoffset:0" />
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1.00000001, 3.00000005;stroke-dashoffset:0" />
     <path
        transform="scale(0.8,0.8)"
        inkscape:connector-curvature="0"
        id="path3622"
        d="m 788.87712,422.23649 7.3509,-32.27224"
-       style="fill:none;stroke:#000000;stroke-width:1.00000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:1.00000001,3.00000005;stroke-dashoffset:0" />
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1.00000001, 3.00000005;stroke-dashoffset:0" />
     <path
        transform="scale(0.8,0.8)"
        inkscape:connector-curvature="0"
        id="path3624"
        d="m 752.4812,414.34772 22.0527,-44.46398"
-      style="fill:none;stroke:#000000;stroke-width:1.00000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:1.00000001,3.00000005;stroke-dashoffset:0" />
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1.00000001, 3.00000005;stroke-dashoffset:0" />
     <path
        transform="scale(0.8,0.8)"
        inkscape:connector-curvature="0"
        id="path3626"
        d="m 738.60487,192.48313 30.42657,11.15641"
-      style="fill:none;stroke:#000000;stroke-width:1.00000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:1.00000001,3.00000005;stroke-dashoffset:0" />
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1.00000001, 3.00000005;stroke-dashoffset:0" />
     <path
        transform="scale(0.8,0.8)"
        inkscape:connector-curvature="0"
        id="path3628"
        d="m 764.2139,159.77458 -11.66352,-1.77489"
-       style="fill:none;stroke:#000000;stroke-width:1.00000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:1.00000001,3.00000005;stroke-dashoffset:0" />
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1.00000001, 3.00000005;stroke-dashoffset:0" />
   </g>
 </svg>

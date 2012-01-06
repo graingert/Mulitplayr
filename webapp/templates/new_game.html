@@ -2,9 +2,9 @@
 {% block content %}
 <h2>Create new game</h2>
 <ul>
-{% for game_name, game in games.iteritems() %}
+{% for game in games %}
 	<li>
-		<a href="{{ uri_for('newgame-' + game_name) }}" class="btn">{{ game['human'] }}</a>
+		<a href="{{ uri_for('newgame-' + game.game_name) }}" class="btn">{{ game.human_name }}</a>
 	</li>
 {% endfor %}
 </ul>

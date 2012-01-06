@@ -32,6 +32,22 @@
 		region.data("units", region.data("units") + units)
 		region.find("text").text(region.data("units"))
 	}
+
+	function decrease_units(region, units){
+		region.data("units", region.data("units") - units)
+		region.find("text").text(region.data("units"))
+	}
+
+	function place_units(event){
+		event.preventDefault();
+		$("#map g.region").each(function(index, region){
+			var id = $(region).attr('id')
+			var units = $(region).data('units')
+			console.log(id)
+			console.log(units)
+		});
+		alert("place")
+	}
 	
 	function prepmap() {
 		$('#map g.region').click(function() {
@@ -48,8 +64,9 @@
 		
 		$.game.on("region-select", function(event, region){
 			increase_units($(region), 1)
-			alert($(region).attr("id"))
 		})
+
+		$('#place').click(place_units)
 	});
 </script>
 {% raw %}
@@ -68,7 +85,10 @@
 
 {% block content %}
 
-<div id="map"/>
+<div id="map"></div>
+<div class="well">
+	<a id="place" class="btn" href="">Place</a>
+</div>
 
 <div id="results"/>
 {% endblock %}

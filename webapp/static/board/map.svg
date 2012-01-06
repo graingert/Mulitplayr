@@ -33,6 +33,14 @@
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
       </cc:work>
     </rdf:rdf>
+    <rdf:rdf>
+      <cc:work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:work>
+    </rdf:rdf>
     <rdf:RDF>
       <cc:Work
          rdf:about="">
@@ -826,7 +834,7 @@
          style="fill:#ff3b06;fill-opacity:1;stroke:#000000;stroke-opacity:1" />
       <text
          space="preserve"
-         x="216.7515"
+         x="214.7515"
          y="291.49167"
          id="UnitCount28-1"
          sodipodi:linespacing="125%"
@@ -1283,7 +1291,6 @@
      style="fill:#918a6f">
     <path
        style="fill-rule:evenodd;stroke:#000000;stroke-width:0.00500000000000000;stroke-miterlimit:10;fill:#918a6f"
-       inkscape:connector-curvature="0"
        id="path15"
        stroke-miterlimit="10"
        i:knockout="Off"
@@ -1291,7 +1298,6 @@
        clip-rule="evenodd" />
     <path
        style="fill:#918a6f;stroke:#000000;stroke-width:0.005;stroke-miterlimit:10"
-       inkscape:connector-curvature="0"
        id="path17"
        stroke-miterlimit="10"
        i:knockout="Off"
@@ -1299,7 +1305,6 @@
        sodipodi:nodetypes="cccc" />
     <path
        style="fill-rule:evenodd;stroke:#000000;stroke-width:0.00500000000000000;stroke-miterlimit:10;fill:#918a6f"
-       inkscape:connector-curvature="0"
        id="path19"
        stroke-miterlimit="10"
        i:knockout="Off"
@@ -1307,7 +1312,6 @@
        clip-rule="evenodd" />
     <path
        style="fill-rule:evenodd;stroke:#000000;stroke-width:0.00500000000000000;stroke-miterlimit:10;fill:#918a6f"
-       inkscape:connector-curvature="0"
        id="path21"
        stroke-miterlimit="10"
        i:knockout="Off"
@@ -1315,7 +1319,6 @@
        clip-rule="evenodd" />
     <path
        style="fill-rule:evenodd;stroke:#000000;stroke-width:0.00500000000000000;stroke-miterlimit:10;fill:#918a6f"
-       inkscape:connector-curvature="0"
        id="path23"
        stroke-miterlimit="10"
        i:knockout="Off"
@@ -1323,7 +1326,6 @@
        clip-rule="evenodd" />
     <path
        style="fill-rule:evenodd;stroke:#000000;stroke-width:0.00500000000000000;stroke-miterlimit:10;fill:#918a6f"
-       inkscape:connector-curvature="0"
        id="path25"
        stroke-miterlimit="10"
        i:knockout="Off"
@@ -1331,7 +1333,6 @@
        clip-rule="evenodd" />
     <path
        style="fill-rule:evenodd;stroke:#000000;stroke-width:0.00500000000000000;stroke-miterlimit:10;fill:#918a6f"
-       inkscape:connector-curvature="0"
        id="path27"
        stroke-miterlimit="10"
        i:knockout="Off"
@@ -1339,7 +1340,6 @@
        clip-rule="evenodd" />
     <path
        style="fill-rule:evenodd;stroke:#000000;stroke-width:0.00500000000000000;stroke-miterlimit:10;fill:#918a6f"
-       inkscape:connector-curvature="0"
        id="path29"
        stroke-miterlimit="10"
        i:knockout="Off"
@@ -1347,7 +1347,6 @@
        clip-rule="evenodd" />
     <path
        style="fill-rule:evenodd;stroke:#000000;stroke-width:0.00500000000000000;stroke-miterlimit:10;fill:#918a6f"
-       inkscape:connector-curvature="0"
        id="path31"
        stroke-miterlimit="10"
        i:knockout="Off"
@@ -1355,7 +1354,6 @@
        clip-rule="evenodd" />
     <path
        style="fill-rule:evenodd;stroke:#000000;stroke-width:0.00500000000000000;stroke-miterlimit:10;fill:#918a6f"
-       inkscape:connector-curvature="0"
        id="path33"
        stroke-miterlimit="10"
        i:knockout="Off"
@@ -1363,7 +1361,6 @@
        clip-rule="evenodd" />
     <path
        style="fill-rule:evenodd;stroke:#000000;stroke-width:0.00500000000000000;stroke-miterlimit:10;fill:#918a6f"
-       inkscape:connector-curvature="0"
        id="path35"
        stroke-miterlimit="10"
        i:knockout="Off"
@@ -1371,7 +1368,6 @@
        clip-rule="evenodd" />
     <path
        style="fill-rule:evenodd;stroke:#000000;stroke-width:0.00500000000000000;stroke-miterlimit:10;fill:#918a6f"
-       inkscape:connector-curvature="0"
        id="path37"
        stroke-miterlimit="10"
        i:knockout="Off"
@@ -1379,7 +1375,6 @@
        clip-rule="evenodd" />
     <path
        style="fill-rule:evenodd;stroke:#000000;stroke-width:0.00500000000000000;stroke-miterlimit:10;fill:#918a6f"
-       inkscape:connector-curvature="0"
        id="path39"
        stroke-miterlimit="10"
        i:knockout="Off"
@@ -1387,7 +1382,6 @@
        clip-rule="evenodd" />
     <path
        style="fill-rule:evenodd;stroke:#000000;stroke-width:0.00500000000000000;stroke-miterlimit:10;fill:#918a6f"
-       inkscape:connector-curvature="0"
        id="path41"
        stroke-miterlimit="10"
        i:knockout="Off"
@@ -1395,7 +1389,6 @@
        clip-rule="evenodd" />
     <path
        style="fill-rule:evenodd;stroke:#000000;stroke-width:0.00500000000000000;stroke-miterlimit:10;fill:#918a6f"
-       inkscape:connector-curvature="0"
        id="path43"
        stroke-miterlimit="10"
        i:knockout="Off"
@@ -1403,7 +1396,6 @@
        clip-rule="evenodd" />
     <path
        style="fill-rule:evenodd;stroke:#000000;stroke-width:0.00500000000000000;stroke-miterlimit:10;fill:#918a6f"
-       inkscape:connector-curvature="0"
        id="path45"
        stroke-miterlimit="10"
        i:knockout="Off"
@@ -1411,7 +1403,6 @@
        clip-rule="evenodd" />
     <path
        style="fill-rule:evenodd;stroke:#000000;stroke-width:0.00500000000000000;stroke-miterlimit:10;fill:#918a6f"
-       inkscape:connector-curvature="0"
        id="path47"
        stroke-miterlimit="10"
        i:knockout="Off"
@@ -1419,7 +1410,6 @@
        clip-rule="evenodd" />
     <path
        style="fill-rule:evenodd;stroke:#000000;stroke-width:0.00500000000000000;stroke-miterlimit:10;fill:#918a6f"
-       inkscape:connector-curvature="0"
        id="path49"
        stroke-miterlimit="10"
        i:knockout="Off"
@@ -1427,7 +1417,6 @@
        clip-rule="evenodd" />
     <path
        style="fill-rule:evenodd;stroke:#000000;stroke-width:0.00500000000000000;stroke-miterlimit:10;fill:#918a6f"
-       inkscape:connector-curvature="0"
        id="path51"
        stroke-miterlimit="10"
        i:knockout="Off"
@@ -1435,7 +1424,6 @@
        clip-rule="evenodd" />
     <path
        style="fill-rule:evenodd;stroke:#000000;stroke-width:0.00500000000000000;stroke-miterlimit:10;fill:#918a6f"
-       inkscape:connector-curvature="0"
        id="path53"
        stroke-miterlimit="10"
        i:knockout="Off"
@@ -1443,7 +1431,6 @@
        clip-rule="evenodd" />
     <path
        style="fill-rule:evenodd;stroke:#000000;stroke-width:0.00500000000000000;stroke-miterlimit:10;fill:#918a6f"
-       inkscape:connector-curvature="0"
        id="path55"
        stroke-miterlimit="10"
        i:knockout="Off"
@@ -1451,7 +1438,6 @@
        clip-rule="evenodd" />
     <path
        style="fill-rule:evenodd;stroke:#000000;stroke-width:0.00500000000000000;stroke-miterlimit:10;fill:#918a6f"
-       inkscape:connector-curvature="0"
        id="path57"
        stroke-miterlimit="10"
        i:knockout="Off"
@@ -1459,14 +1445,12 @@
        clip-rule="evenodd" />
     <path
        style="fill:#918a6f;stroke:#000000;stroke-width:0.00500000000000000;stroke-miterlimit:10"
-       inkscape:connector-curvature="0"
        id="path59"
        stroke-miterlimit="10"
        i:knockout="Off"
        d="m 447.59,358.07 c 3.492,-2.808 6.445,-4.68 9.289,-5.615 2.736,-0.937 4.283,-0.793 7.164,0 2.807,0.684 6.516,3.023 9.576,4.104 2.879,0.864 5.65,1.548 7.92,1.368 2.195,-0.36 3.852,-1.225 5.652,-2.592 1.764,-1.404 3.527,-3.24 5.146,-5.652" />
     <path
        style="fill-rule:evenodd;stroke:#000000;stroke-width:0.00500000000000000;stroke-miterlimit:10;fill:#918a6f"
-       inkscape:connector-curvature="0"
        id="path61"
        stroke-miterlimit="10"
        i:knockout="Off"
@@ -1474,7 +1458,6 @@
        clip-rule="evenodd" />
     <path
        style="fill-rule:evenodd;stroke:#000000;stroke-width:0.00500000000000000;stroke-miterlimit:10;fill:#918a6f"
-       inkscape:connector-curvature="0"
        id="path63"
        stroke-miterlimit="10"
        i:knockout="Off"
@@ -1482,7 +1465,6 @@
        clip-rule="evenodd" />
     <path
        style="fill-rule:evenodd;stroke:#000000;stroke-width:0.00500000000000000;stroke-miterlimit:10;fill:#918a6f"
-       inkscape:connector-curvature="0"
        id="path65"
        stroke-miterlimit="10"
        i:knockout="Off"
@@ -1490,7 +1472,6 @@
        clip-rule="evenodd" />
     <path
        style="fill-rule:evenodd;stroke:#000000;stroke-width:0.00500000000000000;stroke-miterlimit:10;fill:#918a6f"
-       inkscape:connector-curvature="0"
        id="path67"
        stroke-miterlimit="10"
        i:knockout="Off"
@@ -1498,7 +1479,6 @@
        clip-rule="evenodd" />
     <path
        style="fill-rule:evenodd;stroke:#000000;stroke-width:0.00500000000000000;stroke-miterlimit:10;fill:#918a6f"
-       inkscape:connector-curvature="0"
        id="path69"
        stroke-miterlimit="10"
        i:knockout="Off"
@@ -1506,7 +1486,6 @@
        clip-rule="evenodd" />
     <path
        style="fill-rule:evenodd;stroke:#000000;stroke-width:0.00500000000000000;stroke-miterlimit:10;fill:#918a6f"
-       inkscape:connector-curvature="0"
        id="path71"
        stroke-miterlimit="10"
        i:knockout="Off"
@@ -1514,7 +1493,6 @@
        clip-rule="evenodd" />
     <path
        style="fill-rule:evenodd;stroke:#000000;stroke-width:0.00500000000000000;stroke-miterlimit:10;fill:#918a6f"
-       inkscape:connector-curvature="0"
        id="path73"
        stroke-miterlimit="10"
        i:knockout="Off"
@@ -1522,7 +1500,6 @@
        clip-rule="evenodd" />
     <path
        style="fill-rule:evenodd;stroke:#000000;stroke-width:0.00500000000000000;stroke-miterlimit:10;fill:#918a6f"
-       inkscape:connector-curvature="0"
        id="path75"
        stroke-miterlimit="10"
        i:knockout="Off"
@@ -1530,7 +1507,6 @@
        clip-rule="evenodd" />
     <path
        style="fill-rule:evenodd;stroke:#000000;stroke-width:0.00500000000000000;stroke-miterlimit:10;fill:#918a6f"
-       inkscape:connector-curvature="0"
        id="path77"
        stroke-miterlimit="10"
        i:knockout="Off"
@@ -1538,7 +1514,6 @@
        clip-rule="evenodd" />
     <path
        style="fill-rule:evenodd;stroke:#000000;stroke-width:0.00500000000000000;stroke-miterlimit:10;fill:#918a6f"
-       inkscape:connector-curvature="0"
        id="path79"
        stroke-miterlimit="10"
        i:knockout="Off"
@@ -1546,7 +1521,6 @@
        clip-rule="evenodd" />
     <path
        style="fill-rule:evenodd;stroke:#000000;stroke-width:0.00500000000000000;stroke-miterlimit:10;fill:#918a6f"
-       inkscape:connector-curvature="0"
        id="path81"
        stroke-miterlimit="10"
        i:knockout="Off"
@@ -1554,7 +1528,6 @@
        clip-rule="evenodd" />
     <path
        style="fill-rule:evenodd;stroke:#000000;stroke-width:0.00500000000000000;stroke-miterlimit:10;fill:#918a6f"
-       inkscape:connector-curvature="0"
        id="path83"
        stroke-miterlimit="10"
        i:knockout="Off"
@@ -1562,7 +1535,6 @@
        clip-rule="evenodd" />
     <path
        style="fill-rule:evenodd;stroke:#000000;stroke-width:0.00500000000000000;stroke-miterlimit:10;fill:#918a6f"
-       inkscape:connector-curvature="0"
        id="path85"
        stroke-miterlimit="10"
        i:knockout="Off"
@@ -1570,7 +1542,6 @@
        clip-rule="evenodd" />
     <path
        style="fill-rule:evenodd;stroke:#000000;stroke-width:0.00500000000000000;stroke-miterlimit:10;fill:#918a6f"
-       inkscape:connector-curvature="0"
        id="path87"
        stroke-miterlimit="10"
        i:knockout="Off"
@@ -1578,7 +1549,6 @@
        clip-rule="evenodd" />
     <path
        style="fill-rule:evenodd;stroke:#000000;stroke-width:0.00500000000000000;stroke-miterlimit:10;fill:#918a6f"
-       inkscape:connector-curvature="0"
        id="path89"
        stroke-miterlimit="10"
        i:knockout="Off"
@@ -1586,7 +1556,6 @@
        clip-rule="evenodd" />
     <path
        style="fill-rule:evenodd;stroke:#000000;stroke-width:0.00500000000000000;stroke-miterlimit:10;fill:#918a6f"
-       inkscape:connector-curvature="0"
        id="path91"
        stroke-miterlimit="10"
        i:knockout="Off"
@@ -1594,7 +1563,6 @@
        clip-rule="evenodd" />
     <path
        style="fill-rule:evenodd;stroke:#000000;stroke-width:0.00500000000000000;stroke-miterlimit:10;fill:#918a6f"
-       inkscape:connector-curvature="0"
        id="path93"
        stroke-miterlimit="10"
        i:knockout="Off"
@@ -1602,7 +1570,6 @@
        clip-rule="evenodd" />
     <path
        style="fill-rule:evenodd;stroke:#000000;stroke-width:0.00500000000000000;stroke-miterlimit:10;fill:#918a6f"
-       inkscape:connector-curvature="0"
        id="path95"
        stroke-miterlimit="10"
        i:knockout="Off"
@@ -1610,7 +1577,6 @@
        clip-rule="evenodd" />
     <path
        style="fill-rule:evenodd;stroke:#000000;stroke-width:0.00500000000000000;stroke-miterlimit:10;fill:#918a6f"
-       inkscape:connector-curvature="0"
        id="path97"
        stroke-miterlimit="10"
        i:knockout="Off"

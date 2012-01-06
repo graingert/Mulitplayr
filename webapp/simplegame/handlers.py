@@ -47,5 +47,5 @@ class SimpleGamePlayHandler(GamePlayHandler):
 
     def guess_action(self, game_instance):
         game_state = game_instance.current_state
-        new_action = game_state.guess_action(int(self.request.get('guess')))
+        new_action = game_state.guess_action(int(self.request_data['guess']))
         self.post_action(game_state, new_action)

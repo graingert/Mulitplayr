@@ -156,6 +156,9 @@ class BaseGameInstance(polymodel.PolyModel):
         self.put()
         return self.current_state
 
+    def finish_game(self):
+        self.state = "finished"
+
     def add_user(self, user):
         # Check if the game can be joined
         if self.state != "open":

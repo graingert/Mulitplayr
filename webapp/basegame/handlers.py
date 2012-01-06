@@ -144,6 +144,9 @@ class GameInfoHandler(BaseHandler):
 
     def start_action(self, game_instance):
         user = UserProfile.get_current_user()
+        if user.key() not in game_instance.players:
+            self.error(403)
+            return
         result = {}
         result['success'] = game_instance.start_game() != None
         self.response.write(json.dumps(result))

@@ -3,7 +3,7 @@
 {% block head %}
 <script>
 	function joingame(event){
-		$.post("#", {action:"join"},
+		$.post("./", {action:"join"},
 		function(data){
 			if (data.success)
 				location.reload();
@@ -11,7 +11,7 @@
 		event.preventDefault();
 	}
 	function startgame(event){
-		$.post("#", {action:"start"},
+		$.post("./", {action:"start"},
 		function(data){
 			if (data.success)
 				location.reload();

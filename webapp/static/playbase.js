@@ -11,7 +11,7 @@
 			action:"update",
 			from:$.game.last_sequence_number
 		}
-		$.get("",request,$.game.process_update,"json");
+		$.get("./",request,$.game.process_update,"json");
 	}
 
 	$.game.process_update = function(data){

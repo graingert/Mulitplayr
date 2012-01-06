@@ -13,7 +13,9 @@ class TerritoryMapper():
         self.territory_indexes = {}
         self.territory_labels = {}
 
-        index_mapping_data = csv.DictReader(open("data/indexmapping.csv"))
+        index_mapping_data = csv.DictReader(
+			open("data/indexmapping.csv")
+		)
         for territory in index_mapping_data:
             index = int(territory["index"])-1
             label  = territory["label"].lower().replace(" ", "-")
@@ -67,13 +69,14 @@ class ConquestGameState(BaseGameState):
         BaseGameState.get_info_dict(self, target)
 
         territory_mapper = get_territory_mapper()
-        territories = {}
+        territories = []
         for i in range(len(self.territory_units)):
             label = territory_mapper.get_territory_label(i)
-            data = {'player':self.territory_player[i],
+            data = {'id':label,
+                    'player':self.territory_player[i],
                     'units':self.territory_units[i]
                    }
-            territories[label] = data
+            territories.append(data)
         target['territories'] = territories
 
         return target
@@ -278,6 +281,7 @@ class ConquestGamePlayer(BaseGamePlayer):
 
 class ConquestGameInstance(BaseGameInstance):
     game_name = 'conquest'
+    human_name = 'Conquest'
 
     info_redirect = "conquestgameinfo"
     play_redirect = "conquestgameplay"
@@ -296,10 +300,14 @@ class PlaceAction(BaseGameAction):
             target = {}
         BaseGameAction.get_info_dict(self, target)
         territory_mapper = get_territory_mapper()
-        placements = {}
+        placements = []
         for i,placement in enumerate(self.placed_units):
-            label = territory_mapper.get_territory_label(i)
-            placements[label] = placement
+            if placement > 0:
+                label = territory_mapper.get_territory_label(i)
+                data = {'id':label,
+                        'units':placement
+                       }
+                placements.append(data)
         target['placed_units'] = placements
         return target
 

@@ -35,8 +35,11 @@
 		}
 
 		$.game.state = state;
-		$.game.last_sequence_number = state['last_sequence_number'];
-		$.game.trigger("new-state", state);
+		var seq_num = state['last_sequence_number'];
+		if (seq_num > $.game.last_sequence_number){
+			$.game.last_sequence_number = state['last_sequence_number'];
+			$.game.trigger("new-state", state);
+		}
 	}
 
 	$.game.run_action = function(request){

@@ -178,16 +178,15 @@ class GamePlayHandler(BaseHandler):
 
         game_instance = get_game_instance(game_id)
 
-        action = self.request.get('action')
+        self.request_data = json.loads(self.request.body)
+        action = self.request_data['action']
         try:
-            self.postHandlers[action](game_instance)
+            self.postHandlers[action](game_instance, self.request_data)
         except NotTurnException:
             self.error_responce('not-turn')
-        except InvalidStateException:
-            self.error_responce('invalid-state')
 
     def post_action(self, game_state, new_action):
-        last_seq_num = int(self.request.get('last_sequence_number'))
+        last_seq_num = int(self.request_data['last_sequence_number'])
         actions = game_state.get_actions_since(last_seq_num)
         # Construct result
         result = {}

@@ -50,8 +50,8 @@ class ConquestGamePlayHandler(GamePlayHandler):
         self.render_response('play_conquest.html')
 
     def make_action(self, target):
-        def run_action(game_instance):
+        def run_action(game_instance, request_data):
             game_state = game_instance.current_state
-            new_action = target(game_state, self.request)
+            new_action = target(game_state, request_data)
             self.post_action(game_state, new_action)
         return run_action

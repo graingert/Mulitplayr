@@ -105,6 +105,7 @@ class BaseGameAction(polymodel.PolyModel):
     sequence_number = db.IntegerProperty()
     player_index = db.IntegerProperty()
     new_state = db.StringProperty()
+    action_type = 'invalid'
 
     def get_info_dict(self, target=None):
         """ Fill info about action into a dict. """
@@ -114,8 +115,13 @@ class BaseGameAction(polymodel.PolyModel):
         target['sequence_number'] = self.sequence_number
         if self.new_state != None:
             target['new_state'] = self.new_state
+        target['action_type'] = self.action_type
 
         return target
+
+
+class StateChangeAction(BaseGameAction):
+    action_type = 'state_change'
 
 
 class BaseGameInstance(polymodel.PolyModel):

@@ -26,6 +26,9 @@ class TerritoryMapper():
     def get_territory_label(self, index):
         return self.territory_labels[index]
 
+    def get_size(self):
+        return len(self.territory_indexes)
+
 
 def get_territory_mapper():
     app = webapp2.get_app()
@@ -94,19 +97,24 @@ class ConquestGameState(BaseGameState):
         self.check_state('place')
         self.is_current_player()
 
-        placements = request.POST.getall('placements[]')
+        placements = request['placements']
+
+        territory_mapper = get_territory_mapper()
+        player_data = self.get_current_player_data()
 
         action = PlaceAction(parent = self)
         self.add_action(action)
-        player_data = self.get_current_player_data()
 
         total_units_placed = 0
-        for i,placement in enumerate(placements):
-            num_placed = int(placement)
-            total_units_placed += num_placed
-            self.territory_units[i] = num_placed
-            self.territory_player[i] = self.current_player_index
-            action.placed_units.append(num_placed)
+        for i in range(territory_mapper.get_size()):
+            action.placed_units.append(0)
+        for placement in placements:
+            placement_index = territory_mapper.get_territory_index(placement['location'])
+            units = placement['units']
+            total_units_placed += units
+            action.placed_units[placement_index] = units
+            self.territory_units[placement_index] = units
+            self.territory_player[placement_index] = self.current_player_index
         if total_units_placed > player_data.owned_armies:
             raise InvalidActionParametersException()
         self.users_placed += 1
@@ -122,20 +130,25 @@ class ConquestGameState(BaseGameState):
         self.check_state('reinforce')
         self.is_current_player()
 
-        placements = request.POST.getall('placements[]')
+        placements = request['placements']
         
-        action = PlaceAction(parent = self)
-        self.add_action(action)
+        territory_mapper = get_territory_mapper()
         player_data = self.get_current_player_data()
 
+        action = PlaceAction(parent = self)
+        self.add_action(action)
+
         total_units_placed = 0
-        for i,placement in enumerate(placements):
-            if self.territory_player[i] != self.current_player_index:
+        for i in range(territory_mapper.get_size()):
+            action.placed_units.append(0)
+        for placement in placements:
+            placement_index = territory_mapper.get_territory_index(placement['location'])
+            units = placement['units']
+            total_units_placed += units
+            action.placed_units[placement_index] = units
+            if self.territory_player[placement_index] != self.current_player_index:
                 raise InvalidActionParametersException()
-            num_placed = int(placement)
-            total_units_placed += num_placed
-            self.territory_units[i] += num_placed
-            action.placed_units.append(num_placed)
+            self.territory_units[placement_index] += units
         if total_units_placed > player_data.owned_armies:
             raise InvalidActionParametersException()
 
@@ -196,7 +209,7 @@ class ConquestGameState(BaseGameState):
         self.check_state('attack')
         self.is_current_player()
 
-        action = BaseGameAction(parent = self)
+        action = StateChangeAction(parent = self)
         self.add_action(action)
 
         action.new_state = 'fortify'
@@ -240,7 +253,7 @@ class ConquestGameState(BaseGameState):
         self.check_state('fortify')
         self.is_current_player()
 
-        action = BaseGameAction(parent = self)
+        action = StateChangeAction(parent = self)
         self.add_action(action)
 
         action.new_state = 'reinforce'
@@ -275,6 +288,7 @@ class ConquestGameInstance(BaseGameInstance):
 
 class PlaceAction(BaseGameAction):
     placed_units = db.ListProperty(int)
+    action_type = 'place'
 
     def get_info_dict(self, target=None):
         """ Fill info about state into a dict """
@@ -287,7 +301,6 @@ class PlaceAction(BaseGameAction):
             label = territory_mapper.get_territory_label(i)
             placements[label] = placement
         target['placed_units'] = placements
-        target['action_type'] = 'place'
         return target
 
 
@@ -297,7 +310,7 @@ class AttackAction(BaseGameAction):
     attackers = db.IntegerProperty()
     attack_rolls = db.ListProperty(int)
     defend_rolls = db.ListProperty(int)
-
+    action_type = 'attack'
 
     def get_info_dict(self, target=None):
         """ Fill info about state into a dict """
@@ -308,7 +321,6 @@ class AttackAction(BaseGameAction):
         target['origin'] = territory_mapper.get_territory_label(self.origin)
         target['destination'] = territory_mapper.get_territory_label(self.destination)
         target['attackers'] = self.attackers
-        target['action_type'] = 'attack'
         return target
 
 
@@ -316,6 +328,7 @@ class MoveAction(BaseGameAction):
     origin = db.IntegerProperty()
     destination = db.IntegerProperty()
     units = db.IntegerProperty()
+    action_type = 'move'
 
     def get_info_dict(self, target=None):
         """ Fill info about state into a dict """
@@ -326,5 +339,4 @@ class MoveAction(BaseGameAction):
         target['origin'] = territory_mapper.get_territory_label(self.origin)
         target['destination'] = territory_mapper.get_territory_label(self.destination)
         target['units'] = self.units
-        target['action_type'] = 'move'
         return target

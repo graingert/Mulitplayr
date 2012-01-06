@@ -10,6 +10,8 @@
 	g.region:hover path{fill: #770077 !important;}
 	g.continent>path:hover{fill: #770077 !important;}
 </style>
+
+<script src="/static/Dice/diceRoll.js"></script>
 <script>
 	if ($.templates == null)
 		$.templates = {};
@@ -58,7 +60,24 @@
 
 {% block content %}
 
-<div id="map"/>
+
 
 <div id="results"/>
+
+<div>
+<a href="#" id="start">START</a>
+<a href="#" id="stop">STOP</a>
+<a href="#" id="test">TEST</a>
+
+	<div id="attackDice">
+		<span id="attackDie1"></span>
+		<span id="attackDie2"></span>
+		<span id="attackDie3"></span>
+	</div>
+<br />
+	<div id="defenceDice">
+		<span id="defenceDie1"></span>
+		<span id="defenceDie2"></span>
+	</div>
+</div>
 {% endblock %}

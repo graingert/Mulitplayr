@@ -2,15 +2,7 @@
 
 {% block head %}
 {{ super() }}
-<style type="text/css">
-	body{padding-top: 40px; background: #eee}
-	.content{background: #fff;}
-	.sidebar div{background: #fff; padding: 4px; border: 1px solid #bbb; margin-top: 4px;}
-	#map{background: #7799ee;}
-	g.region:hover path{fill: #770077 !important;}
-	g.continent>path:hover{fill: #770077 !important;}
-	g.region[data-units="0"] tspan{display:none;}
-</style>
+<link rel=StyleSheet href="/static/conquest.css" type="text/css">
 <script>
 	if ($.templates == null)
 		$.templates = {};

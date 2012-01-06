@@ -9,6 +9,7 @@
 	#map{background: #7799ee;}
 	g.region:hover path{fill: #770077 !important;}
 	g.continent>path:hover{fill: #770077 !important;}
+	g.region[data-units="0"] tspan{display:none;}
 </style>
 <script>
 	if ($.templates == null)
@@ -29,17 +30,21 @@
 	
 	function prepmap() {
 		$('#map g.region').click(function() {
-				alert($(this).prop('id'));
-				});
-
-		// hack as regions unfinished
-		$('#map g.continent>path').click(function() {
-				alert($(this).prop('id'));
-				});
+			$.game.trigger("region-select", $(this))
+		});
+		
+		$('#map g.region').attr("data-owner", -1);
+		$('#map g.region').attr("data-units", 0);
+		$('#map g.region tspan').text("0");
+		
 	};
 	
 	$(document).ready(function() {
 		$('#map').load('/static/board/map.svg', prepmap);
+		
+		$.game.on("region-select", function(event, region){
+			alert($(region).attr("id"))
+		})
 	});
 </script>
 {% raw %}

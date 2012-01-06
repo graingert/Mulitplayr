@@ -69,13 +69,14 @@ class ConquestGameState(BaseGameState):
         BaseGameState.get_info_dict(self, target)
 
         territory_mapper = get_territory_mapper()
-        territories = {}
+        territories = []
         for i in range(len(self.territory_units)):
             label = territory_mapper.get_territory_label(i)
-            data = {'player':self.territory_player[i],
+            data = {'id':label,
+                    'player':self.territory_player[i],
                     'units':self.territory_units[i]
                    }
-            territories[label] = data
+            territories.append(data)
         target['territories'] = territories
 
         return target
@@ -298,10 +299,14 @@ class PlaceAction(BaseGameAction):
             target = {}
         BaseGameAction.get_info_dict(self, target)
         territory_mapper = get_territory_mapper()
-        placements = {}
+        placements = []
         for i,placement in enumerate(self.placed_units):
-            label = territory_mapper.get_territory_label(i)
-            placements[label] = placement
+            if placement > 0:
+                label = territory_mapper.get_territory_label(i)
+                data = {'id':label,
+                        'units':placement
+                       }
+                placements.append(data)
         target['placed_units'] = placements
         return target
 

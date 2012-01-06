@@ -2,7 +2,7 @@
 	if ($.game == null)
 		$.game = $({});
 
-	$.game.last_sequence_number = -1;
+	$.game.last_sequence_number = -2; // -1 is server no state
 	$.game.state = null;
 	$.game.actions = [];
 

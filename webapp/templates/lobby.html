@@ -5,6 +5,7 @@
 <table>
 	<thead>
 		<th>ID</th>
+		<th>Game Type</th>
 		<th>Players</th>
 		<th class="pull-right"></th>
 	</thead>
@@ -12,6 +13,7 @@
 		{% for game in games %}
 		<tr>
 		<td>{{game.key().id()}}</td>
+		<td>{{game.human_name}}</td>
 		<td>{{game.players|count}} of {{game.max_players}}</td>
 		<td style="text-align: right">
 		<a class="btn info" href="{{ uri_for('gameinfo', game_id=game.key().id()) }}">View</a>

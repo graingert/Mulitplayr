@@ -130,6 +130,7 @@ class BaseGameInstance(polymodel.PolyModel):
     players = db.ListProperty(db.Key) # Keys for UserProfile
     current_state = db.ReferenceProperty(BaseGameState)
     game_name = 'basegame' # This *MUST* be the same as gamename
+    human_name = 'Base Game'
     max_players = 2
 
     def start_game(self):

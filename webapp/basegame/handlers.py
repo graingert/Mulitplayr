@@ -254,7 +254,7 @@ class ActiveGamesHandler(BaseHandler):
             game_dict = {
                     'awaitingPlayerMove': (current_player == user),
                     'currentPlayer': current_player.name,
-                    'type': self.app.config['games'][game.game_name]['human'],
+                    'type': game.human_name,
                     'uri': webapp2.uri_for(game.play_redirect, game_id=game.key().id())
             }
             result['games'].append(game_dict)

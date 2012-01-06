@@ -2,48 +2,9 @@
 
 {% block head %}
 {{ super() }}
-<style type="text/css">
-	body{padding-top: 40px; background: #eee}
-	.content{background: #fff;}
-	.sidebar div{background: #fff; padding: 4px; border: 1px solid #bbb; margin-top: 4px;}
-	#map{background: #7799ee;}
-	g.region:hover path{fill: #770077 !important;}
-	g.continent>path:hover{fill: #770077 !important;}
-</style>
+<link rel=StyleSheet href="/static/conquest.css" type="text/css">
+<script src="/static/board/conquest.js"></script>
 
-<script src="/static/Dice/diceRoll.js"></script>
-<script>
-	if ($.templates == null)
-		$.templates = {};
-
-	function update_from_state(event, state){
-		$("#last-guess").text(state["current_number"]);
-	}
-
-	function process_action(event, action){
-		var template = $.templates.guess_result;
-		if(action["new_state"]!=null)
-			template = $.templates.guess_win_result;
-		var r_message = $(template(action));
-		$("#results").prepend(r_message);
-		r_message.hide().slideDown(400);
-	}
-	
-	function prepmap() {
-		$('#map g.region').click(function() {
-				alert($(this).prop('id'));
-				});
-
-		// hack as regions unfinished
-		$('#map g.continent>path').click(function() {
-				alert($(this).prop('id'));
-				});
-	};
-	
-	$(document).ready(function() {
-		$('#map').load('/static/board/map.svg', prepmap);
-	});
-</script>
 {% raw %}
 <script id="guess-template" type="text/x-handlebars-template">
 <div class="alert-message">
@@ -58,26 +19,17 @@
 {% endraw %}
 {% endblock %}
 
+{% block sidebar %}
+{{ super() }}
+<div id="controls-place">
+	<a id="place" class="btn" href="">Place</a>
+	<a id="reinforce" class="btn" href="">Reinforce</a>
+</div>
+{% endblock %}
+
 {% block content %}
 
-
+<div id="map"></div>
 
 <div id="results"/>
-
-<div>
-<a href="#" id="start">START</a>
-<a href="#" id="stop">STOP</a>
-<a href="#" id="test">TEST</a>
-
-	<div id="attackDice">
-		<span id="attackDie1"></span>
-		<span id="attackDie2"></span>
-		<span id="attackDie3"></span>
-	</div>
-<br />
-	<div id="defenceDice">
-		<span id="defenceDie1"></span>
-		<span id="defenceDie2"></span>
-	</div>
-</div>
 {% endblock %}

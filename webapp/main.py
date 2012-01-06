@@ -7,15 +7,12 @@ config = {
     # human readable game names, etc)
     'games': {
         'conquest': {
-            'human': 'Conquest',
             'model': 'conquest.models',
         },
         'simple': {
-            'human': 'Number Guessing',
             'model': 'simplegame.models',
         },
         'ox': {
-            'human': 'Naughts and Crosses',
             'model': 'ox.models',
         },
     }

@@ -38,7 +38,9 @@
         padding: 20px 20px 10px;
         margin: -20px -20px 20px;
       }
-      
+      .brand {
+		font-family: 'Arizonia', cursive;
+      }
 	#session img {
 		display: inline-block;
 		width: 20px;

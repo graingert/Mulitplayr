@@ -13,7 +13,9 @@ class TerritoryMapper():
         self.territory_indexes = {}
         self.territory_labels = {}
 
-        index_mapping_data = csv.DictReader(open("data/indexmapping.csv"))
+        index_mapping_data = csv.DictReader(
+			open("data/indexmapping.csv")
+		)
         for territory in index_mapping_data:
             index = int(territory["index"])-1
             label  = territory["label"].lower().replace(" ", "-")
@@ -110,7 +112,7 @@ class ConquestGameState(BaseGameState):
         for i in range(territory_mapper.get_size()):
             action.placed_units.append(0)
         for placement in placements:
-            placement_index = territory_mapper.get_territory_index(placement['location'])
+            placement_index = territory_mapper.get_territory_index(placement['id'])
             units = placement['units']
             total_units_placed += units
             action.placed_units[placement_index] = units
@@ -279,6 +281,7 @@ class ConquestGamePlayer(BaseGamePlayer):
 
 class ConquestGameInstance(BaseGameInstance):
     game_name = 'conquest'
+    human_name = 'Conquest'
 
     info_redirect = "conquestgameinfo"
     play_redirect = "conquestgameplay"

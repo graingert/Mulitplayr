@@ -90,6 +90,7 @@ class OxPlayer(BaseGamePlayer):
 
 class OxInstance(BaseGameInstance):
     game_name = "ox"
+    human_name = 'Naughts and Crosses'
 
     info_redirect = "oxgameinfo"
     play_redirect = "oxgameplay"

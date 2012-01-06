@@ -70,6 +70,7 @@ class SimpleGamePlayer(BaseGamePlayer):
 
 class SimpleGameInstance(BaseGameInstance):
     game_name = "simple"
+    human_name = 'Number Guessing'
 
     info_redirect = "simplegameinfo"
     play_redirect = "simplegameplay"

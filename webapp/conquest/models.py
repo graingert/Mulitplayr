@@ -16,7 +16,7 @@ class TerritoryMapper():
         index_mapping_data = csv.DictReader(open("data/indexmapping.csv"))
         for territory in index_mapping_data:
             index = int(territory["index"])-1
-            label  = territory["label"].lower()
+            label  = territory["label"].lower().replace(" ", "-")
             self.territory_indexes[label] = index
             self.territory_labels[index] = label
     

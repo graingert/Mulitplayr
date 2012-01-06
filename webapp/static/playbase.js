@@ -5,8 +5,11 @@
 	$.game.last_sequence_number = -2; // -1 is server no state
 	$.game.state = null;
 	$.game.actions = [];
+	$.game.suspend_update = false;
 
 	$.game.refresh = function(event){
+		if ($.game.suspend_update)
+			return;
 		var request = {
 			action:"update",
 			from:$.game.last_sequence_number

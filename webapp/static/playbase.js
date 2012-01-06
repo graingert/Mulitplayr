@@ -2,7 +2,7 @@
 	if ($.game == null)
 		$.game = $({});
 
-	$.game.last_sequence_number = -1;
+	$.game.last_sequence_number = -2; // -1 is server no state
 	$.game.state = null;
 	$.game.actions = [];
 
@@ -35,8 +35,11 @@
 		}
 
 		$.game.state = state;
-		$.game.last_sequence_number = state['last_sequence_number'];
-		$.game.trigger("new-state", state);
+		var seq_num = state['last_sequence_number'];
+		if (seq_num > $.game.last_sequence_number){
+			$.game.last_sequence_number = state['last_sequence_number'];
+			$.game.trigger("new-state", state);
+		}
 	}
 
 	$.game.run_action = function(request){

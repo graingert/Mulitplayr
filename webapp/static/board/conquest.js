@@ -14,6 +14,11 @@
 		r_message.hide().slideDown(400);
 	}
 
+	function user_place_units(region, units){
+		region.data("placed_units", region.data("placed_units") + units)
+		update_region_text(region)
+	}
+
 	function increase_units(region, units){
 		region.data("units", region.data("units") + units)
 		update_region_text(region)
@@ -25,8 +30,9 @@
 	}
 	
 	function update_region_text(region){
-		region.find("text").text(region.data("units"))
-		region.attr("data-units", region.data("units"));
+		var units = region.data("units") + region.data("placed_units");
+		region.find("text").text(units);
+		region.attr("data-units", units);
 	}
 	
 	function set_teritory(region_id, units, owner){
@@ -45,7 +51,8 @@
 			var country = {}
 
 			country.id = $(region).attr('id')
-			country.units = $(region).data('units')
+			country.units = $(region).data('placed_units')
+			$(region).data('placed_units', 0)
 			
 			if (country.units > 0){
 				placements.push(country)
@@ -72,13 +79,14 @@
 		});
 
 		$('#map g.region').data("units", 0);
+		$('#map g.region').data("placed_units", 0);
 	};
 	
 	$(document).ready(function() {
 		$('#map').load('/static/board/map.svg', prepmap);
 		
 		$.game.on("region-select", function(event, region){
-			increase_units($(region), 1)
+			user_place_units($(region), 1)
 		})
 
 		$('#place').click(place_units)

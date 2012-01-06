@@ -17,6 +17,9 @@
 		<td>{{game.players|count}} of {{game.max_players}}</td>
 		<td style="text-align: right">
 		<a class="btn info" href="{{ uri_for('gameinfo', game_id=game.key().id()) }}">View</a>
+		{% if game.state == 'playing' %}
+		<a class="btn primary" href="{{ uri_for(game.play_redirect, game_id=game.key().id()) }}">Play</a>
+		{% endif %}
 		</td>
 		</tr>
 		{% endfor %}

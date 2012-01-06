@@ -19,12 +19,16 @@
 {% endraw %}
 {% endblock %}
 
+{% block sidebar %}
+{{ super() }}
+<div id="controls-place">
+	<a id="place" class="btn" href="">place</a>
+</div>
+{% endblock %}
+
 {% block content %}
 
 <div id="map"></div>
-<div class="well">
-	<a id="place" class="btn" href="">Place</a>
-</div>
 
 <div id="results"/>
 {% endblock %}

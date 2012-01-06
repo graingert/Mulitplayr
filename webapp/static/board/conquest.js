@@ -16,23 +16,54 @@
 
 	function increase_units(region, units){
 		region.data("units", region.data("units") + units)
-		region.find("text").text(region.data("units"))
+		update_region_text(region)
 	}
 
 	function decrease_units(region, units){
 		region.data("units", region.data("units") - units)
+		update_region_text(region)
+	}
+	
+	function update_region_text(region){
 		region.find("text").text(region.data("units"))
+		region.attr("data-units", region.data("units"));
+	}
+	
+	function set_teritory(region_id, units, owner){
+		region = $('#' + region_id);
+		
+		region.data("units", units)
+		region.attr("data-owner", owner)
+		update_region_text(region)
 	}
 
 	function place_units(event){
 		event.preventDefault();
+		var placements = [];
+		
 		$("#map g.region").each(function(index, region){
-			var id = $(region).attr('id')
-			var units = $(region).data('units')
-			console.log(id)
-			console.log(units)
+			var country = {}
+
+			country.id = $(region).attr('id')
+			country.units = $(region).data('units')
+			
+			if (country.units > 0){
+				placements.push(country)
+			}
+			
 		});
-		alert("place")
+		
+		$.game.run_action({
+			action:"place",
+			placements:placements,
+		});
+		
+	}
+	
+	function update_from_state(event, state){
+		$.each(state.territories, function(index, region){
+			set_teritory(region.id, region.units, region.owner)
+		})
 	}
 	
 	function prepmap() {
@@ -41,8 +72,6 @@
 		});
 
 		$('#map g.region').data("units", 0);
-		$('#map g.region').each(attach_incr)
-
 	};
 	
 	$(document).ready(function() {
@@ -53,4 +82,6 @@
 		})
 
 		$('#place').click(place_units)
+		
+		$.game.on("new-state", update_from_state);
 	});

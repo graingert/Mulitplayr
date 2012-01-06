@@ -112,7 +112,7 @@ class ConquestGameState(BaseGameState):
         for i in range(territory_mapper.get_size()):
             action.placed_units.append(0)
         for placement in placements:
-            placement_index = territory_mapper.get_territory_index(placement['location'])
+            placement_index = territory_mapper.get_territory_index(placement['id'])
             units = placement['units']
             total_units_placed += units
             action.placed_units[placement_index] = units

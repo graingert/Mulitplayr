@@ -76,14 +76,14 @@ $(function() {
 		var i = 0;
 		for (i=0;i<diceArray.length;i++){
 			var randomNum = Math.ceil(Math.random()*6);
-			diceArray[i].empty(); $(diceArray[i]).append(attackDiceBlur[randomNum]);
+			diceArray[i].empty(); $(diceArray[i]).append(attackDiceBlur[randomNum].clone());
 		}
 	}
 	function rollDefenceDice(diceArray){
 		var i = 0;
 		for (i=0;i<diceArray.length;i++){
 			var randomNum = Math.ceil(Math.random()*6);
-			diceArray[i].empty(); $(diceArray[i]).append(defenceDiceBlur[randomNum]);
+			diceArray[i].empty(); $(diceArray[i]).append(defenceDiceBlur[randomNum].clone());
 		}
 	}
 	
@@ -101,14 +101,13 @@ $(function() {
 		clearInterval(stopAttackRollID);
 		clearInterval(stopDefenceRollID);
 		
-		stopAttackRollID = 0;
-					
-		$("#attackDie1").empty();$("#attackDie1").append(attackDice[attack1]);
-		$("#attackDie2").empty();$("#attackDie2").append(attackDice[attack2]);
-		$("#attackDie3").empty();$("#attackDie3").append(attackDice[attack3]);
+
+		$("#attackDie1").empty();$("#attackDie1").append(attackDice[attack1].clone());
+		$("#attackDie2").empty();$("#attackDie2").append(attackDice[attack2].clone());
+		$("#attackDie3").empty();$("#attackDie3").append(attackDice[attack3].clone());
 				
-		$("#defenceDie1").empty();$("#defenceDie1").append(defenceDice[defence1]);
-		$("#defenceDie2").empty();$("#defenceDie2").append(defenceDice[defence2]);
+		$("#defenceDie1").empty();$("#defenceDie1").append(defenceDice[defence1].clone());
+		$("#defenceDie2").empty();$("#defenceDie2").append(defenceDice[defence2].clone());
 		
 		$("#attackDie1").fadeTo(500, 1);
 		if (attack2 != 0) {$("#attackDie2").fadeTo(500, 1);}
@@ -129,15 +128,11 @@ $(function() {
 	});
 	
 	$("#test").click(function() {
-	 //console.log(attackDice[1].replace("id=\"die\"", "id=this is a test ID").toString);
-		$("#attackDie1").empty();$("#attackDie1").append(attackDice[1]);
-		$("#attackDie2").empty();$("#attackDie2").append(attackDice[2]);
-		$("#attackDie3").empty();$("#attackDie3").append(attackDice[3]);
+		$("#attackDie1").empty();$("#attackDie1").append(attackDice[1].clone);
+		$("#attackDie2").empty();$("#attackDie2").append(attackDice[2].clone);
+		$("#attackDie3").empty();$("#attackDie3").append(attackDice[3].clone);
 		
-		$("#defenceDie1").empty();$("#defenceDie1").append(defenceDice[4]);
-		$("#defenceDie2").empty();$("#defenceDie2").append(defenceDice[5]);
-		
-		console.log("die1 should be red1");
-		console.log(attackDice.length);
+		$("#defenceDie1").empty();$("#defenceDie1").append(defenceDice[4].clone);
+		$("#defenceDie2").empty();$("#defenceDie2").append(defenceDice[5].clone);
 	})
 });

@@ -39,6 +39,7 @@ function Region(id, region_svg){
 		$(this.region_svg).attr("data-units", total_units);
 		$(this.region_svg).attr("data-owner", this.owner);
 		$(this.region_svg).find("text").text(unit_text);
+		$(this.region_svg).attr("is-mine", $.game.my_player_index == this.owner);
 	}
 }
 
@@ -94,7 +95,7 @@ conquest.place_action = function(event){
 	event.preventDefault();
 	$.game.run_action({
 		action:"place",
-		placements:this.get_placements(),
+		placements:conquest.get_placements(),
 	});
 }
 
@@ -102,13 +103,47 @@ conquest.reinforce_action = function(event){
 	event.preventDefault();
 	$.game.run_action({
 		action:"reinforce",
-		placements:this.get_placements(),
+		placements:conquest.get_placements(),
 	});
+}
+
+conquest.attack_action = function(event){
+	event.preventDefault();
+	$.game.run_action({
+		action:"attack",
+		origin:conquest.origin.id,
+		destination:conquest.destination.id,
+		attackers:1,
+	});
+}
+
+conquest.attack_victory_action = function(event){
+	event.preventDefault();
+	$.game.run_action({
+		action:"attack_victory",
+		units:1,
+	});
+}
+
+//TODO: move_action - requires origin, destination and number of troops
+
+conquest.end_phase_action = function(event){
+	event.preventDefault();
+	if ($.game.state.state == 'attack'){
+		$.game.run_action({
+			action:"end_attack",
+		});
+	}
+	if ($.game.state.state == 'fortify'){
+		$.game.run_action({
+			action:"end_move",
+		});
+	}
 }
 
 conquest.update_from_state = function(event, state){
 	$.each(state.territories, function(index, region){
-		conquest.regions[region.id].set_data(region.units, 0, region.owner);
+		conquest.regions[region.id].set_data(region.units, 0, region.player);
 	})
 }
 
@@ -125,7 +160,7 @@ conquest.ui.place_unit = function(event, region){
 
 conquest.ui.select_region = function(event, region){
 	if ($.game.state.state == 'attack' ||
-		$.game.state.state == 'move'){
+		$.game.state.state == 'fortify'){
 		region_obj = get_region_obj(region);
 		conquest.select_region(region_obj);
 	}
@@ -150,6 +185,10 @@ $(function() {
 	$.game.on("region-select", conquest.ui.select_region)
 	$('#place').click(conquest.place_action)
 	$('#reinforce').click(conquest.reinforce_action)
+	$('#attack').click(conquest.attack_action)
+	$('#attack_victory').click(conquest.attack_victory_action)
+	$('#end_phase').click(conquest.end_phase_action)
+	//$('#move').click(conquest.move_action)
 	
 	$.game.on("new-state", conquest.update_from_state);
 });

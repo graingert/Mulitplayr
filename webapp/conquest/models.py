@@ -60,6 +60,8 @@ class ConquestGameState(BaseGameState):
     state = db.StringProperty(choices=possible_states, default='init')
     territory_units = db.ListProperty(int)
     territory_player = db.ListProperty(int)
+    attack_victory_origin = db.IntegerProperty()
+    attack_victory_destination = db.IntegerProperty()
     users_placed = db.IntegerProperty()
 
     def get_info_dict(self, target=None):
@@ -85,10 +87,14 @@ class ConquestGameState(BaseGameState):
         """ Setup the initial state. """
         self.check_state('init')
 
+        territory_ownership = random.shuffle(range(42))
+        player = 0
+
         self.users_placed = 0
         for territory in range(42):
             self.territory_units.append(0)
-            self.territory_player.append(-1)
+            self.territory_player.append(player)
+            player = (player + 1) % self.total_players
         
         for player in players:
             player.owned_armies = 50 - 5 * self.total_players
@@ -165,9 +171,11 @@ class ConquestGameState(BaseGameState):
         self.check_state('attack')
         self.is_current_player()
 
-        origin = int(request.get('origin'))
-        destination = int(request.get('destination'))
-        attackers = int(request.get('attackers'))
+        territory_mapper = get_territory_mapper()
+
+        origin = territory_mapper.get_territory_index(request['origin'])
+        destination = territory_mapper.get_territory_index(request['destination'])
+        attackers = int(request['attackers'])
 
         if self.territory_player[origin] != self.current_player_index:
             raise InvalidActionParametersException()
@@ -197,13 +205,39 @@ class ConquestGameState(BaseGameState):
 
         if self.territory_units[destination] <= 0:
             self.territory_player[destination] = self.current_player_index
+            self.attack_victory_origin = origin
+            self.attack_victory_destination = destination
             action.new_state = 'attack_victory'
+            self.state = 'attack_victory'
 
         action.origin = origin
         action.destination = destination
         action.attackers = attackers
         action.attack_rolls = attack_dice
         action.defend_rolls = defend_dice
+
+        return action
+    
+    def attack_victory_action(self, request):
+        """ Move after win attack """
+        self.check_state('attack_victory')
+        self.is_current_player()
+
+        units = int(request['units'])
+        if units < 1:
+            raise InvalidActionParametersException
+
+        action = MoveAction(parent = self)
+        self.add_action(action)
+
+        action.origin = self.attack_victory_origin
+        action.destination = self.attack_victory_destination
+        self.territory_units[action.origin] -= units
+        self.territory_units[action.destination] += units
+        action.units = units
+
+        action.new_state = 'attack'
+        self.state = 'attack'
 
         return action
 
@@ -225,15 +259,19 @@ class ConquestGameState(BaseGameState):
         self.check_state('fortify')
         self.is_current_player()
 
-        origin = int(request.get('origin'))
-        destination = int(request.get('destination'))
-        units = int(request.get('units'))
+        territory_mapper = get_territory_mapper()
+
+        origin = territory_mapper.get_territory_index(request['origin'])
+        destination = territory_mapper.get_territory_index(request['destination'])
+        units = int(request['units'])
+
+        if self.territory_player[origin] != self.current_player_index:
+            raise InvalidActionParametersException
+        if self.territory_player[destination] != self.current_player_index:
+            raise InvalidActionParametersException
 
         units_at_origin = self.territory_units[origin]
         if units >= units_at_origin:
-            raise InvalidActionParametersException
-
-        if self.territory_player[destination] != self.current_player_index:
             raise InvalidActionParametersException
 
         self.territory_units[origin] -= units
@@ -248,6 +286,7 @@ class ConquestGameState(BaseGameState):
 
         action.new_state = 'reinforce'
         self.state = 'reinforce'
+        self.end_turn()
 
         return action
 
@@ -261,6 +300,7 @@ class ConquestGameState(BaseGameState):
 
         action.new_state = 'reinforce'
         self.state = 'reinforce'
+        self.end_turn()
 
         return action
 

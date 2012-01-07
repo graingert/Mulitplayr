@@ -11,6 +11,10 @@
 		event.preventDefault();
 	}
 	function startgame(event){
+		event.preventDefault();
+		if ($(this).hasClass("disabled")) {
+			return;
+		}
 		$.post("./", {action:"start"},
 		function(data){
 			if (data.success)
@@ -59,7 +63,11 @@
 	{% if profile.key() not in game.players %}
 	<a class="btn primary" href="#" id="joingame">Join</a>
 	{% else %}
+	{% if game.players|length < game.min_players %}
+	<a class="btn disabled" href="#" id="startgame">Start</a> (Not enough players. A minimum or {{ game.min_players }} is required to start this game.)
+	{% else %}
 	<a class="btn primary" href="#" id="startgame">Start</a>
+	{% endif %}
 	{% endif %}
 	{% endif %}
 	{% if game.state == "playing" %}

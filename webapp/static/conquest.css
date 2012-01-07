@@ -53,7 +53,7 @@ g.region[data-units="0"] tspan{
 }
 
 g.region[data-owner="-1"] text{
-    font-size:15px;text-shadow: 0em 0em 0.5em white;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-webkit-user-select: none;
+    font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-webkit-user-select: none;
 	-khtml-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
@@ -61,6 +61,14 @@ g.region[data-owner="-1"] text{
 	user-select: none;
 	cursor:default;
 }
+
+g.region[data-owner="-1"] circle{stroke: black; fill:white; opacity:0; filter:alpha(opacity=0);
+
+}
+
+g.region[data-owner="1"] circle{stroke: black; fill:white;
+}
+
 
 #connections path{
     fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1.00000001, 3.00000005;stroke-dashoffset:0

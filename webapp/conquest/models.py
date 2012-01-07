@@ -1,6 +1,7 @@
 import webapp2
 import random
 import csv
+import json
 
 from google.appengine.ext import db
 from google.appengine.api import users
@@ -12,6 +13,7 @@ class TerritoryMapper():
     def __init__(self):
         self.territory_indexes = {}
         self.territory_labels = {}
+        self.territory_connections = {}
 
         index_mapping_data = csv.DictReader(
 			open("data/indexmapping.csv")
@@ -21,6 +23,13 @@ class TerritoryMapper():
             label  = territory["label"].lower().replace(" ", "-")
             self.territory_indexes[label] = index
             self.territory_labels[index] = label
+
+        border_data_json = open('data/borders.json')
+        border_data = json.load(border_data_json)
+        border_data_json.close()
+
+        for border in border_data:
+            self.territory_connections[border["id"]] = border["borders"]
     
     def get_territory_index(self, label):
         return self.territory_indexes[label]
@@ -30,6 +39,9 @@ class TerritoryMapper():
 
     def get_size(self):
         return len(self.territory_indexes)
+
+    def is_connected(self, a, b):
+        return b in self.territory_connections[a]
 
 
 def get_territory_mapper():
@@ -177,6 +189,8 @@ class ConquestGameState(BaseGameState):
         destination = territory_mapper.get_territory_index(request['destination'])
         attackers = int(request['attackers'])
 
+        if not territory_mapper.is_connected(origin, destination):
+            raise InvalidActionParametersException()
         if self.territory_player[origin] != self.current_player_index:
             raise InvalidActionParametersException()
         if self.territory_player[destination] == self.current_player_index:
@@ -265,6 +279,8 @@ class ConquestGameState(BaseGameState):
         destination = territory_mapper.get_territory_index(request['destination'])
         units = int(request['units'])
 
+        if not territory_mapper.is_connected(origin, destination):
+            raise InvalidActionParametersException()
         if self.territory_player[origin] != self.current_player_index:
             raise InvalidActionParametersException
         if self.territory_player[destination] != self.current_player_index:
@@ -322,7 +338,10 @@ class ConquestGamePlayer(BaseGamePlayer):
 class ConquestGameInstance(BaseGameInstance):
     game_name = 'conquest'
     human_name = 'Conquest'
-
+    description = """
+Battle your enemies and bring your foes to their knees in this
+exhilarating turn based conquest for world domination
+	"""
     info_redirect = "conquestgameinfo"
     play_redirect = "conquestgameplay"
 

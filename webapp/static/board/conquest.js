@@ -137,11 +137,10 @@ conquest.attack_action = function(event){
 	});
 }
 
-conquest.attack_victory_action = function(event){
-	event.preventDefault();
+conquest.attack_victory_action = function(units){
 	$.game.run_action({
 		action:"attack_victory",
-		units:1,
+		units:units,
 	});
 }
 
@@ -225,6 +224,24 @@ conquest.ui.select_region = function(event, region){
 	}
 }
 
+conquest.ui.setup_modals = function(){
+	var that = this;
+	this.attack_victory_modal = $('#attack-victory-modal').modal({backdrop:'static'});
+	fix_modal_margin(this.attack_victory_modal);
+	this.attack_victory_modal.find('.primary').click(function(){
+		that.attack_victory_modal.modal('hide');
+		conquest.attack_victory_action(1);
+	});
+}
+
+function process_attack_action(event, action, latest){
+	if (!latest) return;
+	if (action.new_state != 'attack_victory') return;
+	if (action.player_index == $.game.my_player_index){
+		conquest.ui.attack_victory_modal.modal('show');
+	}
+}
+
 function prepmap() {
 	$('#map g.region').click(function() {
 		$.game.trigger("region-select", $(this))
@@ -237,6 +254,10 @@ function prepmap() {
 	$.game.trigger("refresh");
 };
 
+function fix_modal_margin(modal){
+	modal.css('margin-top',-modal.height()/2);
+}
+
 $(function() {
 	$('#map').load('/static/board/map.svg', prepmap);
 	
@@ -245,9 +266,10 @@ $(function() {
 	$('#place').click(conquest.place_action)
 	$('#reinforce').click(conquest.reinforce_action)
 	$('#attack').click(conquest.attack_action)
-	$('#attack_victory').click(conquest.attack_victory_action)
 	$('#end_phase').click(conquest.end_phase_action)
 	$('#move').click(conquest.move_action)
 	
 	$.game.on("new-state", conquest.update_from_state);
+	$.game.on("attack-action", process_attack_action);
+	conquest.ui.setup_modals();
 });

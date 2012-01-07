@@ -3,9 +3,10 @@
 {% block head %}
 {{ super() }}
 <link rel=StyleSheet href="/static/conquest.css" type="text/css">
+<script src="http://jquery-simpletip.googlecode.com/files/jquery.simpletip-1.3.1.pack.js"></script>
+<script src="http://twitter.github.com/bootstrap/1.4.0/bootstrap-modal.js"></script>
 <script src="/static/board/conquest.js"></script>
 <script src="/static/Dice/diceRoll.js"></script>
-<script src="http://jquery-simpletip.googlecode.com/files/jquery.simpletip-1.3.1.pack.js"></script>
 
 {% raw %}
 {% endraw %}
@@ -57,4 +58,15 @@
 
 
 <div id="results"/>
+<div id="attack-victory-modal" class="modal hide fade">
+	<div class="modal-header">
+		<h3>You Won - Like a Boss</h3>
+	</div>
+	<div class="modal-body">
+		<p>Successful Attack! You have squashed those peons.</p>
+	</div>
+	<div class="modal-footer">
+		<a href="#" class="btn primary">Move a unit there now!</a>
+	</div>
+</div>
 {% endblock %}

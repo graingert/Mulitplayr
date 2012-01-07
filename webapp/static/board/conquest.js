@@ -63,6 +63,33 @@ conquest.get_placements = function(){
 	return placements;
 }
 
+conquest.select_region = function(region){
+	// Cannot just add a class due to bug with SVG dom in JQuery
+	console.log(region)
+	if (this.origin == region) {
+		$(region.region_svg).attr('origin','');
+		this.origin = null;
+		if (this.destination) {
+			$(this.destination.region_svg).attr('destination','');
+			this.destination = null;
+		}
+		$("#map").removeClass('has-selected');
+	}
+	else if (this.destination == region) {
+		$(region.region_svg).attr('destination','');
+		this.destination = null;
+	}
+	else if (!this.origin) {
+		$(region.region_svg).attr('origin','true');
+		this.origin = region;
+		$("#map").addClass('has-selected');
+	}
+	else if (!this.destination) {
+		$(region.region_svg).attr('destination','true');
+		this.destination = region;
+	}
+}
+
 conquest.place_action = function(event){
 	event.preventDefault();
 	$.game.run_action({
@@ -85,10 +112,22 @@ conquest.update_from_state = function(event, state){
 	})
 }
 
+function get_region_obj(region_dom){
+	return conquest.regions[$(region_dom).attr('id')];
+}
+
 conquest.ui.place_unit = function(event, region){
-	if ($.game.state == 'place' ||
-		$.game.state == 'reinforce'){
-		conquest.regions[$(region).attr('id')].place_units(1);
+	if ($.game.state.state == 'place' ||
+		$.game.state.state == 'reinforce'){
+		get_region_obj(region).place_units(1);
+	}
+}
+
+conquest.ui.select_region = function(event, region){
+	if ($.game.state.state == 'attack' ||
+		$.game.state.state == 'move'){
+		region_obj = get_region_obj(region);
+		conquest.select_region(region_obj);
 	}
 }
 
@@ -108,6 +147,7 @@ $(function() {
 	$('#map').load('/static/board/map.svg', prepmap);
 	
 	$.game.on("region-select", conquest.ui.place_unit)
+	$.game.on("region-select", conquest.ui.select_region)
 	$('#place').click(conquest.place_action)
 	$('#reinforce').click(conquest.reinforce_action)
 	

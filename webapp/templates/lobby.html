@@ -25,6 +25,10 @@
 		{% endfor %}
 	</tbody>
 <table>
+{% else %}
+	<div class="alert-message info">
+		<p><strong>Sorry!</strong> No Games have been created yet</p>
+	</div>
 {% endfor %}
 	<a class="btn" href="{{ uri_for('newgame') }}">New Game</a>
 {% endblock %}

@@ -15,7 +15,8 @@ config = {
         'ox': {
             'model': 'ox.models',
         },
-    }
+    },
+    'appstats': False
 }
 
 app = webapp2.WSGIApplication([
@@ -40,5 +41,6 @@ app = webapp2.WSGIApplication([
 ], debug=True, config=config)
 
 # Appstats
-from google.appengine.ext.appstats import recording
-app = recording.appstats_wsgi_middleware(app)
+if config['appstats']:
+    from google.appengine.ext.appstats import recording
+    app = recording.appstats_wsgi_middleware(app)

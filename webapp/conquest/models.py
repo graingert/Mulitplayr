@@ -322,7 +322,10 @@ class ConquestGamePlayer(BaseGamePlayer):
 class ConquestGameInstance(BaseGameInstance):
     game_name = 'conquest'
     human_name = 'Conquest'
-
+    description = """
+Battle your enemies and bring your foes to their knees in this
+exhilarating turn based conquest for world domination
+	"""
     info_redirect = "conquestgameinfo"
     play_redirect = "conquestgameplay"
 

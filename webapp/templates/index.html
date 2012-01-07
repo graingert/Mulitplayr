@@ -9,17 +9,13 @@
 
       <!-- Example row of columns -->
       <div class="row">
-        <div class="span-one-third">
-          <h2>Conquest</h2>
-          <p>Battle your enemies and bring your foes to their knees in this exhilarating turn based conquest for world domination</p>
-        </div>
-        <div class="span-one-third">
-          <h2>Guess The Number</h2>
-           <p>With co-operative and competitive gameplay, Guess The Number will have you on the edge of your seat as you stumble into ambiguity and try to snatch a random number from the jaws of the unknown</p>
-       </div>
-        <div class="span-one-third">
-          <h2>Naughts and Crosses</h2>
-           <p>9 squares, 2 players and one winner (sometimes). Pit yourself against friends and family in this onine reimagining of the classic classroom game</p>
-        </div>
+      
+		{% for game in games %}
+		<div class="span-one-third">
+			<h2>{{game.human_name}}</h2>
+			<p>{{game.description}}</p>
+			<a href="{{ uri_for('newgame-' + game.game_name) }}" class="btn">New Game</a>
+		</div>
+{% endfor %}
       </div>
 {% endblock %}

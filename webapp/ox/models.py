@@ -91,6 +91,11 @@ class OxPlayer(BaseGamePlayer):
 class OxInstance(BaseGameInstance):
     game_name = "ox"
     human_name = 'Naughts and Crosses'
+    description = """
+9 squares, 2 players and one winner (sometimes). Pit yourself against
+friends and family in this onine reimagining of the classic classroom
+game
+    """
     min_players = 2
 
     info_redirect = "oxgameinfo"

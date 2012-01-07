@@ -37,17 +37,17 @@
 			}
 		}
 
+		$.game.state = state;
+		var seq_num = state['last_sequence_number'];
 		$.game.actions = $.game.actions.concat(actions);
 		for(i in actions){
 			if (actions[i]['sequence_number'] > $.game.last_sequence_number) {
-				$.game.trigger("action-made", actions[i]);
-				var evt_name = actions[i]['type'] + "-action";
-				$.game.trigger(evt_name, actions[i]);
+				var latest = actions[i]['sequence_number'] == seq_num;
+				$.game.trigger("action-made", [actions[i],latest]);
+				var evt_name = actions[i]['action_type'] + "-action";
+				$.game.trigger(evt_name, [actions[i],latest]);
 			}
 		}
-
-		$.game.state = state;
-		var seq_num = state['last_sequence_number'];
 		if (seq_num > $.game.last_sequence_number){
 			$.game.last_sequence_number = state['last_sequence_number'];
 			$.game.trigger("new-state", state);
@@ -63,6 +63,10 @@
 			success: $.game.process_update,
 			dataType: "json"
 		});
+	}
+
+	$.game.is_my_turn = function(){
+		return $.game.state.current_player_index == $.game.my_player_index;
 	}
 
 	$(document).ready(function(){

@@ -71,6 +71,11 @@ class SimpleGamePlayer(BaseGamePlayer):
 class SimpleGameInstance(BaseGameInstance):
     game_name = "simple"
     human_name = 'Number Guessing'
+    description = """
+With co-operative and competitive gameplay, Guess The Number will have
+you on the edge of your seat as you stumble into ambiguity and try to
+snatch a random number from the jaws of the unknown
+    """
 
     info_redirect = "simplegameinfo"
     play_redirect = "simplegameplay"

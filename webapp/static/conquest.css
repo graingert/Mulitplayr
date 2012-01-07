@@ -20,12 +20,18 @@ table.clear-table td {
 	padding: 1px;
 }
 
-#map svg g.region:hover>path{
+#map.active[state="place"] g.region[is-mine="true"]:hover>path,
+#map.active[state="reinforce"] g.region[is-mine="true"]:hover>path,
+#map.active[state="attack"] g.region[is-mine="true"]:hover>path,
+#map.active.has-selected g.region[valid-selection="true"]:hover>path,
+#map.active[state="fortify"] g.region[is-mine="true"]:hover>path
+{
     fill: #770077 !important;
+	cursor: pointer;
 }
 
-#map.has-selected g.region>path{
-    fill:black !important;stroke:white!important
+#map.has-selected g.region[valid-selection="false"]>path{
+    fill:black !important;
 }
 
 #map.has-selected g.region[origin="true"]>path{
@@ -42,10 +48,6 @@ table.clear-table td {
 
 #map.show-mine g.region[is-mine="false"]>path{
     fill: red !important;
-}
-
-#map g.region[valid-selection="true"]>path{
-	fill: lime !important;
 }
 
 g.region[data-units="0"] tspan{

@@ -7,6 +7,7 @@
 	$.game.actions = [];
 	$.game.suspend_update = false;
 	$.game.my_player_index = -1;
+	$.game.my_user_data = null;
 
 	$.game.refresh = function(event){
 		if ($.game.suspend_update)
@@ -34,6 +35,7 @@
 			var player = state.players[i];
 			if (player.is_me){
 				$.game.my_player_index = i;
+				$.game.my_user_data = state.players[i];
 			}
 		}
 

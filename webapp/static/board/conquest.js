@@ -144,7 +144,15 @@ conquest.end_phase_action = function(event){
 conquest.update_from_state = function(event, state){
 	$.each(state.territories, function(index, region){
 		conquest.regions[region.id].set_data(region.units, 0, region.player);
-	})
+	});
+	if (state.players[state.current_player_index].is_me) {
+		$('#controls-place').show();
+		$('#controls-place').children().hide();
+		$('#' + state.state + '-controls').show();
+		$('#end_phase').show();
+	} else {
+		$('#controls-place').hide();
+	}
 }
 
 function get_region_obj(region_dom){

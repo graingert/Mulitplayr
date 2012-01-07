@@ -100,7 +100,7 @@ $(function() {
 	function stopDice(attack1, attack2, attack3, defence1, defence2){
 		clearInterval(stopAttackRollID);
 		clearInterval(stopDefenceRollID);
-		
+		stopAttackRollID = stopDefenceRollID = 0;
 
 		$("#attackDie1").empty();$("#attackDie1").append(attackDice[attack1].clone());
 		$("#attackDie2").empty();$("#attackDie2").append(attackDice[attack2].clone());
@@ -128,11 +128,11 @@ $(function() {
 	});
 	
 	$("#test").click(function() {
-		$("#attackDie1").empty();$("#attackDie1").append(attackDice[1].clone);
-		$("#attackDie2").empty();$("#attackDie2").append(attackDice[2].clone);
-		$("#attackDie3").empty();$("#attackDie3").append(attackDice[3].clone);
+		$("#attackDie1").empty();$("#attackDie1").append(attackDice[1].clone());
+		$("#attackDie2").empty();$("#attackDie2").append(attackDice[2].clone());
+		$("#attackDie3").empty();$("#attackDie3").append(attackDice[3].clone());
 		
-		$("#defenceDie1").empty();$("#defenceDie1").append(defenceDice[4].clone);
-		$("#defenceDie2").empty();$("#defenceDie2").append(defenceDice[5].clone);
+		$("#defenceDie1").empty();$("#defenceDie1").append(defenceDice[4].clone());
+		$("#defenceDie2").empty();$("#defenceDie2").append(defenceDice[5].clone());
 	})
 });

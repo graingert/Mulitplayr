@@ -6,6 +6,20 @@ body{
     background: #fff;
 }
 
+div.die{
+	height: 50px;
+	width: 50px;
+}
+
+table.clear-table {
+	border: none;
+}
+
+table.clear-table td {
+	border: none;
+	padding: 1px;
+}
+
 #map svg g.region:hover>path{
     fill: #770077 !important;
 }

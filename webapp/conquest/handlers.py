@@ -40,8 +40,10 @@ class ConquestGamePlayHandler(GamePlayHandler):
         self.postHandlers['place'] = self.make_action(ConquestGameState.place_action)
         self.postHandlers['reinforce'] = self.make_action(ConquestGameState.reinforce_action)
         self.postHandlers['attack'] = self.make_action(ConquestGameState.attack_action)
+        self.postHandlers['attack_victory'] = self.make_action(ConquestGameState.attack_victory_action)
         self.postHandlers['end_attack'] = self.make_action(ConquestGameState.end_attack_action)
         self.postHandlers['move'] = self.make_action(ConquestGameState.move_action)
+        self.postHandlers['end_move'] = self.make_action(ConquestGameState.end_move_action)
 
     def get_page(self, game_instance):
         game_state = game_instance.current_state

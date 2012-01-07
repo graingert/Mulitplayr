@@ -134,10 +134,14 @@ class BaseGameInstance(polymodel.PolyModel):
     game_name = 'basegame' # This *MUST* be the same as gamename
     human_name = 'Base Game'
     max_players = 2
+    min_players = 1
 
     def start_game(self):
         # Check if the game can be started
         if self.state != "open":
+            return False
+
+        if len(self.players) < self.min_players:
             return False
 
         # Set the current to the initial state

@@ -28,10 +28,6 @@ table.clear-table td {
     fill:black !important;stroke:white!important
 }
 
-#map.has-selected g.region text{
-    fill:white !important
-}
-
 #map.has-selected g.region[origin="true"]>path{
     fill: green !important;
 }

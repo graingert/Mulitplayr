@@ -230,7 +230,6 @@ class ConquestGameState(BaseGameState):
         action.destination = self.attack_victory_destination
         self.territory_units[action.origin] -= units
         self.territory_units[action.destination] += units
-        self.territory_player[destination] = self.current_player_index
         action.units = units
 
         action.new_state = 'attack'

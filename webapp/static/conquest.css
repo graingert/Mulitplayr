@@ -40,11 +40,11 @@ table.clear-table td {
     fill: #ff7f00 !important;
 }
 
-#map g.region[is-mine="true"]>path{
+#map.show-mine g.region[is-mine="true"]>path{
     fill: blue !important;
 }
 
-#map g.region[is-mine="false"]>path{
+#map.show-mine g.region[is-mine="false"]>path{
     fill: red !important;
 }
 

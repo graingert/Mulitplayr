@@ -105,6 +105,12 @@ conquest.select_region = function(region){
 	}
 }
 
+conquest.clear_selected = function(){
+	$("#map").removeClass('has-selected');
+	$('g.region').attr('valid-selection','false')
+		.attr('origin','false').attr('destination','false');
+}
+
 conquest.place_action = function(event){
 	event.preventDefault();
 	$.game.run_action({
@@ -147,6 +153,7 @@ conquest.move_action = function(event){
 		destination:conquest.destination.id,
 		units:1,
 	});
+	conquest.clear_selected();
 }
 
 conquest.end_phase_action = function(event){
@@ -155,11 +162,13 @@ conquest.end_phase_action = function(event){
 		$.game.run_action({
 			action:"end_attack",
 		});
+		conquest.clear_selected();
 	}
 	if ($.game.state.state == 'fortify'){
 		$.game.run_action({
 			action:"end_move",
 		});
+		conquest.clear_selected();
 	}
 }
 

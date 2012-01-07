@@ -44,41 +44,52 @@ function Region(id, region_svg){
 
 var conquest = {
 	regions: {},
-	get_placements: function(){
-		var placements = [];
-		for (i in conquest.regions){
-			var region = conquest.regions[i];
-			if (region.placed_units > 0){
-				placements.push({
-					id: region.id,
-					units: region.placed_units
-				});
-			}
-		}
-		return placements;
-	}
+	origin: null,
+	destination: null,
+	ui: {}
 }
 
-function place_action(event){
+conquest.get_placements = function(){
+	var placements = [];
+	for (i in conquest.regions){
+		var region = conquest.regions[i];
+		if (region.placed_units > 0){
+			placements.push({
+				id: region.id,
+				units: region.placed_units
+			});
+		}
+	}
+	return placements;
+}
+
+conquest.place_action = function(event){
 	event.preventDefault();
 	$.game.run_action({
 		action:"place",
-		placements:conquest.get_placements(),
+		placements:this.get_placements(),
 	});
 }
 
-function reinforce_action(event){
+conquest.reinforce_action = function(event){
 	event.preventDefault();
 	$.game.run_action({
 		action:"reinforce",
-		placements:conquest.get_placements(),
+		placements:this.get_placements(),
 	});
 }
 
-function update_from_state(event, state){
+conquest.update_from_state = function(event, state){
 	$.each(state.territories, function(index, region){
 		conquest.regions[region.id].set_data(region.units, 0, region.owner);
 	})
+}
+
+conquest.ui.place_unit = function(event, region){
+	if ($.game.state == 'place' ||
+		$.game.state == 'reinforce'){
+		conquest.regions[$(region).attr('id')].place_units(1);
+	}
 }
 
 function prepmap() {
@@ -93,15 +104,12 @@ function prepmap() {
 	$.game.trigger("refresh");
 };
 
-$(document).ready(function() {
+$(function() {
 	$('#map').load('/static/board/map.svg', prepmap);
 	
-	$.game.on("region-select", function(event, region){
-		conquest.regions[$(region).attr('id')].place_units(1);
-	})
-
-	$('#place').click(place_action)
-	$('#reinforce').click(reinforce_action)
+	$.game.on("region-select", conquest.ui.place_unit)
+	$('#place').click(conquest.place_action)
+	$('#reinforce').click(conquest.reinforce_action)
 	
-	$.game.on("new-state", update_from_state);
+	$.game.on("new-state", conquest.update_from_state);
 });

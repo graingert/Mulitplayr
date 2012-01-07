@@ -1,0 +1,12 @@
+#player-list .player {
+	color:red;
+}
+
+#player-list .player.me {
+	color:blue;
+}
+
+#player-list .player.active {
+	text-shadow: 0 0 10px GoldenRod;
+	font-weight:bold;
+}

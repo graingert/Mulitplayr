@@ -139,7 +139,15 @@ conquest.attack_victory_action = function(event){
 	});
 }
 
-//TODO: move_action - requires origin, destination and number of troops
+conquest.move_action = function(event){
+	event.preventDefault();
+	$.game.run_action({
+		action:"move",
+		origin:conquest.origin.id,
+		destination:conquest.destination.id,
+		units:1,
+	});
+}
 
 conquest.end_phase_action = function(event){
 	event.preventDefault();
@@ -162,6 +170,14 @@ conquest.update_from_state = function(event, state){
 		region_data.index = region.index
 	})
 	conquest.update_border_connections();
+	if (state.players[state.current_player_index].is_me) {
+		$('#controls-place').show();
+		$('#controls-place').children().hide();
+		$('#' + state.state + '-controls').show();
+		$('#end_phase').show();
+	} else {
+		$('#controls-place').hide();
+	}
 }
 
 conquest.update_border_connections = function(){
@@ -222,7 +238,7 @@ $(function() {
 	$('#attack').click(conquest.attack_action)
 	$('#attack_victory').click(conquest.attack_victory_action)
 	$('#end_phase').click(conquest.end_phase_action)
-	//$('#move').click(conquest.move_action)
+	$('#move').click(conquest.move_action)
 	
 	$.game.on("new-state", conquest.update_from_state);
 });

@@ -1,6 +1,7 @@
 {% extends "fluid.html" %}
 
 {% block head %}
+<link href="/static/play.css" rel="stylesheet" type='text/css' />
 <script src="/static/playbase.js"></script>
 <script>
 	function ViewController() {
@@ -75,14 +76,9 @@
 {% raw %}
 <script id="player-list-template" type="text/x-handlebars-template">
 	{{#each players}}
-	<li>
-	{{this.nickname}}
-	{{#if this.active}}
-	(active)
-	{{/if}}
-	{{#if this.is_me}}
-	(you)
-	{{/if}}
+	<li class="player {{#if this.active}}active{{/if}} {{#if this.is_me}}me{{/if}}">
+		<img class="avatar" src="{{this.gravatar_url}}"/>
+		<span class="nickname">{{this.nickname}}</span>
 	</li>
 	{{/each}}
 </script>

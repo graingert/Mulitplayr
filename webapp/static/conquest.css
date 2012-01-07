@@ -52,8 +52,8 @@ g.region[data-units="0"] tspan{
     display:none;
 }
 
-g.region[data-owner="-1"] text{
-    font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-webkit-user-select: none;
+g.region text{
+    font-size:13px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-webkit-user-select: none;
 	-khtml-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
@@ -63,11 +63,20 @@ g.region[data-owner="-1"] text{
 }
 
 g.region[data-owner="-1"] circle{stroke: black; fill:white; opacity:0; filter:alpha(opacity=0);
-
+}
+g.region[data-owner="0"] circle{stroke: black; fill:yellow;
+}
+g.region[data-owner="1"] circle{stroke: black; fill:pink;
+}
+g.region[data-owner="2"] circle{stroke: black; fill:red;
+}
+g.region[data-owner="3"] circle{stroke: black; fill:white;
+}
+g.region[data-owner="4"] circle{stroke: black; fill:orange;
+}
+g.region[data-owner="5"] circle{stroke: black; fill:blue;
 }
 
-g.region[data-owner="1"] circle{stroke: black; fill:white;
-}
 
 
 #connections path{

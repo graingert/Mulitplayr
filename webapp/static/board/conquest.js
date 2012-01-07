@@ -125,7 +125,6 @@ conquest.attack_victory_action = function(event){
 	});
 }
 
-//TODO: move_action - requires origin, destination and number of troops
 conquest.move_action = function(event){
 	event.preventDefault();
 	$.game.run_action({

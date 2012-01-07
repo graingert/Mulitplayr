@@ -10,5 +10,7 @@ class MainPage(BaseHandler):
     """
 
     def get(self):
-        self.context['games'] = find_game_instance_classes(self.app)
+        games = find_game_instance_classes(self.app)
+        games = sorted(games,key=lambda x: x.human_name)
+        self.context['games'] = games
         self.render_response("index.html")

@@ -6,11 +6,7 @@ body{
     background: #fff;
 }
 
-g.region:hover path{
-    fill: #770077 !important;
-}
-
-#map svg g.region&gt;path:hover{
+#map svg g.region:hover>path{
     fill: #770077 !important;
 }
 

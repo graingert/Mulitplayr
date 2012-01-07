@@ -125,7 +125,15 @@ conquest.attack_victory_action = function(event){
 	});
 }
 
-//TODO: move_action - requires origin, destination and number of troops
+conquest.move_action = function(event){
+	event.preventDefault();
+	$.game.run_action({
+		action:"move",
+		origin:conquest.origin.id,
+		destination:conquest.destination.id,
+		units:1,
+	});
+}
 
 conquest.end_phase_action = function(event){
 	event.preventDefault();
@@ -196,7 +204,7 @@ $(function() {
 	$('#attack').click(conquest.attack_action)
 	$('#attack_victory').click(conquest.attack_victory_action)
 	$('#end_phase').click(conquest.end_phase_action)
-	//$('#move').click(conquest.move_action)
+	$('#move').click(conquest.move_action)
 	
 	$.game.on("new-state", conquest.update_from_state);
 });

@@ -110,7 +110,7 @@ class ConquestGameState(BaseGameState):
             player = (player + 1) % self.total_players
         
         for player in players:
-            player.owned_armies = 50 - 5 * self.total_players
+            player.unit_pool = 50 - 5 * self.total_players
 
         self.state = 'place'
 
@@ -137,14 +137,16 @@ class ConquestGameState(BaseGameState):
             action.placed_units[placement_index] = units
             self.territory_units[placement_index] = units
             self.territory_player[placement_index] = self.current_player_index
-        if total_units_placed > player_data.owned_armies:
+        if total_units_placed > player_data.unit_pool:
             raise InvalidActionParametersException()
+        player_data.unit_pool -= total_units_placed;
         self.users_placed += 1
         if self.users_placed == self.total_players:
             action.new_state = 'reinforce'
             self.state = 'reinforce'
         self.end_turn()
         
+        player_data.put()
         return action
 
     def reinforce_action(self, request):
@@ -171,12 +173,14 @@ class ConquestGameState(BaseGameState):
             if self.territory_player[placement_index] != self.current_player_index:
                 raise InvalidActionParametersException()
             self.territory_units[placement_index] += units
-        if total_units_placed > player_data.owned_armies:
+        if total_units_placed > player_data.unit_pool:
             raise InvalidActionParametersException()
+        player_data.unit_pool -= total_units_placed;
 
         action.new_state = 'attack'
         self.state = 'attack'
 
+        player_data.put()
         return action
 
     def attack_action(self, request):
@@ -323,7 +327,7 @@ class ConquestGameState(BaseGameState):
 
 
 class ConquestGamePlayer(BaseGamePlayer):
-    owned_armies = db.IntegerProperty()
+    unit_pool = db.IntegerProperty()
 
     def get_info_dict(self, target=None):
         """ Fill info about player into a dict. """
@@ -331,7 +335,7 @@ class ConquestGamePlayer(BaseGamePlayer):
             target = dict()
         BaseGamePlayer.get_info_dict(self, target)
 
-        target['owned_armies'] = self.owned_armies
+        target['unit_pool'] = self.unit_pool
 
         return target
 

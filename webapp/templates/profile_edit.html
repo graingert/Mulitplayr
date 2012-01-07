@@ -4,6 +4,10 @@
 <form method="POST">
 	<table>
 		<tr>
+			<td>Avatar:</td>
+			<td><img src="{{ profile.gravatar_url() }}" /></td>
+		</tr>
+		<tr>
 			<td>Email:</td>
 			<td>{{ profile.user.email() }}</td>
 		</tr>

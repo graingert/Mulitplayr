@@ -9,6 +9,8 @@ function Region(id, region_svg){
 	this.units = 0;
 	this.placed_units = 0;
 	this.owner = -1;
+	this.index = null;
+	this.connected_regions = [];
 
 	this.modify_units = function(delta){
 		this.units += delta;
@@ -64,9 +66,12 @@ conquest.get_placements = function(){
 	return placements;
 }
 
+$.getJSON('/static/board/borders.json', function(data) {
+	conquest.border_json = data;
+});
+
 conquest.select_region = function(region){
 	// Cannot just add a class due to bug with SVG dom in JQuery
-	console.log(region)
 	if (this.origin == region) {
 		$(region.region_svg).attr('origin','');
 		this.origin = null;
@@ -75,6 +80,7 @@ conquest.select_region = function(region){
 			this.destination = null;
 		}
 		$("#map").removeClass('has-selected');
+		$('g.region[valid-selection="true"]').attr('valid-selection','false');
 	}
 	else if (this.destination == region) {
 		$(region.region_svg).attr('destination','');
@@ -84,10 +90,18 @@ conquest.select_region = function(region){
 		$(region.region_svg).attr('origin','true');
 		this.origin = region;
 		$("#map").addClass('has-selected');
+		for(i in region.connected_regions){
+			var connected = region.connected_regions[i];
+			$(connected.region_svg).attr('valid-selection','true');
+		}
 	}
-	else if (!this.destination) {
-		$(region.region_svg).attr('destination','true');
-		this.destination = region;
+	else {
+		if($(region.region_svg).attr('valid-selection') == 'true'){
+			if(this.destination != null)
+				$(this.destination.region_svg).attr('destination','false');
+			$(region.region_svg).attr('destination','true');
+			this.destination = region;
+		}
 	}
 }
 
@@ -143,8 +157,28 @@ conquest.end_phase_action = function(event){
 
 conquest.update_from_state = function(event, state){
 	$.each(state.territories, function(index, region){
-		conquest.regions[region.id].set_data(region.units, 0, region.player);
+		region_data = conquest.regions[region.id];
+		region_data.set_data(region.units, 0, region.player);
+		region_data.index = region.index
 	})
+	conquest.update_border_connections();
+}
+
+conquest.update_border_connections = function(){
+	if(conquest.border_json == null)
+		return;
+	index_mappings = {};
+	for (i in conquest.regions){
+		var region = conquest.regions[i];
+		index_mappings[region.index] = region;
+	}
+	for (i in conquest.border_json){
+		var border = conquest.border_json[i];
+		for(j in border.borders){
+			var border_to = border.borders[j];
+			index_mappings[border.id].connected_regions.push(index_mappings[border_to]);
+		}
+	}
 }
 
 function get_region_obj(region_dom){

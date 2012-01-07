@@ -87,6 +87,7 @@ class ConquestGameState(BaseGameState):
         for i in range(len(self.territory_units)):
             label = territory_mapper.get_territory_label(i)
             data = {'id':label,
+                    'index':i,
                     'player':self.territory_player[i],
                     'units':self.territory_units[i]
                    }

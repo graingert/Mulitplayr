@@ -34,6 +34,10 @@ body{
     fill: red !important;
 }
 
+#map g.region[valid-selection="true"]>path{
+	fill: lime !important;
+}
+
 g.region[data-units="0"] tspan{
     display:none;
 }

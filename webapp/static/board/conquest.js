@@ -15,11 +15,18 @@ function Region(id, region_svg){
 	this.modify_units = function(delta){
 		this.units += delta;
 		this.update_dom();
+		conquest.update_dom();
 	}
 
 	this.place_units = function(delta){
+		if (this.owner != $.game.my_player_index)
+			return;
+		if (conquest.placed_units >= $.game.my_user_data.unit_pool)
+			return;
 		this.placed_units += delta;
+		conquest.placed_units += delta;
 		this.update_dom();
+		conquest.update_dom();
 	}
 
 	this.set_data = function(units, placed_units, owner){
@@ -49,7 +56,13 @@ var conquest = {
 	regions: {},
 	origin: null,
 	destination: null,
-	ui: {}
+	placed_units: 0,
+	ui: {},
+}
+
+conquest.update_dom = function(){
+	var unit_pool = $.game.my_user_data.unit_pool - this.placed_units;
+	$('.unit-pool-count').text(unit_pool);
 }
 
 conquest.get_placements = function(){
@@ -80,7 +93,7 @@ conquest.select_region = function(region){
 			this.destination = null;
 		}
 		$("#map").removeClass('has-selected');
-		$('g.region[valid-selection="true"]').attr('valid-selection','false');
+		$('g.region').attr('valid-selection','false');
 	}
 	else if (this.destination == region) {
 		$(region.region_svg).attr('destination','');
@@ -90,6 +103,7 @@ conquest.select_region = function(region){
 		$(region.region_svg).attr('origin','true');
 		this.origin = region;
 		$("#map").addClass('has-selected');
+		$('g.region').attr('valid-selection','false');
 		for(i in region.connected_regions){
 			var connected = region.connected_regions[i];
 			$(connected.region_svg).attr('valid-selection','true');
@@ -109,6 +123,8 @@ conquest.clear_selected = function(){
 	$("#map").removeClass('has-selected');
 	$('g.region').attr('valid-selection','false')
 		.attr('origin','false').attr('destination','false');
+	conquest.origin = null;
+	conquest.destination = null;
 }
 
 conquest.place_action = function(event){
@@ -178,12 +194,17 @@ conquest.update_from_state = function(event, state){
 		region_data.index = region.index
 	})
 	conquest.update_border_connections();
+	conquest.placed_units = 0;
+	conquest.update_dom();
+	$('#map').attr('state', state.state);
 	if (state.players[state.current_player_index].is_me) {
+		$('#map').addClass('active');
 		$('#controls-place').show();
 		$('#controls-place').children().hide();
 		$('#' + state.state + '-controls').show();
 		$('#end_phase').show();
 	} else {
+		$('#map').removeClass('active');
 		$('#controls-place').hide();
 	}
 }

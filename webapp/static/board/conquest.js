@@ -39,6 +39,7 @@ function Region(id, region_svg){
 		$(this.region_svg).attr("data-units", total_units);
 		$(this.region_svg).attr("data-owner", this.owner);
 		$(this.region_svg).find("text").text(unit_text);
+		$(this.region_svg).attr("is-mine", $.game.my_player_index == this.owner);
 	}
 }
 

@@ -6,15 +6,11 @@ body{
     background: #fff;
 }
 
-g.region:hover path{
+#map svg g.region:hover>path{
     fill: #770077 !important;
 }
 
-#map svg g.region&gt;path:hover{
-    fill: #770077 !important;
-}
-
-#map.has-selected g.region&gt;path{
+#map.has-selected g.region>path{
     fill:black !important;stroke:white!important
 }
 
@@ -22,11 +18,19 @@ g.region:hover path{
     fill:white !important
 }
 
-#map.has-selected g.region[origin="true"]&gt;path{
+#map.has-selected g.region[origin="true"]>path{
     fill: green !important;
 }
 
-#map.has-selected g.region[destination="true"]&gt;path{
+#map.has-selected g.region[destination="true"]>path{
+    fill: #ff7f00 !important;
+}
+
+#map g.region[is-mine="true"]>path{
+    fill: blue !important;
+}
+
+#map g.region[is-mine="false"]>path{
     fill: red !important;
 }
 

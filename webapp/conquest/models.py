@@ -87,10 +87,14 @@ class ConquestGameState(BaseGameState):
         """ Setup the initial state. """
         self.check_state('init')
 
+        territory_ownership = random.shuffle(range(42))
+        player = 0
+
         self.users_placed = 0
         for territory in range(42):
             self.territory_units.append(0)
-            self.territory_player.append(-1)
+            self.territory_player.append(player)
+            player = (player + 1) % self.total_players
         
         for player in players:
             player.owned_armies = 50 - 5 * self.total_players

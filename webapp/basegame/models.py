@@ -96,6 +96,7 @@ class BaseGamePlayer(polymodel.PolyModel):
             target = dict()
         target['nickname'] = self.player.name
         target['play_index'] = self.play_index
+        target['gravatar_url'] = self.player.gravatar_url()
         if self.player.user == users.get_current_user():
             target['is_me'] = True
 

@@ -232,7 +232,7 @@ class GamePlayHandler(BaseHandler):
         except ValueError:
             seq_from = -1
         # Fetch the sequence query
-        actions = state.get_actions_since(max(state.last_sequence_number - 5,-1))
+        actions = state.get_actions_since(max(state.last_sequence_number - 5,seq_from))
         # Build the response data
         action_data = [action.get_info_dict() for action in actions]
         state_data = state.get_info_dict()

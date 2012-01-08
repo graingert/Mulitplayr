@@ -2,6 +2,7 @@ import webapp2
 import random
 import csv
 import json
+import math
 
 from google.appengine.ext import db
 from google.appengine.api import users
@@ -114,6 +115,16 @@ class ConquestGameState(BaseGameState):
 
         self.state = 'place'
 
+    def give_units(self, player):
+        """ Give units to player """
+        territories_owned = 0
+        for territory in self.territory_player:
+            if territory == player.play_index:
+                territories_owned += 1
+        units_given = math.floor(territories_owned/3)
+        player.unit_pool += int(units_given)
+        player.put()
+
     def place_action(self, request):
         """ Place the units at the requested territory """
         self.check_state('place')
@@ -141,10 +152,11 @@ class ConquestGameState(BaseGameState):
             raise InvalidActionParametersException()
         player_data.unit_pool -= total_units_placed;
         self.users_placed += 1
+        self.end_turn()
         if self.users_placed == self.total_players:
             action.new_state = 'reinforce'
             self.state = 'reinforce'
-        self.end_turn()
+            self.give_units(get_current_player_data())
         
         player_data.put()
         return action
@@ -208,11 +220,13 @@ class ConquestGameState(BaseGameState):
         defenders = min(possible_defenders, attackers)
 
         attack_dice, defend_dice = attacking_phase_roll_dice(attackers, defenders)
+        attack_rolls = list(attack_dice)
+        defend_rolls = list(defend_dice)
 
         win_rolls = 0
         loose_rolls = 0
         while len(attack_dice) > 0 and len(defend_dice) > 0:
-            if attack_dice.pop() > defend_dice.pop():
+            if attack_dice.popleft() > defend_dice.popleft():
                 win_rolls += 1
             else:
                 loose_rolls += 1
@@ -232,8 +246,8 @@ class ConquestGameState(BaseGameState):
         action.origin = origin
         action.destination = destination
         action.attackers = attackers
-        action.attack_rolls = attack_dice
-        action.defend_rolls = defend_dice
+        action.attack_rolls = attack_rolls
+        action.defend_rolls = defend_rolls
 
         return action
     
@@ -308,6 +322,7 @@ class ConquestGameState(BaseGameState):
         action.new_state = 'reinforce'
         self.state = 'reinforce'
         self.end_turn()
+        self.give_units(self.get_current_player_data())
 
         return action
 
@@ -322,6 +337,7 @@ class ConquestGameState(BaseGameState):
         action.new_state = 'reinforce'
         self.state = 'reinforce'
         self.end_turn()
+        self.give_units(self.get_current_player_data())
 
         return action
 
@@ -393,6 +409,8 @@ class AttackAction(BaseGameAction):
         target['origin'] = territory_mapper.get_territory_label(self.origin)
         target['destination'] = territory_mapper.get_territory_label(self.destination)
         target['attackers'] = self.attackers
+        target['attack_rolls'] = self.attack_rolls
+        target['defend_rolls'] = self.defend_rolls
         return target
 
 

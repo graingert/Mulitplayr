@@ -157,7 +157,7 @@ class ConquestGameState(BaseGameState):
         if self.users_placed == self.total_players:
             action.new_state = 'reinforce'
             self.state = 'reinforce'
-            self.give_units(get_current_player_data())
+            self.give_units(self.get_current_player_data())
         
         player_data.put()
         return action

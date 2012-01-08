@@ -68,13 +68,13 @@ g.region[data-owner="-1"] circle{stroke: black; fill:white; opacity:0; filter:al
 }
 g.region[data-owner="0"] circle{stroke: black; fill:yellow;
 }
-g.region[data-owner="1"] circle{stroke: black; fill:pink;
+g.region[data-owner="1"] circle{stroke: black; fill:purple;
 }
 g.region[data-owner="2"] circle{stroke: black; fill:red;
 }
 g.region[data-owner="3"] circle{stroke: black; fill:white;
 }
-g.region[data-owner="4"] circle{stroke: black; fill:orange;
+g.region[data-owner="4"] circle{stroke: black; fill:green;
 }
 g.region[data-owner="5"] circle{stroke: black; fill:blue;
 }

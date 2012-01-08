@@ -239,6 +239,7 @@ function get_region_obj(region_dom){
 }
 
 conquest.ui.place_unit = function(event, region){
+	if (!$.game.is_my_turn()) { return; }
 	if ($.game.state.state == 'place' ||
 		$.game.state.state == 'reinforce'){
 		get_region_obj(region).place_units(1);
@@ -246,6 +247,7 @@ conquest.ui.place_unit = function(event, region){
 }
 
 conquest.ui.select_region = function(event, region){
+	if (!$.game.is_my_turn()) { return; }
 	if ($.game.state.state == 'attack' ||
 		$.game.state.state == 'fortify'){
 		region_obj = get_region_obj(region);

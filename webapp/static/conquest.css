@@ -68,7 +68,7 @@ g.region[data-owner="-1"] circle{stroke: black; fill:white; opacity:0; filter:al
 }
 g.region[data-owner="0"] circle{stroke: black; fill:yellow; cursor:pointer;
 }
-g.region[data-owner="1"] circle{stroke: black; fill:orange; cursor:pointer;
+g.region[data-owner="1"] circle{stroke: black; fill:brown; cursor:pointer;
 }
 g.region[data-owner="2"] circle{stroke: black; fill:red; cursor:pointer;
 }

@@ -45,11 +45,19 @@ function Region(id, region_svg){
 		if (this.placed_units > 0){
 			unit_text += "+" + this.placed_units;
 		}
+		this.update_token_size(unit_text);
 		$(this.region_svg).attr("data-units", total_units);
 		$(this.region_svg).attr("data-owner", this.owner);
 		$(this.region_svg).find("text").text(unit_text);
 		$(this.region_svg).attr("is-mine", $.game.my_player_index == this.owner);
 	}
+	
+	this.update_token_size = function(unit_text){
+		circles = $(this.region_svg).find("circle");
+		var radius = 8.5 + (unit_text.length * 1.3);
+		$(circles[0]).attr("r",radius);
+	}
+	
 }
 
 var conquest = {
@@ -231,6 +239,7 @@ function get_region_obj(region_dom){
 }
 
 conquest.ui.place_unit = function(event, region){
+	if (!$.game.is_my_turn()) { return; }
 	if ($.game.state.state == 'place' ||
 		$.game.state.state == 'reinforce'){
 		get_region_obj(region).place_units(1);
@@ -238,6 +247,7 @@ conquest.ui.place_unit = function(event, region){
 }
 
 conquest.ui.select_region = function(event, region){
+	if (!$.game.is_my_turn()) { return; }
 	if ($.game.state.state == 'attack' ||
 		$.game.state.state == 'fortify'){
 		region_obj = get_region_obj(region);

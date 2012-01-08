@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% block title %}{{ super() }}Lobby{% endblock %}
+
 {% block content %}
 {% for state, games in groupedGames %}
 <h2>{{ state }}</h2>

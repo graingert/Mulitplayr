@@ -61,28 +61,28 @@ g.region text{
 	-ms-user-select: none;
 	-o-user-select: none;
 	user-select: none;
-	cursor:default;
+	cursor:pointer;
 }
 
-g.region[data-owner="-1"] circle{stroke: black; fill:white; opacity:0; filter:alpha(opacity=0);
+g.region[data-owner="-1"] circle{stroke: black; fill:white; opacity:0; filter:alpha(opacity=0); cursor:pointer;
 }
-g.region[data-owner="0"] circle{stroke: black; fill:yellow;
+g.region[data-owner="0"] circle{stroke: black; fill:yellow; cursor:pointer;
 }
-g.region[data-owner="1"] circle{stroke: black; fill:pink;
+g.region[data-owner="1"] circle{stroke: black; fill:orange; cursor:pointer;
 }
-g.region[data-owner="2"] circle{stroke: black; fill:red;
+g.region[data-owner="2"] circle{stroke: black; fill:red; cursor:pointer;
 }
-g.region[data-owner="3"] circle{stroke: black; fill:white;
+g.region[data-owner="3"] circle{stroke: black; fill:white; cursor:pointer;
 }
-g.region[data-owner="4"] circle{stroke: black; fill:orange;
+g.region[data-owner="4"] circle{stroke: black; fill:green; cursor:pointer;
 }
-g.region[data-owner="5"] circle{stroke: black; fill:blue;
+g.region[data-owner="5"] circle{stroke: black; fill:blue; cursor:pointer;
 }
 
 
 
 #connections path{
-    fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1.00000001, 3.00000005;stroke-dashoffset:0
+    fill:none;stroke:#000000;stroke-width:1.5;stroke-height:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1.00000001, 3.00000005;stroke-dashoffset:0
 }
 
 #mapframe path {

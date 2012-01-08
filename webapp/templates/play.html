@@ -77,9 +77,12 @@
 <script id="player-list-template" type="text/x-handlebars-template">
 	{{#each players}}
 	<li class="player {{#if this.active}}active{{/if}} {{#if this.is_me}}me{{/if}}" data-owner="{{this.play_index}}">
+		<div>
 		<img class="avatar" src="{{this.gravatar_url}}"/>
 		<span class="nickname">{{this.nickname}}</span>
+		</div>
 	</li>
+	
 	{{/each}}
 </script>
 {% endraw %}
@@ -89,7 +92,7 @@
 <dl>
 	<dt>Current Player</dt>
 	<dd class="current-player"></dd>
-	<dt>State</dt>
+	<dt>Game State</dt>
 	<dd class="current-state"></dd>
 </dl>
 <h2>Players</h2>

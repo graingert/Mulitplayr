@@ -3,6 +3,7 @@ import random
 import csv
 import json
 import math
+from collections import deque
 
 from google.appengine.ext import db
 from google.appengine.api import users
@@ -219,9 +220,9 @@ class ConquestGameState(BaseGameState):
             raise InvalidActionParametersException
         defenders = min(possible_defenders, attackers)
 
-        attack_dice, defend_dice = attacking_phase_roll_dice(attackers, defenders)
-        attack_rolls = list(attack_dice)
-        defend_rolls = list(defend_dice)
+        attack_rolls, defend_rolls = attacking_phase_roll_dice(attackers, defenders)
+        attack_dice = deque(attack_rolls)
+        defend_dice = deque(defend_rolls)
 
         win_rolls = 0
         loose_rolls = 0

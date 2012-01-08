@@ -207,7 +207,7 @@ class ConquestGameState(BaseGameState):
             raise InvalidActionParametersException
         defenders = min(possible_defenders, attackers)
 
-        attack_dice, defend_dice = attacking_phase_roll_dice(attackers, attackers)
+        attack_dice, defend_dice = attacking_phase_roll_dice(attackers, defenders)
 
         win_rolls = 0
         loose_rolls = 0
@@ -252,7 +252,7 @@ class ConquestGameState(BaseGameState):
         action.origin = self.attack_victory_origin
         action.destination = self.attack_victory_destination
         self.territory_units[action.origin] -= units
-        self.territory_units[action.destination] += units
+        self.territory_units[action.destination] = units
         action.units = units
 
         action.new_state = 'attack'

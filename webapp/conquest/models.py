@@ -117,13 +117,16 @@ class ConquestGameState(BaseGameState):
         self.state = 'place'
 
     def give_units(self, player):
-        """ Give units to player """
+        """ Give units to player based on teritories owned"""
         territories_owned = 0
         for territory in self.territory_player:
             if territory == player.play_index:
                 territories_owned += 1
-        units_given = math.floor(territories_owned/3)
-        player.unit_pool += int(units_given)
+        if territories_owned < 9:
+            units_given = 3
+        else:
+            units_given = math.floor(territories_owned/3)
+        player.unit_pool = int(units_given)
         player.put()
 
     def place_action(self, request):
@@ -151,7 +154,7 @@ class ConquestGameState(BaseGameState):
             self.territory_player[placement_index] = self.current_player_index
         if total_units_placed > player_data.unit_pool:
             raise InvalidActionParametersException()
-        player_data.unit_pool -= total_units_placed;
+        player_data.unit_pool = 0;
         self.users_placed += 1
         self.end_turn()
         if self.users_placed == self.total_players:

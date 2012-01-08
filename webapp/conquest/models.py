@@ -249,6 +249,8 @@ class ConquestGameState(BaseGameState):
         action.attackers = attackers
         action.attack_rolls = attack_rolls
         action.defend_rolls = defend_rolls
+        action.win_rolls = win_rolls
+        action.loose_rolls = loose_rolls
 
         return action
     
@@ -399,6 +401,8 @@ class AttackAction(BaseGameAction):
     attackers = db.IntegerProperty()
     attack_rolls = db.ListProperty(int)
     defend_rolls = db.ListProperty(int)
+    win_rolls = db.IntegerProperty()
+    loose_rolls = db.IntegerProperty()
     action_type = 'attack'
 
     def get_info_dict(self, target=None):
@@ -412,6 +416,8 @@ class AttackAction(BaseGameAction):
         target['attackers'] = self.attackers
         target['attack_rolls'] = self.attack_rolls
         target['defend_rolls'] = self.defend_rolls
+        target['win_rolls'] = self.win_rolls
+        target['loose_rolls'] = self.loose_rolls
         return target
 
 

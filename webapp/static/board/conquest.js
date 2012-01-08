@@ -256,19 +256,32 @@ conquest.ui.select_region = function(event, region){
 }
 
 conquest.ui.setup_modals = function(){
+	$(".move-unit-slider").slider({range: "min", slide:function(event,ui){
+		$(this).parent().find(".move-unit-text").text(ui.value);
+	}});
 	var that = this;
 	this.attack_victory_modal = $('#attack-victory-modal').modal({backdrop:'static'});
 	fix_modal_margin(this.attack_victory_modal);
 	this.attack_victory_modal.find('.primary').click(function(){
 		that.attack_victory_modal.modal('hide');
-		conquest.attack_victory_action(1);
+		conquest.attack_victory_action(that.attack_victory_modal.find('.move-unit-slider').slider('value'));
 	});
 }
 
-function process_attack_action(event, action, latest){
+function process_attack_action(event, action, latest, state){
 	if (!latest) return;
 	if (action.new_state != 'attack_victory') return;
 	if (action.player_index == $.game.my_player_index){
+		var can_move = conquest.regions[action.origin].units - 1 - action.loose_rolls;
+		var dice_rolled = action.attack_rolls.length;
+		var min_move = Math.min(dice_rolled, can_move);
+		var slider = conquest.ui.attack_victory_modal.find('.move-unit-slider');
+		slider.slider('option','min',min_move);
+		slider.slider('option','max',can_move);
+		slider.slider('option','value',min_move);
+		slider.parent().find(".move-unit-text").text(min_move);
+		conquest.ui.attack_victory_modal.find('.move-min').text(min_move);
+		conquest.ui.attack_victory_modal.find('.move-max').text(can_move);
 		conquest.ui.attack_victory_modal.modal('show');
 	}
 }

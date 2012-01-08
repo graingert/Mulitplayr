@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>{% block title %}Title{% endblock %}</title>
+    <title>{% block title %}Multiplayr - {% endblock %}</title>
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<script src="http://twitter.github.com/bootstrap/1.4.0/bootstrap-dropdown.min.js"></script>
@@ -62,6 +62,7 @@
 						<ul class="nav">
 							{% block nav %}
 								<li><a href="/lobby/">Lobby</a><li>
+								{% if profile %}
 								<li class="dropdown" data-dropdown="dropdown">
 									<a href="#" class="dropdown-toggle">
 										Active Games (
@@ -70,6 +71,7 @@
 									<ul class="dropdown-menu" id="active-games-dropdown">
 									</ul>
 								</li>
+								{% endif %}
 							{% endblock %}
 						</ul>
 					<ul class="nav secondary-nav">

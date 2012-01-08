@@ -38,7 +38,14 @@
 				$.game.my_user_data = state.players[i];
 			}
 		}
-
+		if ($.game.state != null){
+			for(i in actions){
+				if (actions[i]['sequence_number'] > $.game.last_sequence_number) {
+					var evt_name = actions[i]['action_type'] + "-action-animate";
+					$.game.trigger(evt_name, [actions[i]]);
+				}
+			}
+		}
 		$.game.state = state;
 		var seq_num = state['last_sequence_number'];
 		if (seq_num > $.game.last_sequence_number){

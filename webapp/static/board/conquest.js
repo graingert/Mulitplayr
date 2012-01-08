@@ -143,13 +143,13 @@ conquest.reinforce_action = function(event){
 	});
 }
 
-conquest.attack_action = function(event){
+conquest.attack_action = function(units){
 	event.preventDefault();
 	$.game.run_action({
 		action:"attack",
 		origin:conquest.origin.id,
 		destination:conquest.destination.id,
-		attackers:1,
+		attackers:units,
 	});
 }
 
@@ -286,7 +286,9 @@ $(function() {
 	$.game.on("region-select", conquest.ui.select_region)
 	$('#place').click(conquest.place_action)
 	$('#reinforce').click(conquest.reinforce_action)
-	$('#attack').click(conquest.attack_action)
+	$('#attack1').click(function(){conquest.attack_action(1)})
+	$('#attack2').click(function(){conquest.attack_action(2)})
+	$('#attack3').click(function(){conquest.attack_action(3)})
 	$('#end_phase').click(conquest.end_phase_action)
 	$('#move').click(conquest.move_action)
 	

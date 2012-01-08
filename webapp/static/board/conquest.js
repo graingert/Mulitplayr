@@ -54,7 +54,7 @@ function Region(id, region_svg){
 	
 	this.update_token_size = function(unit_text){
 		circles = $(this.region_svg).find("circle");
-		var radius = 8.5 + (unit_text.length * 1.1);
+		var radius = 8.5 + (unit_text.length * 1.3);
 		$(circles[0]).attr("r",radius);
 	}
 	

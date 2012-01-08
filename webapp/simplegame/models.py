@@ -86,6 +86,7 @@ snatch a random number from the jaws of the unknown
 
 class SimpleGameAction(BaseGameAction):
     guessed_number = db.IntegerProperty()
+    action_type = "guess"
 
     def get_info_dict(self, target=None):
         """ Fill info about state into a dict. """
@@ -93,7 +94,6 @@ class SimpleGameAction(BaseGameAction):
             target = {}
         BaseGameAction.get_info_dict(self, target)
         
-        target['type'] = 'guess'
         target['guessed_number'] = self.guessed_number
         if self.guessed_number < self.parent().correct_number:
             target['dir'] = "Higher"

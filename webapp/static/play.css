@@ -1,12 +1,35 @@
+ul#player-list {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
 #player-list .player {
-	color:red;
+	color:black;
 }
 
 #player-list .player.me {
-	color:blue;
 }
 
 #player-list .player.active {
-	text-shadow: 0 0 10px GoldenRod;
 	font-weight:bold;
+}
+
+#player-list .player[data-owner="0"]{
+	background-color:yellow;
+}
+#player-list .player[data-owner="1"]{
+	background-color:orange;
+}
+#player-list .player[data-owner="2"]{
+	background-color:red;
+}
+#player-list .player[data-owner="3"]{
+	background-color:white;
+}
+#player-list .player[data-owner="4"]{
+	background-color:green;
+}
+#player-list .player[data-owner="5"]{
+	background-color:blue;
 }

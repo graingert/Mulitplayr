@@ -59,7 +59,6 @@ class BaseGameState(polymodel.PolyModel):
                 next_index = 0
             if next_index == original_index:
                 return False
-            print next_index
             new_player_data = players.filter('play_index', next_index).get()
             if not new_player_data.eliminated:
                 found_next_player == True

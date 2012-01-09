@@ -48,10 +48,21 @@ class BaseGameState(polymodel.PolyModel):
     def end_turn(self):
         """ Move to the next player. """
         players = self.basegameplayer_set
-        next_index = self.current_player_index + 1
-        if next_index >= self.total_players:
-            next_index = 0
+        original_index = self.current_player_index
+        found_next_player = False
+        if self.total_players == 1:
+            return True
+        while not found_next_player:
+            next_index = self.current_player_index + 1
+            if next_index >= self.total_players:
+                next_index = 0
+            if next_index == original_index:
+                return False
+            if !players.filter('play_index', next_index).get().eliminate:
+                found_next_player == True
+
         self.current_player_index = next_index
+        return True
 
     def setup(self,players):
         """ Setup the initial state. """
@@ -89,6 +100,7 @@ class BaseGamePlayer(polymodel.PolyModel):
     game_state = db.ReferenceProperty(BaseGameState)
     player = db.ReferenceProperty(UserProfile)
     play_index = db.IntegerProperty()
+    eliminated = db.BooleanProperty(default=False)
 
     def get_info_dict(self, target=None):
         """ Fill info about player into a dict. """

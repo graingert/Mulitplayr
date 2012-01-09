@@ -271,7 +271,7 @@ conquest.ui.select_region = function(event, region){
 
 
 conquest.ui.setup_modals = function(){
-	$(".move-unit-slider").slider({range: "min", slide:function(event,ui){
+	$(".move-unit-slider").slider({range: "min", min:1, max:3, slide:function(event,ui){
 		$(this).parent().find(".move-unit-text").text(ui.value);
 	}});
 	var that = this;
@@ -331,9 +331,9 @@ $(function() {
 	$.game.on("region-right-click", conquest.ui.subtract_unit)
 	$('#place').click(conquest.place_action)
 	$('#reinforce').click(conquest.reinforce_action)
-	$('#attack1').click(function(){conquest.attack_action(1)})
-	$('#attack2').click(function(){conquest.attack_action(2)})
-	$('#attack3').click(function(){conquest.attack_action(3)})
+	$('#attack').click(function(){
+		conquest.attack_action($('#attack-controls .move-unit-slider').slider("value"))
+	})
 	$('#end_phase').click(conquest.end_phase_action)
 	$('#move').click(conquest.move_action)
 	

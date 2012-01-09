@@ -52,13 +52,16 @@ class BaseGameState(polymodel.PolyModel):
         found_next_player = False
         if self.total_players == 1:
             return True
+        next_index = self.current_player_index
         while not found_next_player:
-            next_index = self.current_player_index + 1
+            next_index += 1
             if next_index >= self.total_players:
                 next_index = 0
             if next_index == original_index:
                 return False
-            if not players.filter('play_index', next_index).get().eliminated:
+            print next_index
+            new_player_data = players.filter('play_index', next_index).get()
+            if not new_player_data.eliminated:
                 found_next_player == True
 
         self.current_player_index = next_index

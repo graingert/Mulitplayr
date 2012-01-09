@@ -1,4 +1,7 @@
-$(function() {
+(function( $ ) {
+	if ($.dice == null)
+		$.dice = $({});
+
 	var stopAttackRollID = 0;
 	var stopDefenceRollID;
 	
@@ -8,36 +11,36 @@ $(function() {
 	var defenceDiceBlur = new Array();
 	
 	//Preload images
-	$.get("/static/Dice/White1.svg", function(data){attackDice[1] = $(data)},"html");
-	$.get("/static/Dice/White2.svg", function(data){attackDice[2] = $(data)},"html");
-	$.get("/static/Dice/White3.svg", function(data){attackDice[3] = $(data)},"html");
-	$.get("/static/Dice/White4.svg", function(data){attackDice[4] = $(data)},"html");
-	$.get("/static/Dice/White5.svg", function(data){attackDice[5] = $(data)},"html");
-	$.get("/static/Dice/White6.svg", function(data){attackDice[6] = $(data)},"html");
+	$.get("/static/Dice/White1.svg", function(data){defenceDice[1] = $(data)},"html");
+	$.get("/static/Dice/White2.svg", function(data){defenceDice[2] = $(data)},"html");
+	$.get("/static/Dice/White3.svg", function(data){defenceDice[3] = $(data)},"html");
+	$.get("/static/Dice/White4.svg", function(data){defenceDice[4] = $(data)},"html");
+	$.get("/static/Dice/White5.svg", function(data){defenceDice[5] = $(data)},"html");
+	$.get("/static/Dice/White6.svg", function(data){defenceDice[6] = $(data)},"html");
 	
-	$.get("/static/Dice/Red1.svg", function(data){defenceDice[1] = $(data)},"html");
-	$.get("/static/Dice/Red2.svg", function(data){defenceDice[2] = $(data)},"html");
-	$.get("/static/Dice/Red3.svg", function(data){defenceDice[3] = $(data)},"html");
-	$.get("/static/Dice/Red4.svg", function(data){defenceDice[4] = $(data)},"html");
-	$.get("/static/Dice/Red5.svg", function(data){defenceDice[5] = $(data)},"html");
-	$.get("/static/Dice/Red6.svg", function(data){defenceDice[6] = $(data)},"html");
+	$.get("/static/Dice/Red1.svg", function(data){attackDice[1] = $(data)},"html");
+	$.get("/static/Dice/Red2.svg", function(data){attackDice[2] = $(data)},"html");
+	$.get("/static/Dice/Red3.svg", function(data){attackDice[3] = $(data)},"html");
+	$.get("/static/Dice/Red4.svg", function(data){attackDice[4] = $(data)},"html");
+	$.get("/static/Dice/Red5.svg", function(data){attackDice[5] = $(data)},"html");
+	$.get("/static/Dice/Red6.svg", function(data){attackDice[6] = $(data)},"html");
 	
-	$.get("/static/Dice/White1blur.svg", function(data){attackDiceBlur[1] = $(data)},"html");
-	$.get("/static/Dice/White2blur.svg", function(data){attackDiceBlur[2] = $(data)},"html");
-	$.get("/static/Dice/White3blur.svg", function(data){attackDiceBlur[3] = $(data)},"html");
-	$.get("/static/Dice/White4blur.svg", function(data){attackDiceBlur[4] = $(data)},"html");
-	$.get("/static/Dice/White5blur.svg", function(data){attackDiceBlur[5] = $(data)},"html");
-	$.get("/static/Dice/White6blur.svg", function(data){attackDiceBlur[6] = $(data)},"html");
+	$.get("/static/Dice/White1blur.svg", function(data){defenceDiceBlur[1] = $(data)},"html");
+	$.get("/static/Dice/White2blur.svg", function(data){defenceDiceBlur[2] = $(data)},"html");
+	$.get("/static/Dice/White3blur.svg", function(data){defenceDiceBlur[3] = $(data)},"html");
+	$.get("/static/Dice/White4blur.svg", function(data){defenceDiceBlur[4] = $(data)},"html");
+	$.get("/static/Dice/White5blur.svg", function(data){defenceDiceBlur[5] = $(data)},"html");
+	$.get("/static/Dice/White6blur.svg", function(data){defenceDiceBlur[6] = $(data)},"html");
 	
-	$.get("/static/Dice/Red1blur.svg", function(data){defenceDiceBlur[1] = $(data)},"html");
-	$.get("/static/Dice/Red2blur.svg", function(data){defenceDiceBlur[2] = $(data)},"html");
-	$.get("/static/Dice/Red3blur.svg", function(data){defenceDiceBlur[3] = $(data)},"html");
-	$.get("/static/Dice/Red4blur.svg", function(data){defenceDiceBlur[4] = $(data)},"html");
-	$.get("/static/Dice/Red5blur.svg", function(data){defenceDiceBlur[5] = $(data)},"html");
-	$.get("/static/Dice/Red6blur.svg", function(data){defenceDiceBlur[6] = $(data)},"html");
+	$.get("/static/Dice/Red1blur.svg", function(data){attackDiceBlur[1] = $(data)},"html");
+	$.get("/static/Dice/Red2blur.svg", function(data){attackDiceBlur[2] = $(data)},"html");
+	$.get("/static/Dice/Red3blur.svg", function(data){attackDiceBlur[3] = $(data)},"html");
+	$.get("/static/Dice/Red4blur.svg", function(data){attackDiceBlur[4] = $(data)},"html");
+	$.get("/static/Dice/Red5blur.svg", function(data){attackDiceBlur[5] = $(data)},"html");
+	$.get("/static/Dice/Red6blur.svg", function(data){attackDiceBlur[6] = $(data)},"html");
 	
 	
-	function animateDice(noAttackDice, noDefenceDice){
+	$.dice.animate = function(noAttackDice, noDefenceDice){
 		//Don't reaminate if dice are already spinning
 		if (stopAttackRollID != 0){return;}
 		
@@ -97,42 +100,24 @@ $(function() {
 		objDie.attr("src", "/static/Dice/White" + randomNum + "blur.svg");
 	}
 	
-	function stopDice(attack1, attack2, attack3, defence1, defence2){
+	$.dice.stop = function(attack_rolls, defend_rolls){
 		clearInterval(stopAttackRollID);
 		clearInterval(stopDefenceRollID);
 		stopAttackRollID = stopDefenceRollID = 0;
 
-		$("#attackDie1").empty();$("#attackDie1").append(attackDice[attack1].clone());
-		$("#attackDie2").empty();$("#attackDie2").append(attackDice[attack2].clone());
-		$("#attackDie3").empty();$("#attackDie3").append(attackDice[attack3].clone());
-				
-		$("#defenceDie1").empty();$("#defenceDie1").append(defenceDice[defence1].clone());
-		$("#defenceDie2").empty();$("#defenceDie2").append(defenceDice[defence2].clone());
-		
-		$("#attackDie1").fadeTo(500, 1);
-		if (attack2 != 0) {$("#attackDie2").fadeTo(500, 1);}
-		if (attack3 != 0) {$("#attackDie3").fadeTo(500, 1);}
-		
-		$("#defenceDie1").fadeTo(500, 1);
-		if (defence2 != 0) {$("#defenceDie2").fadeTo(500, 1);}
+		function setDie(dieNo, idBase, dieArray, dieResult) {
+			var dieId = idBase + (parseInt(dieNo) + 1);
+			$(dieId).empty();
+			$(dieId).append(dieArray[dieResult].clone());
+			$(dieId).fadeTo(500, 1);
+		}
+
+		for (dieNo in attack_rolls) {
+			setDie(dieNo, '#attackDie', attackDice, attack_rolls[dieNo]);
+		}
+
+		for (dieNo in defend_rolls) {
+			setDie(dieNo, '#defenceDie', defenceDice, defend_rolls[dieNo]);
+		}
 	}
-	
-	$("#start").click(function() {
-		animateDice(3,2);
-		return false;
-	})
-	
-	$( "#stop" ).click(function() {
-		stopDice(2, 3, 4, 5, 6);
-		return false;
-	});
-	
-	$("#test").click(function() {
-		$("#attackDie1").empty();$("#attackDie1").append(attackDice[1].clone());
-		$("#attackDie2").empty();$("#attackDie2").append(attackDice[2].clone());
-		$("#attackDie3").empty();$("#attackDie3").append(attackDice[3].clone());
-		
-		$("#defenceDie1").empty();$("#defenceDie1").append(defenceDice[4].clone());
-		$("#defenceDie2").empty();$("#defenceDie2").append(defenceDice[5].clone());
-	})
-});
+})( jQuery );

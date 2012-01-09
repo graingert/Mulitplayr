@@ -334,7 +334,8 @@ $(function() {
 	$('#attack').click(function(){
 		conquest.attack_action($('#attack-controls .move-unit-slider').slider("value"))
 	})
-	$('#end_phase').click(conquest.end_phase_action)
+	$('#end-attack').click(conquest.end_phase_action)
+	$('#skip-fortify').click(conquest.end_phase_action)
 	$('#move').click(conquest.move_action)
 	
 	$.game.on("new-state", conquest.update_from_state);

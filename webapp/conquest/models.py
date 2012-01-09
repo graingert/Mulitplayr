@@ -250,12 +250,12 @@ class ConquestGameState(BaseGameState):
             action.new_state = 'attack_victory'
             self.state = 'attack_victory'
             remaining_territories = 0
-            for owner in territories_owned:
+            for owner in self.territory_player:
                 if owner == old_owner:
                     remaining_territories += 1
             if remaining_territories == 0:
                 old_owner_data = self.basegameplayer_set.filter('play_index', old_owner).get()
-                old_owner_data.eliminate == True
+                old_owner_data.eliminated = True
                 old_owner_data.put()
 
         action.origin = origin
@@ -388,6 +388,7 @@ exhilarating turn based conquest for world domination
 	"""
     info_redirect = "conquestgameinfo"
     play_redirect = "conquestgameplay"
+    min_players = 2
     max_players = 6
 
     game_player_type = ConquestGamePlayer

@@ -1,4 +1,5 @@
 import webapp2
+import logging
 
 from google.appengine.ext import db
 from google.appengine.ext.db import polymodel
@@ -59,12 +60,10 @@ class BaseGameState(polymodel.PolyModel):
                 next_index = 0
             if next_index == original_index:
                 return False
-            new_player_data = players.filter('play_index', next_index).get()
-            if not new_player_data.eliminated:
-                found_next_player == True
-
-        self.current_player_index = next_index
-        return True
+            new_player_data = self.basegameplayer_set.filter('play_index = ', next_index).get()
+            if new_player_data.eliminated == False:
+                self.current_player_index = next_index
+                return True
 
     def setup(self,players):
         """ Setup the initial state. """

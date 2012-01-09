@@ -8,16 +8,17 @@
         <p>Welcome to Multiplayr, where you can play many different online mulitplayer games</p>
         <p><a class="btn primary large" href="/lobby/">Lobby &raquo;</a></p>
       </div>
-
-      <!-- Example row of columns -->
-      <div class="row">
-      
-		{% for game in games %}
+{% for game in games %}
+	{% if loop.index0 is divisibleby 3 %}
+	<div class="row">
+	{% endif %}
 		<div class="span-one-third">
 			<h2>{{game.human_name}}</h2>
 			<p>{{game.description}}</p>
 			<a href="{{ uri_for('newgame-' + game.game_name) }}" class="btn">Play Now</a>
 		</div>
+	{% if loop.index is divisibleby 3 %}
+	</div>
+	{% endif %}
 {% endfor %}
-      </div>
 {% endblock %}

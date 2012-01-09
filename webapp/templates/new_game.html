@@ -1,11 +1,17 @@
 {% extends "base.html" %}
 {% block content %}
 <h2>Create new game</h2>
-<ul>
 {% for game in games %}
-	<li>
-		<a href="{{ uri_for('newgame-' + game.game_name) }}" class="btn">{{ game.human_name }}</a>
-	</li>
+	{% if loop.index0 is divisibleby 3 %}
+	<div class="row">
+	{% endif %}
+		<div class="span-one-third">
+			<h3>{{game.human_name}}</h2>
+			<p>{{game.description}}</p>
+			<a href="{{ uri_for('newgame-' + game.game_name) }}" class="btn">Play Now</a>
+		</div>
+	{% if loop.index is divisibleby 3 %}
+	</div>
+	{% endif %}
 {% endfor %}
-</ul>
 {% endblock %}

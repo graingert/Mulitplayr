@@ -208,7 +208,7 @@ conquest.update_from_state = function(event, state){
 	conquest.placed_units = 0;
 	conquest.update_dom();
 	$('#map').attr('state', state.state);
-	if (state.players[state.current_player_index].is_me) {
+	if (state.players[state.current_player_index].is_me && state.state != 'finished') {
 		$('#map').addClass('active');
 		$('#controls-place').show();
 		$('#controls-place').children().hide();
@@ -330,7 +330,8 @@ $(function() {
 	$('#attack').click(function(){
 		conquest.attack_action($('#attack-controls.move-unit-slider').slider("value"))
 	})
-	$('#end_phase').click(conquest.end_phase_action)
+	$('#end-attack').click(conquest.end_phase_action)
+	$('#skip-fortify').click(conquest.end_phase_action)
 	$('#move').click(conquest.move_action)
 	
 	$.game.on("new-state", conquest.update_from_state);

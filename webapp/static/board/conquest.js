@@ -21,8 +21,11 @@ function Region(id, region_svg){
 	this.place_units = function(delta){
 		if (this.owner != $.game.my_player_index)
 			return;
-		if (conquest.placed_units >= $.game.my_user_data.unit_pool)
+		if ((conquest.placed_units + delta) > $.game.my_user_data.unit_pool)
 			return;
+		if ((conquest.placed_units + delta) < 0){
+			return;
+		}
 		this.placed_units += delta;
 		conquest.placed_units += delta;
 		this.update_dom();
@@ -125,6 +128,10 @@ conquest.select_region = function(region){
 			this.destination = region;
 		}
 	}
+}
+
+conquest.right_click_region= function(region){
+	
 }
 
 conquest.clear_selected = function(){
@@ -246,6 +253,13 @@ conquest.ui.place_unit = function(event, region){
 	}
 }
 
+conquest.ui.subtract_unit =  function(event, region){
+	if (!$.game.is_my_turn()) { return; }
+	if ($.game.state.state == 'place' || $.game.state.state == 'reinforce'){
+		get_region_obj(region).place_units(-1);
+	}
+}
+
 conquest.ui.select_region = function(event, region){
 	if (!$.game.is_my_turn()) { return; }
 	if ($.game.state.state == 'attack' ||
@@ -255,8 +269,9 @@ conquest.ui.select_region = function(event, region){
 	}
 }
 
+
 conquest.ui.setup_modals = function(){
-	$(".move-unit-slider").slider({range: "min", slide:function(event,ui){
+	$(".move-unit-slider").slider({range: "min", min:1, max:3, slide:function(event,ui){
 		$(this).parent().find(".move-unit-text").text(ui.value);
 	}});
 	var that = this;
@@ -290,6 +305,12 @@ function prepmap() {
 	$('#map g.region').click(function() {
 		$.game.trigger("region-select", $(this))
 	});
+	//Assume that when the context menu is requested, the user has right clicked
+	$("#map g.region").bind("contextmenu", function(e) {
+		$.game.trigger("region-right-click", $(this));
+		return false;
+	});
+	
 
 	$('#map g.region').each(function(index, region){
 		conquest.regions[region.id] = new Region(region.id, region);
@@ -307,11 +328,12 @@ $(function() {
 	
 	$.game.on("region-select", conquest.ui.place_unit)
 	$.game.on("region-select", conquest.ui.select_region)
+	$.game.on("region-right-click", conquest.ui.subtract_unit)
 	$('#place').click(conquest.place_action)
 	$('#reinforce').click(conquest.reinforce_action)
-	$('#attack1').click(function(){conquest.attack_action(1)})
-	$('#attack2').click(function(){conquest.attack_action(2)})
-	$('#attack3').click(function(){conquest.attack_action(3)})
+	$('#attack').click(function(){
+		conquest.attack_action($('#attack-controls .move-unit-slider').slider("value"))
+	})
 	$('#end_phase').click(conquest.end_phase_action)
 	$('#move').click(conquest.move_action)
 	

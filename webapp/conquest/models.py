@@ -366,6 +366,7 @@ exhilarating turn based conquest for world domination
 	"""
     info_redirect = "conquestgameinfo"
     play_redirect = "conquestgameplay"
+    max_players = 6
 
     game_player_type = ConquestGamePlayer
     game_state_type = ConquestGameState

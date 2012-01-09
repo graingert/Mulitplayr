@@ -158,8 +158,8 @@ class ConquestGameState(BaseGameState):
         #Give units to player based on wholy owned continents
         territory_mapper = get_territory_mapper()
         self.continent_noOfPlayerOwnedTerritories = [0]*6
-        for territory in self.territory_player:
-            if territory == player.play_index:
+        for territory, playerID in enumerate(self.territory_player):
+            if playerID == player.play_index:
                 continent = territory_mapper.get_territory_continent(territory)
                 self.continent_noOfPlayerOwnedTerritories[continent] += 1
                 
@@ -167,10 +167,10 @@ class ConquestGameState(BaseGameState):
         for continent, numberOwned in enumerate(self.continent_noOfPlayerOwnedTerritories):
             if numberOwned == territory_mapper.get_continent_total(continent):	
                 continent_units_given += territory_mapper.get_continent_bonus(continent)
-                
+                continent_units_given += 1
     
         
-        #player.unit_pool += int(units_given) + int(continent_units_given)
+        player.unit_pool += int(units_given)
         player.unit_pool += int(continent_units_given)
         player.put()
         

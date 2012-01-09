@@ -243,11 +243,20 @@ class ConquestGameState(BaseGameState):
         self.add_action(action)
 
         if self.territory_units[destination] <= 0:
+            old_owner = self.territory_player[destination]
             self.territory_player[destination] = self.current_player_index
             self.attack_victory_origin = origin
             self.attack_victory_destination = destination
             action.new_state = 'attack_victory'
             self.state = 'attack_victory'
+            remaining_territories = 0
+            for owner in territories_owned:
+                if owner == old_owner:
+                    remaining_territories += 1
+            if remaining_territories == 0:
+                old_owner_data = self.basegameplayer_set.filter('play_index', old_owner).get()
+                old_owner_data.eliminate == True
+                old_owner_data.put()
 
         action.origin = origin
         action.destination = destination
@@ -327,10 +336,13 @@ class ConquestGameState(BaseGameState):
         action.destination = destination
         action.units = units
 
-        action.new_state = 'reinforce'
-        self.state = 'reinforce'
-        self.end_turn()
-        self.give_units(self.get_current_player_data())
+        if self.end_turn():
+            action.new_state = 'reinforce'
+            self.state = 'reinforce'
+            self.give_units(self.get_current_player_data())
+        else:
+            action.new_state = 'finished'
+            self.state = 'finished'
 
         return action
 
@@ -342,10 +354,13 @@ class ConquestGameState(BaseGameState):
         action = StateChangeAction(parent = self)
         self.add_action(action)
 
-        action.new_state = 'reinforce'
-        self.state = 'reinforce'
-        self.end_turn()
-        self.give_units(self.get_current_player_data())
+        if self.end_turn():
+            action.new_state = 'reinforce'
+            self.state = 'reinforce'
+            self.give_units(self.get_current_player_data())
+        else:
+            action.new_state = 'finished'
+            self.state = 'finished'
 
         return action
 

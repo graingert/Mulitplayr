@@ -251,7 +251,9 @@ class NewGameHandler(BaseHandler):
 
     @login_required
     def get(self):
-        self.context['games'] = find_game_instance_classes(self.app)
+        games = find_game_instance_classes(self.app)
+        games = sorted(games,key=lambda x: x.human_name)
+        self.context['games'] = games
         self.render_response("new_game.html")
 
 class ActiveGamesHandler(BaseHandler):

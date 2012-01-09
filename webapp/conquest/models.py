@@ -255,7 +255,7 @@ class ConquestGameState(BaseGameState):
                     remaining_territories += 1
             if remaining_territories == 0:
                 old_owner_data = self.basegameplayer_set.filter('play_index', old_owner).get()
-                old_owner_data.eliminated == True
+                old_owner_data.eliminated = True
                 old_owner_data.put()
 
         action.origin = origin

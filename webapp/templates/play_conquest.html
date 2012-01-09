@@ -17,8 +17,8 @@
 {% endblock %}
 {% block sidebar %}
 {{ super() }}
-<div id="controls-place">
-	<div id="dice-holder">
+<div id="controls-place" class="block controls">
+	<div id="dice-holder" class="hide">
 		<div>
 			<a href="#" id="start">START</a>
 			<a href="#" id="stop">STOP</a>
@@ -36,24 +36,28 @@
 			</tr>
 		</table>
 	</div>
-	<div id="place-controls">
+	<div id="place-controls" class="hide">
+		<h3>Place</h3>
 		You have <span class="unit-pool-count">0</span> units left to place.
 		<a id="place" class="btn primary" href="">Place</a>
 	</div>
-	<div id="reinforce-controls">
+	<div id="reinforce-controls" class="hide">
+		<h3>Reinforce</h3>
 		You have <span class="unit-pool-count">0</span> units left to place.
 		<a id="reinforce" class="btn primary" href="">Reinforce</a>
 	</div>
-	<div id="attack-controls">
+	<div id="attack-controls" class="hide">
 		<h3>Attack</h3>
-		<button id="attack1" class="btn primary">Attack with 1 unit</a>
-		<button id="attack2" class="btn primary">Attack with 2 units</a>
-		<button id="attack3" class="btn primary">Attack with 3 units</a>
+		<a id="attack1" class="btn primary" href="#">Attack with 1 unit</a>
+		<a id="attack2" class="btn primary" href="#">Attack with 2 units</a>
+		<a id="attack3" class="btn primary" href="#">Attack with 3 units</a>
+		<a id="end_phase" class="btn danger" href="">End Phase</a>
 	</div>
-	<div id="fortify-controls">
+	<div id="fortify-controls" class="hide">
+		<h3>Fortify</h3>
 		<a id="move" class="btn primary" href="">Fortify</a>
+		<a id="end_phase" class="btn danger" href="">Skip</a>
 	</div>
-	<a id="end_phase" class="btn danger" href="">End Phase</a>
 </div>
 {% endblock %}
 

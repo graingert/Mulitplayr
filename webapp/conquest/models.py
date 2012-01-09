@@ -103,27 +103,32 @@ class ConquestGameState(BaseGameState):
         self.check_state('init')
 
         territory_ownership = random.shuffle(range(42))
+        player_territories_owned = [0] * self.total_players
         player = 0
 
         self.users_placed = 0
         for territory in range(42):
-            self.territory_units.append(0)
+            self.territory_units.append(1)
             self.territory_player.append(player)
+            player_territories_owned[player] += 1
             player = (player + 1) % self.total_players
         
         for player in players:
-            player.unit_pool = 50 - 5 * self.total_players
+            player.unit_pool = 50 - 5 * self.total_players - player_territories_owned[player.play_index]
 
         self.state = 'place'
 
     def give_units(self, player):
-        """ Give units to player """
+        """ Give units to player based on teritories owned"""
         territories_owned = 0
         for territory in self.territory_player:
             if territory == player.play_index:
                 territories_owned += 1
-        units_given = math.floor(territories_owned/3)
-        player.unit_pool += int(units_given)
+        if territories_owned < 9:
+            units_given = 3
+        else:
+            units_given = math.floor(territories_owned/3)
+        player.unit_pool = int(units_given)
         player.put()
 
     def place_action(self, request):
@@ -151,7 +156,7 @@ class ConquestGameState(BaseGameState):
             self.territory_player[placement_index] = self.current_player_index
         if total_units_placed > player_data.unit_pool:
             raise InvalidActionParametersException()
-        player_data.unit_pool -= total_units_placed;
+        player_data.unit_pool = 0;
         self.users_placed += 1
         self.end_turn()
         if self.users_placed == self.total_players:
@@ -249,6 +254,8 @@ class ConquestGameState(BaseGameState):
         action.attackers = attackers
         action.attack_rolls = attack_rolls
         action.defend_rolls = defend_rolls
+        action.win_rolls = win_rolls
+        action.loose_rolls = loose_rolls
 
         return action
     
@@ -400,6 +407,8 @@ class AttackAction(BaseGameAction):
     attackers = db.IntegerProperty()
     attack_rolls = db.ListProperty(int)
     defend_rolls = db.ListProperty(int)
+    win_rolls = db.IntegerProperty()
+    loose_rolls = db.IntegerProperty()
     action_type = 'attack'
 
     def get_info_dict(self, target=None):
@@ -413,6 +422,8 @@ class AttackAction(BaseGameAction):
         target['attackers'] = self.attackers
         target['attack_rolls'] = self.attack_rolls
         target['defend_rolls'] = self.defend_rolls
+        target['win_rolls'] = self.win_rolls
+        target['loose_rolls'] = self.loose_rolls
         return target
 
 

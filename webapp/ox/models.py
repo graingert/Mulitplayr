@@ -107,13 +107,12 @@ game
 
 class OxPlaceAction(BaseGameAction):
     position = db.IntegerProperty()
+    action_type = "place"
 
     def get_info_dict(self, target=None):
         """ Fill info about state into a dict. """
         if target is None:
             target = {}
         BaseGameAction.get_info_dict(self, target)
-        
-        target['type'] = 'place'
 
         return target

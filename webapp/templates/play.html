@@ -89,18 +89,21 @@
 {% endblock %}
 
 {% block sidebar %}
+<div class="block"> 
+	<h3>Debug</h3>
 <dl>
-	<dt>Current Player</dt>
-	<dd class="current-player"></dd>
 	<dt>Game State</dt>
 	<dd class="current-state"></dd>
 </dl>
-<h2>Players</h2>
-<ul id="player-list">
-</ul>
 <span id="refresh-timer"></span><br />
 <a id="refresh" class="btn" href="#">Force update</a>
 <a id="stop-refresh" class="btn" href="#">Stop updates</a>
+</div>
+<div class="block">
+<h3>Players</h3>
+<ul id="player-list">
+</ul>
+</div>
 {% endblock %}
 
 {% block content %}

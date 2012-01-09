@@ -21,8 +21,11 @@ function Region(id, region_svg){
 	this.place_units = function(delta){
 		if (this.owner != $.game.my_player_index)
 			return;
-		if (conquest.placed_units >= $.game.my_user_data.unit_pool)
+		if ((conquest.placed_units + delta) > $.game.my_user_data.unit_pool)
 			return;
+		if ((conquest.placed_units + delta) < 0){
+			return;
+		}
 		this.placed_units += delta;
 		conquest.placed_units += delta;
 		this.update_dom();
@@ -125,6 +128,10 @@ conquest.select_region = function(region){
 			this.destination = region;
 		}
 	}
+}
+
+conquest.right_click_region= function(region){
+	
 }
 
 conquest.clear_selected = function(){
@@ -246,6 +253,13 @@ conquest.ui.place_unit = function(event, region){
 	}
 }
 
+conquest.ui.subtract_unit =  function(event, region){
+	if (!$.game.is_my_turn()) { return; }
+	if ($.game.state.state == 'place' || $.game.state.state == 'reinforce'){
+		get_region_obj(region).place_units(-1);
+	}
+}
+
 conquest.ui.select_region = function(event, region){
 	if (!$.game.is_my_turn()) { return; }
 	if ($.game.state.state == 'attack' ||
@@ -255,20 +269,34 @@ conquest.ui.select_region = function(event, region){
 	}
 }
 
+
 conquest.ui.setup_modals = function(){
+	$(".move-unit-slider").slider({range: "min", slide:function(event,ui){
+		$(this).parent().find(".move-unit-text").text(ui.value);
+	}});
 	var that = this;
 	this.attack_victory_modal = $('#attack-victory-modal').modal({backdrop:'static'});
 	fix_modal_margin(this.attack_victory_modal);
 	this.attack_victory_modal.find('.primary').click(function(){
 		that.attack_victory_modal.modal('hide');
-		conquest.attack_victory_action(1);
+		conquest.attack_victory_action(that.attack_victory_modal.find('.move-unit-slider').slider('value'));
 	});
 }
 
-function process_attack_action(event, action, latest){
+function process_attack_action(event, action, latest, state){
 	if (!latest) return;
 	if (action.new_state != 'attack_victory') return;
 	if (action.player_index == $.game.my_player_index){
+		var can_move = conquest.regions[action.origin].units - 1 - action.loose_rolls;
+		var dice_rolled = action.attack_rolls.length;
+		var min_move = Math.min(dice_rolled, can_move);
+		var slider = conquest.ui.attack_victory_modal.find('.move-unit-slider');
+		slider.slider('option','min',min_move);
+		slider.slider('option','max',can_move);
+		slider.slider('option','value',min_move);
+		slider.parent().find(".move-unit-text").text(min_move);
+		conquest.ui.attack_victory_modal.find('.move-min').text(min_move);
+		conquest.ui.attack_victory_modal.find('.move-max').text(can_move);
 		conquest.ui.attack_victory_modal.modal('show');
 	}
 }
@@ -277,6 +305,12 @@ function prepmap() {
 	$('#map g.region').click(function() {
 		$.game.trigger("region-select", $(this))
 	});
+	//Assume that when the context menu is requested, the user has right clicked
+	$("#map g.region").bind("contextmenu", function(e) {
+		$.game.trigger("region-right-click", $(this));
+		return false;
+	});
+	
 
 	$('#map g.region').each(function(index, region){
 		conquest.regions[region.id] = new Region(region.id, region);
@@ -294,6 +328,7 @@ $(function() {
 	
 	$.game.on("region-select", conquest.ui.place_unit)
 	$.game.on("region-select", conquest.ui.select_region)
+	$.game.on("region-right-click", conquest.ui.subtract_unit)
 	$('#place').click(conquest.place_action)
 	$('#reinforce').click(conquest.reinforce_action)
 	$('#attack1').click(function(){conquest.attack_action(1)})

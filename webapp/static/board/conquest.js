@@ -113,6 +113,7 @@ conquest.select_region = function(region){
 	else if (!this.origin) {
 		$(region.region_svg).attr('origin','true');
 		this.origin = region;
+		conquest.ui.select_origin(region)
 		$("#map").addClass('has-selected');
 		$('g.region').attr('valid-selection','false');
 		for(i in region.connected_regions){
@@ -171,13 +172,13 @@ conquest.attack_victory_action = function(units){
 	});
 }
 
-conquest.move_action = function(event){
+conquest.move_action = function(units){
 	event.preventDefault();
 	$.game.run_action({
 		action:"move",
 		origin:conquest.origin.id,
 		destination:conquest.destination.id,
-		units:1,
+		units:units,
 	});
 	conquest.clear_selected();
 }
@@ -279,6 +280,17 @@ conquest.ui.setup_modals = function(){
 	});
 }
 
+conquest.ui.select_origin = function(region){
+	var max_move = region.units - 1;
+	if ($.game.state.state == 'attack')
+		max_move = Math.min(max_move, 3)
+	$('#controls-place .move-max').text(max_move);
+	var slider = $('#controls-place .move-unit-slider');
+	slider.slider('option','max',max_move);
+	slider.slider('value',max_move);
+	$('#controls-place .move-unit-text').text(max_move);
+}
+
 function process_attack_action(event, action, latest, state){
 	if (!latest) return;
 	if (action.new_state != 'attack_victory') return;
@@ -331,8 +343,10 @@ $(function() {
 		conquest.attack_action($('#attack-controls.move-unit-slider').slider("value"))
 	})
 	$('#end-attack').click(conquest.end_phase_action)
+	$('#fortify').click(function(){
+		conquest.move_action($(this).siblings('.move-unit-slider').slider('value'))
+	})
 	$('#skip-fortify').click(conquest.end_phase_action)
-	$('#move').click(conquest.move_action)
 	
 	$.game.on("new-state", conquest.update_from_state);
 	$.game.on("attack-action", process_attack_action);

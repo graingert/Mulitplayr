@@ -131,10 +131,6 @@ conquest.select_region = function(region){
 	}
 }
 
-conquest.right_click_region= function(region){
-	
-}
-
 conquest.clear_selected = function(){
 	$("#map").removeClass('has-selected');
 	$('g.region').attr('valid-selection','false')
@@ -343,10 +339,8 @@ $(function() {
 	$.game.on("region-right-click", conquest.ui.subtract_unit)
 	$('#place').click(conquest.place_action)
 	$('#reinforce').click(conquest.reinforce_action)
-	$('#attack').click(function(event){
-		var units = $(this).siblings('.move-unit-slider').slider('value')
-		console.log(units)
-		conquest.attack_action(event, units)
+	$('#attack').click(function(){
+		conquest.attack_action(event,$('#attack-controls.move-unit-slider').slider("value"))
 	})
 	$('#end-attack').click(conquest.end_phase_action)
 	$('#fortify').click(function(event){

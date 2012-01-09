@@ -130,10 +130,6 @@ conquest.select_region = function(region){
 	}
 }
 
-conquest.right_click_region= function(region){
-	
-}
-
 conquest.clear_selected = function(){
 	$("#map").removeClass('has-selected');
 	$('g.region').attr('valid-selection','false')
@@ -332,7 +328,7 @@ $(function() {
 	$('#place').click(conquest.place_action)
 	$('#reinforce').click(conquest.reinforce_action)
 	$('#attack').click(function(){
-		conquest.attack_action($('#attack-controls .move-unit-slider').slider("value"))
+		conquest.attack_action($('#attack-controls.move-unit-slider').slider("value"))
 	})
 	$('#end_phase').click(conquest.end_phase_action)
 	$('#move').click(conquest.move_action)

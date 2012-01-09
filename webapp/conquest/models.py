@@ -250,7 +250,7 @@ class ConquestGameState(BaseGameState):
             action.new_state = 'attack_victory'
             self.state = 'attack_victory'
             remaining_territories = 0
-            for owner in territories_owned:
+            for owner in self.territories_owned:
                 if owner == old_owner:
                     remaining_territories += 1
             if remaining_territories == 0:

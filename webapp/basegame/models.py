@@ -60,11 +60,10 @@ class BaseGameState(polymodel.PolyModel):
             if next_index == original_index:
                 return False
             new_player_data = players.filter('play_index', next_index).get()
-            if not new_player_data.eliminated:
-                found_next_player == True
-
-        self.current_player_index = next_index
-        return True
+            if new_player_data.eliminated == False:
+                print next_index
+                self.current_player_index = next_index
+                return True
 
     def setup(self,players):
         """ Setup the initial state. """

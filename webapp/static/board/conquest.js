@@ -283,6 +283,18 @@ conquest.ui.setup_modals = function(){
 	});
 }
 
+conquest.ui.animate_attack_action_complete = function(event, action) {
+	$.dice.stop(action.attack_rolls, action.defend_rolls);
+}
+
+conquest.ui.animate_attack_action = function(event, action) {
+	setTimeout(function () {
+			conquest.ui.animate_attack_action_complete(event, action);
+	}, 2000);
+	$('#dice-holder').show();
+	$.dice.animate(action.attack_rolls.length, action.defend_rolls.length);
+}
+
 function process_attack_action(event, action, latest, state){
 	if (!latest) return;
 	if (action.new_state != 'attack_victory') return;
@@ -339,6 +351,7 @@ $(function() {
 	$('#move').click(conquest.move_action)
 	
 	$.game.on("new-state", conquest.update_from_state);
+	$.game.on("attack-action-animate", conquest.ui.animate_attack_action);
 	$.game.on("attack-action", process_attack_action);
 	conquest.ui.setup_modals();
 });

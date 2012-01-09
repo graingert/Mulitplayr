@@ -199,6 +199,12 @@ conquest.end_phase_action = function(){
 }
 
 conquest.update_from_state = function(event, state){
+	if (conquest.ui.blocking_animation_running()) {
+		conquest.ui.queue_post_animation(function() {
+			conquest.update_from_state(event, state);
+		});
+		return;
+	}
 	$.each(state.territories, function(index, region){
 		region_data = conquest.regions[region.id];
 		region_data.set_data(region.units, 0, region.player);
@@ -242,6 +248,12 @@ function get_region_obj(region_dom){
 }
 
 function process_attack_action(event, action, latest, state){
+	if (conquest.ui.blocking_animation_running()) {
+		conquest.ui.queue_post_animation(function() {
+			process_attack_action(event, action, latest, state);
+		});
+		return;
+	}
 	if (!latest) return;
 	if (action.new_state != 'attack_victory') return;
 	if (action.player_index == $.game.my_player_index){

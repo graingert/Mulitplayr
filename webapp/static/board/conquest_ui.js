@@ -5,6 +5,29 @@ function fix_modal_margin(modal){
 function ConquestUi(conquest){
 	var that = this;
 	this.conquest = conquest;
+	this.waiting_animation_queue = [];
+	this.blocking_animation_count = 0;
+
+	this.animation_started = function() {
+		this.blocking_animation_count++;
+	}
+
+	this.queue_post_animation = function(closure) {
+		this.waiting_animation_queue.push(closure);
+	}
+
+	this.animation_finished = function() {
+		this.blocking_animation_count--;
+		if (this.blocking_animation_running()) { return; }
+		for (var i in this.waiting_animation_queue) {
+			this.waiting_animation_queue[i]();
+		}
+		this.waiting_animation_queue = []
+	}
+
+	this.blocking_animation_running = function() {
+		return this.blocking_animation_count > 0;
+	}
 
 	this.place_unit = function(event, region){
 	if (!$.game.is_my_turn()) { return; }
@@ -42,12 +65,14 @@ function ConquestUi(conquest){
 
 	this.animate_attack_action_complete = function(event, action) {
 		$.dice.stop(action.attack_rolls, action.defend_rolls);
+		that.animation_finished();
 	}
 
 	this.animate_attack_action = function(event, action) {
 		setTimeout(function () {
 			that.animate_attack_action_complete(event, action);
 		}, 2000);
+		that.animation_started();
 		$('#dice-holder').show();
 		$.dice.animate(action.attack_rolls.length, action.defend_rolls.length);
 	}

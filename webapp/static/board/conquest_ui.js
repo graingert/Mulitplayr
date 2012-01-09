@@ -3,6 +3,7 @@ function fix_modal_margin(modal){
 }
 
 function ConquestUi(conquest){
+	var that = this;
 	this.conquest = conquest;
 
 	this.place_unit = function(event, region){
@@ -39,6 +40,18 @@ function ConquestUi(conquest){
 		$('#controls-place .move-unit-text').text(max_move);
 	}
 
+	this.animate_attack_action_complete = function(event, action) {
+		$.dice.stop(action.attack_rolls, action.defend_rolls);
+	}
+
+	this.animate_attack_action = function(event, action) {
+		setTimeout(function () {
+			that.animate_attack_action_complete(event, action);
+		}, 2000);
+		$('#dice-holder').show();
+		$.dice.animate(action.attack_rolls.length, action.defend_rolls.length);
+	}
+
 	$.game.on("region-select", this.place_unit)
 	$.game.on("region-select", this.select_region)
 	$.game.on("region-right-click", this.subtract_unit)
@@ -61,7 +74,6 @@ function ConquestUi(conquest){
 		$(this).siblings(".move-unit-text").text(ui.value);
 	}});
 
-	var that = this;
 	this.attack_victory_modal = $('#attack-victory-modal').modal({backdrop:'static'});
 	fix_modal_margin(this.attack_victory_modal);
 	this.attack_victory_modal.find('.primary').click(function(){

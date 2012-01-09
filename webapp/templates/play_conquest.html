@@ -19,24 +19,6 @@
 {% block sidebar %}
 {{ super() }}
 <div id="controls-place" class="block controls">
-	<div id="dice-holder" class="hide">
-		<div>
-			<a href="#" id="start">START</a>
-			<a href="#" id="stop">STOP</a>
-			<a href="#" id="test">TEST</a>
-		</div>
-		<table class="clear-table">
-			<tr id="attackDice">
-				<td><div class="die" id="attackDie1"></div></td>
-				<td><div class="die" id="attackDie2"></div></td>
-				<td><div class="die" id="attackDie3"></div></td>
-			</tr>
-			<tr id="defenceDice">
-				<td><div class="die" id="defenceDie1"></div></td>
-				<td><div class="die" id="defenceDie2"></div></td>
-			</tr>
-		</table>
-	</div>
 	<div id="place-controls" class="hide">
 		<h3>Place</h3>
 		You have <span class="unit-pool-count">0</span> units left to place.
@@ -75,6 +57,20 @@
 		<a id="fortify" class="btn primary" href="">Fortify</a>
 		<a id="skip-fortify" class="btn danger" href="">Skip</a>
 	</div>
+</div>
+<div id="dice-holder" class="block controls hide">
+	<h3>Dice</h3>
+	<table class="clear-table">
+		<tr id="attackDice">
+			<td><div class="die" id="attackDie1"></div></td>
+			<td><div class="die" id="attackDie2"></div></td>
+			<td><div class="die" id="attackDie3"></div></td>
+		</tr>
+		<tr id="defenceDice">
+			<td><div class="die" id="defenceDie1"></div></td>
+			<td><div class="die" id="defenceDie2"></div></td>
+		</tr>
+	</table>
 </div>
 {% endblock %}
 

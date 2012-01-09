@@ -241,7 +241,6 @@ function get_region_obj(region_dom){
 	return conquest.regions[$(region_dom).attr('id')];
 }
 
-
 function process_attack_action(event, action, latest, state){
 	if (!latest) return;
 	if (action.new_state != 'attack_victory') return;
@@ -281,5 +280,6 @@ function prepmap() {
 $(function() {
 	conquest.ui = new ConquestUi(conquest);
 	$.game.on("new-state", conquest.update_from_state);
+	$.game.on("attack-action-animate", conquest.ui.animate_attack_action);
 	$.game.on("attack-action", process_attack_action);
 });

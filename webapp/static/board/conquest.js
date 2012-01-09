@@ -39,7 +39,7 @@ function Region(id, region_svg){
 		this.update_dom();
 	}
 
-	this.update_dom = function(delta){
+	this.update_dom = function(){
 		var total_units = this.units + this.placed_units;
 		var unit_text = ""
 		if (this.units > 0){
@@ -68,7 +68,6 @@ var conquest = {
 	origin: null,
 	destination: null,
 	placed_units: 0,
-	ui: {},
 }
 
 conquest.update_dom = function(){
@@ -139,7 +138,7 @@ conquest.clear_selected = function(){
 	conquest.destination = null;
 }
 
-conquest.place_action = function(event){
+conquest.place_action = function(){
 	event.preventDefault();
 	$.game.run_action({
 		action:"place",
@@ -147,7 +146,7 @@ conquest.place_action = function(event){
 	});
 }
 
-conquest.reinforce_action = function(event){
+conquest.reinforce_action = function(){
 	event.preventDefault();
 	$.game.run_action({
 		action:"reinforce",
@@ -155,7 +154,7 @@ conquest.reinforce_action = function(event){
 	});
 }
 
-conquest.attack_action = function(event, units){
+conquest.attack_action = function(units){
 	event.preventDefault();
 	$.game.run_action({
 		action:"attack",
@@ -165,14 +164,14 @@ conquest.attack_action = function(event, units){
 	});
 }
 
-conquest.attack_victory_action = function(event,units){
+conquest.attack_victory_action = function(units){
 	$.game.run_action({
 		action:"attack_victory",
 		units:units,
 	});
 }
 
-conquest.move_action = function(event,units){
+conquest.move_action = function(units){
 	event.preventDefault();
 	$.game.run_action({
 		action:"move",
@@ -183,7 +182,7 @@ conquest.move_action = function(event,units){
 	conquest.clear_selected();
 }
 
-conquest.end_phase_action = function(event){
+conquest.end_phase_action = function(){
 	event.preventDefault();
 	if ($.game.state.state == 'attack'){
 		$.game.run_action({
@@ -242,54 +241,6 @@ function get_region_obj(region_dom){
 	return conquest.regions[$(region_dom).attr('id')];
 }
 
-conquest.ui.place_unit = function(event, region){
-	if (!$.game.is_my_turn()) { return; }
-	if ($.game.state.state == 'place' ||
-		$.game.state.state == 'reinforce'){
-		get_region_obj(region).place_units(1);
-	}
-}
-
-conquest.ui.subtract_unit =  function(event, region){
-	if (!$.game.is_my_turn()) { return; }
-	if ($.game.state.state == 'place' || $.game.state.state == 'reinforce'){
-		get_region_obj(region).place_units(-1);
-	}
-}
-
-conquest.ui.select_region = function(event, region){
-	if (!$.game.is_my_turn()) { return; }
-	if ($.game.state.state == 'attack' ||
-		$.game.state.state == 'fortify'){
-		region_obj = get_region_obj(region);
-		conquest.select_region(region_obj);
-	}
-}
-
-
-conquest.ui.setup_modals = function(){
-	$(".move-unit-slider").slider({range: "min", min:1, max:3, slide:function(event,ui){
-		$(this).parent().find(".move-unit-text").text(ui.value);
-	}});
-	var that = this;
-	this.attack_victory_modal = $('#attack-victory-modal').modal({backdrop:'static'});
-	fix_modal_margin(this.attack_victory_modal);
-	this.attack_victory_modal.find('.primary').click(function(){
-		that.attack_victory_modal.modal('hide');
-		conquest.attack_victory_action(that.attack_victory_modal.find('.move-unit-slider').slider('value'));
-	});
-}
-
-conquest.ui.select_origin = function(region){
-	var max_move = region.units - 1;
-	if ($.game.state.state == 'attack')
-		max_move = Math.min(max_move, 3)
-	$('#controls-place .move-max').text(max_move);
-	var slider = $('#controls-place .move-unit-slider');
-	slider.slider('option','max',max_move);
-	slider.slider('value',max_move);
-	$('#controls-place .move-unit-text').text(max_move);
-}
 
 function process_attack_action(event, action, latest, state){
 	if (!latest) return;
@@ -327,30 +278,8 @@ function prepmap() {
 	$.game.trigger("refresh");
 };
 
-function fix_modal_margin(modal){
-	modal.css('margin-top',-modal.height()/2);
-}
-
 $(function() {
-	$('#map').load('/static/board/map.svg', prepmap);
-	
-	$.game.on("region-select", conquest.ui.place_unit)
-	$.game.on("region-select", conquest.ui.select_region)
-	$.game.on("region-right-click", conquest.ui.subtract_unit)
-	$('#place').click(conquest.place_action)
-	$('#reinforce').click(conquest.reinforce_action)
-	$('#attack').click(function(){
-		conquest.attack_action(event,$('#attack-controls.move-unit-slider').slider("value"))
-	})
-	$('#end-attack').click(conquest.end_phase_action)
-	$('#fortify').click(function(event){
-		var units = $(this).siblings('.move-unit-slider').slider('value')
-		console.log(units)
-		conquest.move_action(event, units)
-	})
-	$('#skip-fortify').click(conquest.end_phase_action)
-	
+	conquest.ui = new ConquestUi(conquest);
 	$.game.on("new-state", conquest.update_from_state);
 	$.game.on("attack-action", process_attack_action);
-	conquest.ui.setup_modals();
 });

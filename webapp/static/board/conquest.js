@@ -159,7 +159,7 @@ conquest.reinforce_action = function(event){
 	});
 }
 
-conquest.attack_action = function(units){
+conquest.attack_action = function(event, units){
 	event.preventDefault();
 	$.game.run_action({
 		action:"attack",
@@ -169,14 +169,14 @@ conquest.attack_action = function(units){
 	});
 }
 
-conquest.attack_victory_action = function(units){
+conquest.attack_victory_action = function(event,units){
 	$.game.run_action({
 		action:"attack_victory",
 		units:units,
 	});
 }
 
-conquest.move_action = function(units){
+conquest.move_action = function(event,units){
 	event.preventDefault();
 	$.game.run_action({
 		action:"move",
@@ -343,12 +343,16 @@ $(function() {
 	$.game.on("region-right-click", conquest.ui.subtract_unit)
 	$('#place').click(conquest.place_action)
 	$('#reinforce').click(conquest.reinforce_action)
-	$('#attack').click(function(){
-		conquest.attack_action($('#attack-controls .move-unit-slider').slider("value"))
+	$('#attack').click(function(event){
+		var units = $(this).siblings('.move-unit-slider').slider('value')
+		console.log(units)
+		conquest.attack_action(event, units)
 	})
 	$('#end-attack').click(conquest.end_phase_action)
-	$('#fortify').click(function(){
-		conquest.move_action($(this).siblings('.move-unit-slider').slider('value'))
+	$('#fortify').click(function(event){
+		var units = $(this).siblings('.move-unit-slider').slider('value')
+		console.log(units)
+		conquest.move_action(event, units)
 	})
 	$('#skip-fortify').click(conquest.end_phase_action)
 	

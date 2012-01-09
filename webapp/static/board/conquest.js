@@ -212,7 +212,7 @@ conquest.update_from_state = function(event, state){
 	conquest.placed_units = 0;
 	conquest.update_dom();
 	$('#map').attr('state', state.state);
-	if (state.players[state.current_player_index].is_me) {
+	if (state.players[state.current_player_index].is_me && state.state != 'finished') {
 		$('#map').addClass('active');
 		$('#controls-place').show();
 		$('#controls-place').children().hide();

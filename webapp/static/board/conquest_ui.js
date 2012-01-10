@@ -63,6 +63,21 @@ function ConquestUi(conquest){
 		$('#controls-place .move-unit-text').text(max_move);
 	}
 
+	this.select_destination = function(region){
+		$('#controls-place .unit-move').slideDown(500);
+		$('#controls-place #attack').removeClass('disabled');
+		$('#controls-place #fortify').removeClass('disabled');
+	}
+
+	this.deselect_origin = function(){
+	}
+
+	this.deselect_destination = function(){
+		$('#controls-place .unit-move').slideUp(500);
+		$('#controls-place #attack').addClass('disabled');
+		$('#controls-place #fortify').addClass('disabled');
+	}
+
 	this.animate_attack_action_complete = function(event, action) {
 		$.dice.stop(action.attack_rolls, action.defend_rolls);
 		that.animation_finished();
@@ -85,7 +100,7 @@ function ConquestUi(conquest){
 	$('#place').click(conquest.place_action)
 	$('#reinforce').click(conquest.reinforce_action)
 	$('#attack').click(function(){
-		var units = $(this).siblings('.move-unit-slider').slider('value')
+		var units = $(this).parent().find('.move-unit-slider').slider('value')
 		conquest.attack_action(units)
 	})
 	$('#end-attack').click(conquest.end_phase_action)
@@ -96,7 +111,7 @@ function ConquestUi(conquest){
 	$('#skip-fortify').click(conquest.end_phase_action)
 
 	$(".move-unit-slider").slider({range: "min", min:1, max:3, slide:function(event,ui){
-		$(this).siblings(".move-unit-text").text(ui.value);
+		$(this).parent().find(".move-unit-text").text(ui.value);
 	}});
 
 	this.attack_victory_modal = $('#attack-victory-modal').modal({backdrop:'static'});

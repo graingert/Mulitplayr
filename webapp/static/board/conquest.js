@@ -39,7 +39,7 @@ function Region(id, region_svg){
 		this.update_dom();
 	}
 
-	this.update_dom = function(delta){
+	this.update_dom = function(){
 		var total_units = this.units + this.placed_units;
 		var unit_text = ""
 		if (this.units > 0){
@@ -68,7 +68,6 @@ var conquest = {
 	origin: null,
 	destination: null,
 	placed_units: 0,
-	ui: {},
 }
 
 conquest.update_dom = function(){
@@ -95,51 +94,87 @@ $.getJSON('/static/board/borders.json', function(data) {
 });
 
 conquest.select_region = function(region){
-	// Cannot just add a class due to bug with SVG dom in JQuery
-	if (this.origin == region) {
-		$(region.region_svg).attr('origin','');
+	if (region == this.origin){
+		this.deselect_origin();
+	}
+	else if (region == this.destination){
+		this.deselect_destination();
+	}
+	else if (this.is_valid_destination(region)){
+		this.select_destination(region);
+	}
+	else if (this.is_valid_origin(region)){
+		this.select_origin(region);
+	}
+}
+
+conquest.is_valid_origin = function(region){
+	return region.owner == $.game.my_player_index
+		&& region.units > 1;
+}
+
+conquest.is_valid_destination = function(region){
+	if (this.origin != null &&
+			this.origin.connected_regions.indexOf(region) >= 0)
+	{
+		if ($.game.state.state == 'attack' && region.owner != $.game.my_player_index)
+			return true;
+		if ($.game.state.state == 'fortify' && region.owner == $.game.my_player_index)
+			return true;
+	}
+	return false;
+}
+
+conquest.deselect_origin = function(){
+	if (this.destination){
+		$(this.destination.region_svg).attr('destination',false);
+	}
+	if (this.origin){
+		$(this.origin.region_svg).attr('origin',false);
 		this.origin = null;
-		if (this.destination) {
-			$(this.destination.region_svg).attr('destination','');
-			this.destination = null;
-		}
-		$("#map").removeClass('has-selected');
-		$('g.region').attr('valid-selection','false');
-	}
-	else if (this.destination == region) {
-		$(region.region_svg).attr('destination','');
 		this.destination = null;
-	}
-	else if (!this.origin) {
-		$(region.region_svg).attr('origin','true');
-		this.origin = region;
-		conquest.ui.select_origin(region)
-		$("#map").addClass('has-selected');
-		$('g.region').attr('valid-selection','false');
-		for(i in region.connected_regions){
-			var connected = region.connected_regions[i];
-			$(connected.region_svg).attr('valid-selection','true');
-		}
-	}
-	else {
-		if($(region.region_svg).attr('valid-selection') == 'true'){
-			if(this.destination != null)
-				$(this.destination.region_svg).attr('destination','false');
-			$(region.region_svg).attr('destination','true');
-			this.destination = region;
-		}
+		this.set_valid_selection(this.is_valid_origin);
+		$("#map").removeClass('has-selected');
 	}
 }
 
-conquest.clear_selected = function(){
-	$("#map").removeClass('has-selected');
-	$('g.region').attr('valid-selection','false')
-		.attr('origin','false').attr('destination','false');
-	conquest.origin = null;
-	conquest.destination = null;
+conquest.deselect_destination = function(){
+	$(this.destination.region_svg).attr('destination',false);
+	this.destination = null;
+	this.set_valid_selection(this.is_valid_destination);
+	$(this.origin.region_svg).attr('valid-selection', true);
 }
 
-conquest.place_action = function(event){
+conquest.select_origin = function(region){
+	if(this.origin) this.deselect_origin();
+	this.origin = region;
+	this.set_valid_selection(this.is_valid_destination);
+	$(this.origin.region_svg).attr('valid-selection', true);
+	$("#map").addClass('has-selected');
+	$(this.origin.region_svg).attr('origin',true);
+	for (var i in this.regions){
+		var i_region = this.regions[i];
+		$(i_region.region_svg).attr('valid-alt-origin',this.is_valid_origin(i_region));
+	}
+	$(this.origin.region_svg).attr('valid-alt-origin', false);
+
+	this.ui.select_origin(region);
+}
+
+conquest.select_destination = function(region){
+	if(this.destination) this.deselect_destination();
+	this.destination = region;
+	$(this.destination.region_svg).attr('destination',true);
+}
+
+conquest.set_valid_selection = function(validator){
+	for (var i in this.regions){
+		var region = this.regions[i];
+		$(region.region_svg).attr('valid-selection',validator.call(this,region));
+	}
+}
+
+conquest.place_action = function(){
 	event.preventDefault();
 	$.game.run_action({
 		action:"place",
@@ -147,7 +182,7 @@ conquest.place_action = function(event){
 	});
 }
 
-conquest.reinforce_action = function(event){
+conquest.reinforce_action = function(){
 	event.preventDefault();
 	$.game.run_action({
 		action:"reinforce",
@@ -155,7 +190,7 @@ conquest.reinforce_action = function(event){
 	});
 }
 
-conquest.attack_action = function(event, units){
+conquest.attack_action = function(units){
 	event.preventDefault();
 	$.game.run_action({
 		action:"attack",
@@ -165,14 +200,15 @@ conquest.attack_action = function(event, units){
 	});
 }
 
-conquest.attack_victory_action = function(event,units){
+conquest.attack_victory_action = function(units){
 	$.game.run_action({
 		action:"attack_victory",
 		units:units,
 	});
+	conquest.deselect_origin();
 }
 
-conquest.move_action = function(event,units){
+conquest.move_action = function(units){
 	event.preventDefault();
 	$.game.run_action({
 		action:"move",
@@ -180,26 +216,32 @@ conquest.move_action = function(event,units){
 		destination:conquest.destination.id,
 		units:units,
 	});
-	conquest.clear_selected();
+	conquest.deselect_origin();
 }
 
-conquest.end_phase_action = function(event){
+conquest.end_phase_action = function(){
 	event.preventDefault();
 	if ($.game.state.state == 'attack'){
 		$.game.run_action({
 			action:"end_attack",
 		});
-		conquest.clear_selected();
+		conquest.deselect_origin();
 	}
 	if ($.game.state.state == 'fortify'){
 		$.game.run_action({
 			action:"end_move",
 		});
-		conquest.clear_selected();
+		conquest.deselect_origin();
 	}
 }
 
 conquest.update_from_state = function(event, state){
+	if (conquest.ui.blocking_animation_running()) {
+		conquest.ui.queue_post_animation(function() {
+			conquest.update_from_state(event, state);
+		});
+		return;
+	}
 	$.each(state.territories, function(index, region){
 		region_data = conquest.regions[region.id];
 		region_data.set_data(region.units, 0, region.player);
@@ -219,6 +261,7 @@ conquest.update_from_state = function(event, state){
 		$('#map').removeClass('active');
 		$('#controls-place').hide();
 	}
+	conquest.set_valid_selection(conquest.is_valid_origin);
 }
 
 conquest.update_border_connections = function(){
@@ -242,68 +285,13 @@ function get_region_obj(region_dom){
 	return conquest.regions[$(region_dom).attr('id')];
 }
 
-conquest.ui.place_unit = function(event, region){
-	if (!$.game.is_my_turn()) { return; }
-	if ($.game.state.state == 'place' ||
-		$.game.state.state == 'reinforce'){
-		get_region_obj(region).place_units(1);
-	}
-}
-
-conquest.ui.subtract_unit =  function(event, region){
-	if (!$.game.is_my_turn()) { return; }
-	if ($.game.state.state == 'place' || $.game.state.state == 'reinforce'){
-		get_region_obj(region).place_units(-1);
-	}
-}
-
-conquest.ui.select_region = function(event, region){
-	if (!$.game.is_my_turn()) { return; }
-	if ($.game.state.state == 'attack' ||
-		$.game.state.state == 'fortify'){
-		region_obj = get_region_obj(region);
-		conquest.select_region(region_obj);
-	}
-}
-
-
-conquest.ui.setup_modals = function(){
-	$(".move-unit-slider").slider({range: "min", min:1, max:3, slide:function(event,ui){
-		$(this).parent().find(".move-unit-text").text(ui.value);
-	}});
-	var that = this;
-	this.attack_victory_modal = $('#attack-victory-modal').modal({backdrop:'static'});
-	fix_modal_margin(this.attack_victory_modal);
-	this.attack_victory_modal.find('.primary').click(function(){
-		that.attack_victory_modal.modal('hide');
-		conquest.attack_victory_action(that.attack_victory_modal.find('.move-unit-slider').slider('value'));
-	});
-}
-
-conquest.ui.animate_attack_action_complete = function(event, action) {
-	$.dice.stop(action.attack_rolls, action.defend_rolls);
-}
-
-conquest.ui.animate_attack_action = function(event, action) {
-	setTimeout(function () {
-			conquest.ui.animate_attack_action_complete(event, action);
-	}, 2000);
-	$('#dice-holder').show();
-	$.dice.animate(action.attack_rolls.length, action.defend_rolls.length);
-}
-
-conquest.ui.select_origin = function(region){
-	var max_move = region.units - 1;
-	if ($.game.state.state == 'attack')
-		max_move = Math.min(max_move, 3)
-	$('#controls-place .move-max').text(max_move);
-	var slider = $('#controls-place .move-unit-slider');
-	slider.slider('option','max',max_move);
-	slider.slider('value',max_move);
-	$('#controls-place .move-unit-text').text(max_move);
-}
-
 function process_attack_action(event, action, latest, state){
+	if (conquest.ui.blocking_animation_running()) {
+		conquest.ui.queue_post_animation(function() {
+			process_attack_action(event, action, latest, state);
+		});
+		return;
+	}
 	if (!latest) return;
 	if (action.new_state != 'attack_victory') return;
 	if (action.player_index == $.game.my_player_index){
@@ -339,31 +327,9 @@ function prepmap() {
 	$.game.trigger("refresh");
 };
 
-function fix_modal_margin(modal){
-	modal.css('margin-top',-modal.height()/2);
-}
-
 $(function() {
-	$('#map').load('/static/board/map.svg', prepmap);
-	
-	$.game.on("region-select", conquest.ui.place_unit)
-	$.game.on("region-select", conquest.ui.select_region)
-	$.game.on("region-right-click", conquest.ui.subtract_unit)
-	$('#place').click(conquest.place_action)
-	$('#reinforce').click(conquest.reinforce_action)
-	$('#attack').click(function(){
-		conquest.attack_action(event,$('#attack-controls.move-unit-slider').slider("value"))
-	})
-	$('#end-attack').click(conquest.end_phase_action)
-	$('#fortify').click(function(event){
-		var units = $(this).siblings('.move-unit-slider').slider('value')
-		console.log(units)
-		conquest.move_action(event, units)
-	})
-	$('#skip-fortify').click(conquest.end_phase_action)
-	
+	conquest.ui = new ConquestUi(conquest);
 	$.game.on("new-state", conquest.update_from_state);
 	$.game.on("attack-action-animate", conquest.ui.animate_attack_action);
 	$.game.on("attack-action", process_attack_action);
-	conquest.ui.setup_modals();
 });

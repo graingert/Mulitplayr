@@ -22,9 +22,10 @@ table.clear-table td {
 
 #map.active[state="place"] g.region[is-mine="true"]:hover>path,
 #map.active[state="reinforce"] g.region[is-mine="true"]:hover>path,
-#map.active[state="attack"] g.region[is-mine="true"]:hover>path,
-#map.active.has-selected g.region[valid-selection="true"]:hover>path,
-#map.active[state="fortify"] g.region[is-mine="true"]:hover>path
+#map.active[state="attack"] g.region[valid-selection="true"]:hover>path,
+#map.active[state="fortify"] g.region[valid-selection="true"]:hover>path,
+#map.active[state="attack"] g.region[valid-alt-origin="true"]:hover>path,
+#map.active[state="fortify"] g.region[valid-alt-origin="true"]:hover>path
 {
     fill: #770077 !important;
 	cursor: pointer;
@@ -34,12 +35,20 @@ table.clear-table td {
     fill:black !important;
 }
 
+#map.has-selected g.region[valid-selection="true"]>path{
+    fill:#ffaa00 !important;
+}
+
+#map.has-selected g.region[valid-alt-origin="true"]>path{
+    fill:#222222 !important;
+}
+
 #map.has-selected g.region[origin="true"]>path{
-    fill: green !important;
+    fill:#41db00 !important;
 }
 
 #map.has-selected g.region[destination="true"]>path{
-    fill: #ff7f00 !important;
+    fill:#ff0d00 !important;
 }
 
 #map.show-mine g.region[is-mine="true"]>path{

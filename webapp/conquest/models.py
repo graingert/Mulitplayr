@@ -16,16 +16,32 @@ class TerritoryMapper():
         self.territory_indexes = {}
         self.territory_labels = {}
         self.territory_connections = {}
+        self.territory_continent = {}
+        self.continent_total = {}
+        self.continent_bonus = {}
+        
 
         index_mapping_data = csv.DictReader(
-			open("data/indexmapping.csv")
-		)
+            open("data/indexmapping.csv")
+        )
+            
         for territory in index_mapping_data:
             index = int(territory["index"])-1
+            continent = int(territory["continent"])-1
             label  = territory["label"].lower().replace(" ", "-")
+            continentTotal = int(territory["continentTotal"])
+            continentBonus = int(territory["continentBonus"])
+            
             self.territory_indexes[label] = index
             self.territory_labels[index] = label
+            #map territories to continents
+            self.territory_continent[index] = continent
+            #map continent to total number if teritories in it
+            self.continent_total[continent] = continentTotal
+            #map continent to its bonus
+            self.continent_bonus[continent] = continentBonus
 
+            
         border_data_json = open('data/borders.json')
         border_data = json.load(border_data_json)
         border_data_json.close()
@@ -44,6 +60,15 @@ class TerritoryMapper():
 
     def is_connected(self, a, b):
         return b in self.territory_connections[a]
+        
+    def get_territory_continent(self, territory):
+        return self.territory_continent[territory]
+        
+    def get_continent_total(self, continent):
+        return self.continent_total[continent]
+        
+    def get_continent_bonus(self, continent):
+        return self.continent_bonus[continent]
 
 
 def get_territory_mapper():
@@ -121,6 +146,7 @@ class ConquestGameState(BaseGameState):
     def give_units(self, player):
         """ Give units to player based on teritories owned"""
         territories_owned = 0
+        player.unit_pool = 0
         for territory in self.territory_player:
             if territory == player.play_index:
                 territories_owned += 1
@@ -128,9 +154,26 @@ class ConquestGameState(BaseGameState):
             units_given = 3
         else:
             units_given = math.floor(territories_owned/3)
-        player.unit_pool = int(units_given)
+                
+        #Give units to player based on wholy owned continents
+        territory_mapper = get_territory_mapper()
+        self.continent_noOfPlayerOwnedTerritories = [0]*6
+        for territory, playerID in enumerate(self.territory_player):
+            if playerID == player.play_index:
+                continent = territory_mapper.get_territory_continent(territory)
+                self.continent_noOfPlayerOwnedTerritories[continent] += 1
+                
+        continent_units_given = 0
+        for continent, numberOwned in enumerate(self.continent_noOfPlayerOwnedTerritories):
+            if numberOwned == territory_mapper.get_continent_total(continent):	
+                continent_units_given += territory_mapper.get_continent_bonus(continent)
+                continent_units_given += 1
+    
+        
+        player.unit_pool += int(units_given)
+        player.unit_pool += int(continent_units_given)
         player.put()
-
+        
     def place_action(self, request):
         """ Place the units at the requested territory """
         self.check_state('place')

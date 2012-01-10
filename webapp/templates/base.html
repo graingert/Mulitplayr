@@ -30,8 +30,7 @@
 					awaiting += (data.games[i].awaitingPlayerMove ? 1 : 0);
 				}
 				$('#active-games-await').text(awaiting);
-				$('#active-games-dropdown').html(
-					$($.templates.active_games_dropdown(data)));
+				$('#active-games-dropdown').html($.templates.active_games_dropdown(data));
 			});
 		});
 	</script>

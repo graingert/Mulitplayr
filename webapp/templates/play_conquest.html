@@ -9,6 +9,9 @@
 <script src="http://jquery-simpletip.googlecode.com/files/jquery.simpletip-1.3.1.pack.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
 <script src="http://twitter.github.com/bootstrap/1.4.0/bootstrap-modal.js"></script>
+<script type="text/javascript" src="http://twitter.github.com/bootstrap/1.4.0/bootstrap-alerts.js"></script>
+<script type="text/javascript" src="http://twitter.github.com/bootstrap/1.4.0/bootstrap-twipsy.js"></script>
+<script type="text/javascript" src="http://twitter.github.com/bootstrap/1.4.0/bootstrap-popover.js"></script>
 <script src="/static/board/conquest.js"></script>
 <script src="/static/Dice/diceRoll.js"></script>
 
@@ -22,11 +25,37 @@
 		<h3>Place</h3>
 		You have <span class="unit-pool-count">0</span> units left to place.
 		<a id="place" class="btn primary" href="">Place</a>
+		<a href="#" class="helpButton" rel="popover" data-content="At the begining of the game you are assigned troops to help you in your conquest. Place them wisely on your regions by simple clicking on regions. Remember to use them wisely!" data-original-title="Place"><embed src="/static/images/helpButton.svg" type="image/svg+xml"/></a>
+		<script>
+            $(function () {
+              $("a[rel=popover]")
+                .popover({
+                  offset: 100, delayIn: 100
+				  
+                })
+                .click(function(e) {
+                  e.preventDefault()
+                })
+            })
+          </script>
 	</div>
 	<div id="reinforce-controls" class="hide">
 		<h3>Reinforce</h3>
 		You have <span class="unit-pool-count">0</span> units left to place.
 		<a id="reinforce" class="btn primary" href="">Reinforce</a>
+		<a href="#" class="helpButton" rel="popover" data-content="At the begining of each turn you are given more troops based on how many regions and contintents you own.  Simple click on a region to reinforce it with more units.  Once you are finished placing all your units click fortify." data-original-title="Fortify"><embed src="/static/images/helpButton.svg" type="image/svg+xml"/></a>
+		<script>
+            $(function () {
+              $("a[rel=popover]")
+                .popover({
+                  offset: 100, delayIn: 100
+				  
+                })
+                .click(function(e) {
+                  e.preventDefault()
+                })
+            })
+          </script>
 	</div>
 	<div id="attack-controls" class="hide">
 		<h3>Attack</h3>
@@ -39,8 +68,34 @@
 		</p>
 		<div class="move-unit-slider"></div>
 		<span class="move-unit-text">1</span>
-		<a id="attack" class="btn primary" href="#">Attack</a>
+		<a id="attack" class="btn primary" href="#">Attack</a> 
+		<a href="#" class="helpButton" rel="popover" data-content="To attack select a region you own with 2 or more units adjacent to the region you would like to attact.  Then simple click on the target neiberghing region. Choose the number of units to attack with on the slider above and click the attack button.  Good luck!" data-original-title="How To Attack"><embed src="/static/images/helpButton.svg" type="image/svg+xml"/></a>
+		<script>
+            $(function () {
+              $("a[rel=popover]")
+                .popover({
+                  offset: 100, delayIn: 100
+				  
+                })
+                .click(function(e) {
+                  e.preventDefault()
+                })
+            })
+          </script>
 		<a id="end-attack" class="btn danger" href="">End Phase</a>
+		<a href="#" class="helpButton" rel="popover" data-content="Once you have finished attacking completly click this button to move onto the next phase of the game." data-original-title="End Phase"><embed src="/static/images/helpButton.svg" type="image/svg+xml"/></a>
+		<script>
+            $(function () {
+              $("a[rel=popover]")
+                .popover(
+                  offset: 100, delayIn: 100,html: true
+				  
+                )
+                .click(function(e) {
+                  e.preventDefault()
+                })
+            })
+          </script>
 	</div>
 	<div id="fortify-controls" class="hide">
 		<h3>Fortify</h3>
@@ -53,8 +108,33 @@
 		</p>
 		<div class="move-unit-slider"></div>
 		Moving <span class="move-unit-text">1</span> Units
-		<a id="fortify" class="btn primary" href="">Fortify</a>
+		<a id="fortify" class="btn primary" href="">Fortify</a><a href="#" class="helpButton" rel="popover" data-content="Select a region with excess units and then select a neighbering region you own. Choose how many units to move and then click fortify.  You only have one fortify move per turn so make it count!" data-original-title="Fortify"><embed src="/static/images/helpButton.svg" type="image/svg+xml"/></a>
+		<script>
+            $(function () {
+              $("a[rel=popover]")
+                .popover({
+                  offset: 100, delayIn: 100
+				  
+                })
+                .click(function(e) {
+                  e.preventDefault()
+                })
+            })
+          </script>
 		<a id="skip-fortify" class="btn danger" href="">Skip</a>
+		<a href="#" class="helpButton" rel="popover" data-content="If you are happy with your unit placements you can skip you foritfy phase." data-original-title="Skip Fortify"><embed src="/static/images/helpButton.svg" type="image/svg+xml"/></a>
+		<script>
+            $(function () {
+              $("a[rel=popover]")
+                .popover({
+                  offset: 100, delayIn: 100
+				  
+                })
+                .click(function(e) {
+                  e.preventDefault()
+                })
+            })
+          </script>
 	</div>
 </div>
 <div id="dice-holder" class="block controls hide">

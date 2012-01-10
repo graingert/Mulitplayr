@@ -266,6 +266,7 @@ conquest.update_from_state = function(event, state){
 		$('#map').removeClass('active');
 		$('#controls-place').hide();
 	}
+	$('#controls-place .unit-move').hide();
 	// Try to re-select the origin and destination
 	var old_origin = conquest.origin;
 	var old_destination = conquest.destination;

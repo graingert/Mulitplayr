@@ -14,3 +14,7 @@ class MainPage(BaseHandler):
         games = sorted(games,key=lambda x: x.human_name)
         self.context['games'] = games
         self.render_response("index.html")
+
+class AboutPage(BaseHandler):
+    def get(self):
+        self.render_response("about.html")

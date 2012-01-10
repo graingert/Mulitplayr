@@ -35,16 +35,20 @@ table.clear-table td {
     fill:black !important;
 }
 
+#map.has-selected g.region[valid-selection="true"]>path{
+    fill:#ffaa00 !important;
+}
+
 #map.has-selected g.region[valid-alt-origin="true"]>path{
-    fill:gray !important;
+    fill:#222222 !important;
 }
 
 #map.has-selected g.region[origin="true"]>path{
-    fill: green !important;
+    fill:#41db00 !important;
 }
 
 #map.has-selected g.region[destination="true"]>path{
-    fill: #ff7f00 !important;
+    fill:#ff0d00 !important;
 }
 
 #map.show-mine g.region[is-mine="true"]>path{

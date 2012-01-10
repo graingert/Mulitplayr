@@ -301,8 +301,8 @@ function process_attack_action(event, action, latest, state){
 		var slider = conquest.ui.attack_victory_modal.find('.move-unit-slider');
 		slider.slider('option','min',min_move);
 		slider.slider('option','max',can_move);
-		slider.slider('option','value',min_move);
-		slider.parent().find(".move-unit-text").text(min_move);
+		slider.slider('option','value',can_move);
+		slider.parent().find(".move-unit-text").text(can_move);
 		conquest.ui.attack_victory_modal.find('.move-min').text(min_move);
 		conquest.ui.attack_victory_modal.find('.move-max').text(can_move);
 		conquest.ui.attack_victory_modal.modal('show');

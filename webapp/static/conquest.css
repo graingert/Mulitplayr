@@ -103,3 +103,7 @@ h1.game_name {
     font-family: 'Monsieur La Doulaise', cursive;
     
 }
+
+.sidebar .move-unit-slider{
+	margin: 0 10px;
+}

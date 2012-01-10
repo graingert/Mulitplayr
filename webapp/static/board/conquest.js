@@ -127,7 +127,7 @@ conquest.is_valid_destination = function(region){
 
 conquest.deselect_origin = function(){
 	if (this.destination){
-		$(this.destination.region_svg).attr('destination',false);
+		this.deselect_destination();
 	}
 	if (this.origin){
 		$(this.origin.region_svg).attr('origin',false);
@@ -136,6 +136,7 @@ conquest.deselect_origin = function(){
 		this.set_valid_selection(this.is_valid_origin);
 		$("#map").removeClass('has-selected');
 	}
+	this.ui.deselect_origin();
 }
 
 conquest.deselect_destination = function(){
@@ -143,6 +144,8 @@ conquest.deselect_destination = function(){
 	this.destination = null;
 	this.set_valid_selection(this.is_valid_destination);
 	$(this.origin.region_svg).attr('valid-selection', true);
+
+	this.ui.deselect_destination();
 }
 
 conquest.select_origin = function(region){
@@ -165,6 +168,8 @@ conquest.select_destination = function(region){
 	if(this.destination) this.deselect_destination();
 	this.destination = region;
 	$(this.destination.region_svg).attr('destination',true);
+
+	this.ui.select_destination(region);
 }
 
 conquest.set_valid_selection = function(validator){
@@ -261,7 +266,14 @@ conquest.update_from_state = function(event, state){
 		$('#map').removeClass('active');
 		$('#controls-place').hide();
 	}
-	conquest.set_valid_selection(conquest.is_valid_origin);
+	// Try to re-select the origin and destination
+	var old_origin = conquest.origin;
+	var old_destination = conquest.destination;
+	conquest.deselect_origin();
+	conquest.select_region(old_origin);
+	conquest.select_region(old_destination);
+	if (conquest.origin == null)
+		conquest.set_valid_selection(conquest.is_valid_origin);
 }
 
 conquest.update_border_connections = function(){

@@ -94,48 +94,84 @@ $.getJSON('/static/board/borders.json', function(data) {
 });
 
 conquest.select_region = function(region){
-	// Cannot just add a class due to bug with SVG dom in JQuery
-	if (this.origin == region) {
-		$(region.region_svg).attr('origin','');
-		this.origin = null;
-		if (this.destination) {
-			$(this.destination.region_svg).attr('destination','');
-			this.destination = null;
-		}
-		$("#map").removeClass('has-selected');
-		$('g.region').attr('valid-selection','false');
+	if (region == this.origin){
+		this.deselect_origin();
 	}
-	else if (this.destination == region) {
-		$(region.region_svg).attr('destination','');
-		this.destination = null;
+	else if (region == this.destination){
+		this.deselect_destination();
 	}
-	else if (!this.origin) {
-		$(region.region_svg).attr('origin','true');
-		this.origin = region;
-		conquest.ui.select_origin(region)
-		$("#map").addClass('has-selected');
-		$('g.region').attr('valid-selection','false');
-		for(i in region.connected_regions){
-			var connected = region.connected_regions[i];
-			$(connected.region_svg).attr('valid-selection','true');
-		}
+	else if (this.is_valid_destination(region)){
+		this.select_destination(region);
 	}
-	else {
-		if($(region.region_svg).attr('valid-selection') == 'true'){
-			if(this.destination != null)
-				$(this.destination.region_svg).attr('destination','false');
-			$(region.region_svg).attr('destination','true');
-			this.destination = region;
-		}
+	else if (this.is_valid_origin(region)){
+		this.select_origin(region);
 	}
 }
 
-conquest.clear_selected = function(){
-	$("#map").removeClass('has-selected');
-	$('g.region').attr('valid-selection','false')
-		.attr('origin','false').attr('destination','false');
-	conquest.origin = null;
-	conquest.destination = null;
+conquest.is_valid_origin = function(region){
+	return region.owner == $.game.my_player_index
+		&& region.units > 1;
+}
+
+conquest.is_valid_destination = function(region){
+	if (this.origin != null &&
+			this.origin.connected_regions.indexOf(region) >= 0)
+	{
+		if ($.game.state.state == 'attack' && region.owner != $.game.my_player_index)
+			return true;
+		if ($.game.state.state == 'fortify' && region.owner == $.game.my_player_index)
+			return true;
+	}
+	return false;
+}
+
+conquest.deselect_origin = function(){
+	if (this.destination){
+		$(this.destination.region_svg).attr('destination',false);
+	}
+	if (this.origin){
+		$(this.origin.region_svg).attr('origin',false);
+		this.origin = null;
+		this.destination = null;
+		this.set_valid_selection(this.is_valid_origin);
+		$("#map").removeClass('has-selected');
+	}
+}
+
+conquest.deselect_destination = function(){
+	$(this.destination.region_svg).attr('destination',false);
+	this.destination = null;
+	this.set_valid_selection(this.is_valid_destination);
+	$(this.origin.region_svg).attr('valid-selection', true);
+}
+
+conquest.select_origin = function(region){
+	if(this.origin) this.deselect_origin();
+	this.origin = region;
+	this.set_valid_selection(this.is_valid_destination);
+	$(this.origin.region_svg).attr('valid-selection', true);
+	$("#map").addClass('has-selected');
+	$(this.origin.region_svg).attr('origin',true);
+	for (var i in this.regions){
+		var i_region = this.regions[i];
+		$(i_region.region_svg).attr('valid-alt-origin',this.is_valid_origin(i_region));
+	}
+	$(this.origin.region_svg).attr('valid-alt-origin', false);
+
+	this.ui.select_origin(region);
+}
+
+conquest.select_destination = function(region){
+	if(this.destination) this.deselect_destination();
+	this.destination = region;
+	$(this.destination.region_svg).attr('destination',true);
+}
+
+conquest.set_valid_selection = function(validator){
+	for (var i in this.regions){
+		var region = this.regions[i];
+		$(region.region_svg).attr('valid-selection',validator.call(this,region));
+	}
 }
 
 conquest.place_action = function(){
@@ -169,6 +205,7 @@ conquest.attack_victory_action = function(units){
 		action:"attack_victory",
 		units:units,
 	});
+	conquest.deselect_origin();
 }
 
 conquest.move_action = function(units){
@@ -179,7 +216,7 @@ conquest.move_action = function(units){
 		destination:conquest.destination.id,
 		units:units,
 	});
-	conquest.clear_selected();
+	conquest.deselect_origin();
 }
 
 conquest.end_phase_action = function(){
@@ -188,13 +225,13 @@ conquest.end_phase_action = function(){
 		$.game.run_action({
 			action:"end_attack",
 		});
-		conquest.clear_selected();
+		conquest.deselect_origin();
 	}
 	if ($.game.state.state == 'fortify'){
 		$.game.run_action({
 			action:"end_move",
 		});
-		conquest.clear_selected();
+		conquest.deselect_origin();
 	}
 }
 
@@ -224,6 +261,7 @@ conquest.update_from_state = function(event, state){
 		$('#map').removeClass('active');
 		$('#controls-place').hide();
 	}
+	conquest.set_valid_selection(conquest.is_valid_origin);
 }
 
 conquest.update_border_connections = function(){

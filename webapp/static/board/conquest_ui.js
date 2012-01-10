@@ -106,4 +106,8 @@ function ConquestUi(conquest){
 		var attack_units = that.attack_victory_modal.find('.move-unit-slider').slider('value')
 		conquest.attack_victory_action(attack_units);
 	});
+	unit_text = this.attack_victory_modal.find(".move-unit-text")
+	this.attack_victory_modal.find(".move-unit-slider").bind("slide", function(event, ui){
+		unit_text.text(ui.value);
+	});
 }

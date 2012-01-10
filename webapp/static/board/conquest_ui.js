@@ -71,7 +71,7 @@ function ConquestUi(conquest){
 	this.animate_attack_action = function(event, action) {
 		setTimeout(function () {
 			that.animate_attack_action_complete(event, action);
-		}, 2000);
+		}, 1000);
 		that.animation_started();
 		$('#dice-holder').show();
 		$.dice.animate(action.attack_rolls.length, action.defend_rolls.length);

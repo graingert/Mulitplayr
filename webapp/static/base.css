@@ -9,10 +9,13 @@
 	text-align: center; /* center align it with the container */
   }
   /* The white background content wrapper */
-  .content {
+  .container>.content {
+	margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
+  }
+  .container>.content,
+  .container-fluid>.content {
 	background-color: #fff;
 	padding: 20px;
-	margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
 	-webkit-border-radius: 0 0 6px 6px;
 	   -moz-border-radius: 0 0 6px 6px;
 			border-radius: 0 0 6px 6px;

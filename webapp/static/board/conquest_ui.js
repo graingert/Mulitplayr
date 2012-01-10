@@ -105,7 +105,7 @@ function ConquestUi(conquest){
 	})
 	$('#end-attack').click(conquest.end_phase_action)
 	$('#fortify').click(function(event){
-		var units = $(this).siblings('.move-unit-slider').slider('value')
+		var units = $(this).parent().find('.move-unit-slider').slider('value')
 		conquest.move_action(units)
 	})
 	$('#skip-fortify').click(conquest.end_phase_action)

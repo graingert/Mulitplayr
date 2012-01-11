@@ -36,6 +36,6 @@ ul#player-list {
 	box-shadow: 3px 3px 4px #000;
 }
 
-
+.debug {display:none}
 .avatar {padding-top:6px; padding-left:5px;}
 .nickname {}

@@ -305,6 +305,10 @@ class ConquestGameState(BaseGameState):
                 old_owner_data = self.basegameplayer_set.filter('play_index', old_owner).get()
                 old_owner_data.eliminated = True
                 old_owner_data.put()
+                if self.basegameplayer_set.filter('eliminate =', True).count(2) <= 1:
+                    action.new_state = 'finished'
+                    self.state = 'finished'
+
 
         action.origin = origin
         action.destination = destination

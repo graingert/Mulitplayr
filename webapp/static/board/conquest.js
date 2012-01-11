@@ -340,4 +340,10 @@ $(function() {
 	$.game.on("new-state", conquest.update_from_state);
 	$.game.on("attack-action-animate", conquest.ui.animate_attack_action);
 	$.game.on("attack-action", process_attack_action);
+	$("span[rel=popover]").popover({
+		offset: 10, html:true}
+	)
+	.click(function(e) {
+		e.preventDefault()
+	})
 });

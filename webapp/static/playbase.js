@@ -1,3 +1,7 @@
+function fix_modal_margin(modal){
+	modal.css('margin-top',-modal.height()/2);
+}
+
 (function( $ ) {
 	if ($.game == null)
 		$.game = $({});
@@ -78,8 +82,20 @@
 		return $.game.state.current_player_index == $.game.my_player_index;
 	}
 
+	$.game.check_finish = function(event, state){
+		if (state.state == 'finished'){
+			fix_modal_margin($('#finish-game-modal'));
+			$('#finish-game-modal').modal('show');
+			this.attack_victory_modal.find('.primary').click(function(){
+				$('#finish-game-modal').modal('hide');
+			})
+
+		}
+	}
+
 	$(document).ready(function(){
 		$.game.on("refresh", $.game.refresh);
 		$.game.trigger("refresh");
+		$.game.on("new-state", $.game.check_finish)
 	})
 })( jQuery );

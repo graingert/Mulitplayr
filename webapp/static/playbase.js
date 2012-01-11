@@ -86,7 +86,7 @@ function fix_modal_margin(modal){
 		if (state.state == 'finished'){
 			fix_modal_margin($('#finish-game-modal'));
 			$('#finish-game-modal').modal('show');
-			this.attack_victory_modal.find('.primary').click(function(){
+			$('#finish-game-modal .primary').click(function(){
 				$('#finish-game-modal').modal('hide');
 			})
 

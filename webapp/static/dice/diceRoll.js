@@ -11,33 +11,33 @@
 	var defenceDiceBlur = new Array();
 	
 	//Preload images
-	$.get("/static/Dice/White1.svg", function(data){defenceDice[1] = $(data)},"html");
-	$.get("/static/Dice/White2.svg", function(data){defenceDice[2] = $(data)},"html");
-	$.get("/static/Dice/White3.svg", function(data){defenceDice[3] = $(data)},"html");
-	$.get("/static/Dice/White4.svg", function(data){defenceDice[4] = $(data)},"html");
-	$.get("/static/Dice/White5.svg", function(data){defenceDice[5] = $(data)},"html");
-	$.get("/static/Dice/White6.svg", function(data){defenceDice[6] = $(data)},"html");
+	$.get("/static/dice/White1.svg", function(data){defenceDice[1] = $(data)},"html");
+	$.get("/static/dice/White2.svg", function(data){defenceDice[2] = $(data)},"html");
+	$.get("/static/dice/White3.svg", function(data){defenceDice[3] = $(data)},"html");
+	$.get("/static/dice/White4.svg", function(data){defenceDice[4] = $(data)},"html");
+	$.get("/static/dice/White5.svg", function(data){defenceDice[5] = $(data)},"html");
+	$.get("/static/dice/White6.svg", function(data){defenceDice[6] = $(data)},"html");
 	
-	$.get("/static/Dice/Red1.svg", function(data){attackDice[1] = $(data)},"html");
-	$.get("/static/Dice/Red2.svg", function(data){attackDice[2] = $(data)},"html");
-	$.get("/static/Dice/Red3.svg", function(data){attackDice[3] = $(data)},"html");
-	$.get("/static/Dice/Red4.svg", function(data){attackDice[4] = $(data)},"html");
-	$.get("/static/Dice/Red5.svg", function(data){attackDice[5] = $(data)},"html");
-	$.get("/static/Dice/Red6.svg", function(data){attackDice[6] = $(data)},"html");
+	$.get("/static/dice/Red1.svg", function(data){attackDice[1] = $(data)},"html");
+	$.get("/static/dice/Red2.svg", function(data){attackDice[2] = $(data)},"html");
+	$.get("/static/dice/Red3.svg", function(data){attackDice[3] = $(data)},"html");
+	$.get("/static/dice/Red4.svg", function(data){attackDice[4] = $(data)},"html");
+	$.get("/static/dice/Red5.svg", function(data){attackDice[5] = $(data)},"html");
+	$.get("/static/dice/Red6.svg", function(data){attackDice[6] = $(data)},"html");
 	
-	$.get("/static/Dice/White1blur.svg", function(data){defenceDiceBlur[1] = $(data)},"html");
-	$.get("/static/Dice/White2blur.svg", function(data){defenceDiceBlur[2] = $(data)},"html");
-	$.get("/static/Dice/White3blur.svg", function(data){defenceDiceBlur[3] = $(data)},"html");
-	$.get("/static/Dice/White4blur.svg", function(data){defenceDiceBlur[4] = $(data)},"html");
-	$.get("/static/Dice/White5blur.svg", function(data){defenceDiceBlur[5] = $(data)},"html");
-	$.get("/static/Dice/White6blur.svg", function(data){defenceDiceBlur[6] = $(data)},"html");
+	$.get("/static/dice/White1blur.svg", function(data){defenceDiceBlur[1] = $(data)},"html");
+	$.get("/static/dice/White2blur.svg", function(data){defenceDiceBlur[2] = $(data)},"html");
+	$.get("/static/dice/White3blur.svg", function(data){defenceDiceBlur[3] = $(data)},"html");
+	$.get("/static/dice/White4blur.svg", function(data){defenceDiceBlur[4] = $(data)},"html");
+	$.get("/static/dice/White5blur.svg", function(data){defenceDiceBlur[5] = $(data)},"html");
+	$.get("/static/dice/White6blur.svg", function(data){defenceDiceBlur[6] = $(data)},"html");
 	
-	$.get("/static/Dice/Red1blur.svg", function(data){attackDiceBlur[1] = $(data)},"html");
-	$.get("/static/Dice/Red2blur.svg", function(data){attackDiceBlur[2] = $(data)},"html");
-	$.get("/static/Dice/Red3blur.svg", function(data){attackDiceBlur[3] = $(data)},"html");
-	$.get("/static/Dice/Red4blur.svg", function(data){attackDiceBlur[4] = $(data)},"html");
-	$.get("/static/Dice/Red5blur.svg", function(data){attackDiceBlur[5] = $(data)},"html");
-	$.get("/static/Dice/Red6blur.svg", function(data){attackDiceBlur[6] = $(data)},"html");
+	$.get("/static/dice/Red1blur.svg", function(data){attackDiceBlur[1] = $(data)},"html");
+	$.get("/static/dice/Red2blur.svg", function(data){attackDiceBlur[2] = $(data)},"html");
+	$.get("/static/dice/Red3blur.svg", function(data){attackDiceBlur[3] = $(data)},"html");
+	$.get("/static/dice/Red4blur.svg", function(data){attackDiceBlur[4] = $(data)},"html");
+	$.get("/static/dice/Red5blur.svg", function(data){attackDiceBlur[5] = $(data)},"html");
+	$.get("/static/dice/Red6blur.svg", function(data){attackDiceBlur[6] = $(data)},"html");
 	
 	
 	$.dice.animate = function(noAttackDice, noDefenceDice){

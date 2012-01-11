@@ -180,7 +180,6 @@ conquest.set_valid_selection = function(validator){
 }
 
 conquest.place_action = function(){
-	event.preventDefault();
 	$.game.run_action({
 		action:"place",
 		placements:conquest.get_placements(),
@@ -188,7 +187,6 @@ conquest.place_action = function(){
 }
 
 conquest.reinforce_action = function(){
-	event.preventDefault();
 	$.game.run_action({
 		action:"reinforce",
 		placements:conquest.get_placements(),
@@ -196,7 +194,6 @@ conquest.reinforce_action = function(){
 }
 
 conquest.attack_action = function(units){
-	event.preventDefault();
 	$.game.run_action({
 		action:"attack",
 		origin:conquest.origin.id,
@@ -214,7 +211,6 @@ conquest.attack_victory_action = function(units){
 }
 
 conquest.move_action = function(units){
-	event.preventDefault();
 	$.game.run_action({
 		action:"move",
 		origin:conquest.origin.id,
@@ -225,7 +221,6 @@ conquest.move_action = function(units){
 }
 
 conquest.end_phase_action = function(){
-	event.preventDefault();
 	if ($.game.state.state == 'attack'){
 		$.game.run_action({
 			action:"end_attack",

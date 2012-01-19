@@ -200,7 +200,7 @@ class ConquestGameState(BaseGameState):
             units = placement['units']
             total_units_placed += units
             action.placed_units[placement_index] = units
-            self.territory_units[placement_index] = units
+            self.territory_units[placement_index] += units
             self.territory_player[placement_index] = self.current_player_index
         if total_units_placed > player_data.unit_pool:
             raise InvalidActionParametersException()
